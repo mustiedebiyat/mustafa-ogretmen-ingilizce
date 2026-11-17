@@ -1,0 +1,6 @@
+{
+  "name": "Mustafa Öğretmenle İngilizce",
+  "description": "Hazırlayan: Mustafa ŞAHİN - Maarif Modele uygun 3. sınıf İngilizce 2. ve 3. Tema sesli, görselli ve oyunlu çalışma programı.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
