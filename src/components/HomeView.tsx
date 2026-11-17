@@ -86,6 +86,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
     });
   };
 
+  const theme1Percent = getThemeCompletionPercent(student, 1);
   const theme2Percent = getThemeCompletionPercent(student, 2);
   const theme3Percent = getThemeCompletionPercent(student, 3);
 
@@ -104,6 +105,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
         return <Sparkles className={cls} />;
       case 'puzzle':
         return <Puzzle className={cls} />;
+      case 'tealMedal':
+        return <Medal className={`w-6 h-6 ${unlocked ? 'text-teal-700' : 'text-slate-400'}`} />;
       case 'orangeMedal':
         return <Medal className={`w-6 h-6 ${unlocked ? 'text-orange-700' : 'text-slate-400'}`} />;
       case 'purpleMedal':
@@ -228,8 +231,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* Theme Selection Boxes: 2. Tema (Koyu Turuncu) and 3. Tema (Koyu Mor) */}
-      <section className="space-y-5">
+      {/* Theme Selection Boxes: Compact 2-column grid on mobile (1 & 2 side-by-side, 3 below), 3-column on desktop */}
+      <section className="space-y-4 sm:space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -240,11 +243,78 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
           <span className="text-xs sm:text-sm font-medium text-slate-500 whitespace-nowrap">
-            MEB Maarif Modeli · 2 Ayrı Tema
+            MEB Maarif Modeli · 3 Ayrı Tema
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+          {/* 1. TEMA: Koyu Yeşil-Turkuaz (Teal) */}
+          <button
+            type="button"
+            onClick={() => handleThemeClick(1)}
+            aria-expanded={expandedThemeId === 1}
+            className={`group text-left rounded-2xl overflow-hidden bg-gradient-to-br from-[#0F766E] via-[#115E59] to-[#134E4A] text-white shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-400 cursor-pointer flex flex-col justify-between ${
+              expandedThemeId === 1 ? 'ring-4 ring-teal-400' : ''
+            }`}
+          >
+            <div className="h-24 sm:h-44 w-full overflow-hidden relative bg-teal-950">
+              <img
+                src={THEMES[1].heroImage}
+                alt="1. Tema School Life Görseli"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#134E4A] via-[#134E4A]/35 to-transparent" />
+              <span className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/45 text-[10px] sm:text-xs font-bold text-teal-100 tabular-nums backdrop-blur-xs">
+                %{theme1Percent}
+              </span>
+              <div className="absolute bottom-2.5 left-3 right-3 sm:bottom-3.5 sm:left-5 sm:right-5">
+                <p className="text-[10px] sm:text-xs font-bold tracking-wider text-teal-200 uppercase">
+                  1. Tema
+                </p>
+                <h3 className="text-sm sm:text-xl lg:text-2xl font-extrabold text-white leading-tight truncate">
+                  School Life
+                </h3>
+              </div>
+            </div>
+
+            <div className="p-3 sm:p-5 space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                <p className="text-xs sm:text-base font-bold text-teal-50 truncate">
+                  Okul Hayatı
+                </p>
+                <p className="hidden sm:block text-xs sm:text-sm text-teal-100/90 leading-relaxed line-clamp-2">
+                  {THEMES[1].subtitleTr}. {THEMES[1].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <div className="w-full h-1.5 sm:h-2 bg-teal-950/60 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-amber-300 rounded-full transition-all duration-300"
+                    style={{ width: `${theme1Percent}%` }}
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-1 text-[11px] sm:text-sm font-bold text-white pt-0.5">
+                  <span className="truncate">
+                    {expandedThemeId === 1 ? 'Açıldı' : '1. Temayı Aç'}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-white/15 group-hover:bg-white/25 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors whitespace-nowrap shrink-0">
+                    <span className="sm:hidden">{expandedThemeId === 1 ? 'Gizle' : 'Aç'}</span>
+                    <span className="hidden sm:inline">
+                      {expandedThemeId === 1 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                    </span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform ${
+                        expandedThemeId === 1 ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </button>
+
           {/* 2. TEMA: Koyu Turuncu */}
           <button
             type="button"
@@ -254,52 +324,55 @@ export const HomeView: React.FC<HomeViewProps> = ({
               expandedThemeId === 2 ? 'ring-4 ring-orange-400' : ''
             }`}
           >
-            <div className="h-52 w-full overflow-hidden relative bg-orange-950">
+            <div className="h-24 sm:h-44 w-full overflow-hidden relative bg-orange-950">
               <img
                 src={THEMES[2].heroImage}
                 alt="2. Tema Classroom Life Görseli"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#7C2D12] via-[#7C2D12]/25 to-transparent" />
-              <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-xs font-bold tracking-wider text-orange-200 uppercase">
-                    2. Tema
-                  </p>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-                    Classroom Life
-                  </h3>
-                </div>
-                <span className="text-sm font-bold text-orange-100 tabular-nums whitespace-nowrap">
-                  %{theme2Percent} Tamamlandı
-                </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#7C2D12] via-[#7C2D12]/35 to-transparent" />
+              <span className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/45 text-[10px] sm:text-xs font-bold text-orange-100 tabular-nums backdrop-blur-xs">
+                %{theme2Percent}
+              </span>
+              <div className="absolute bottom-2.5 left-3 right-3 sm:bottom-3.5 sm:left-5 sm:right-5">
+                <p className="text-[10px] sm:text-xs font-bold tracking-wider text-orange-200 uppercase">
+                  2. Tema
+                </p>
+                <h3 className="text-sm sm:text-xl lg:text-2xl font-extrabold text-white leading-tight truncate">
+                  Classroom Life
+                </h3>
               </div>
             </div>
 
-            <div className="p-6 space-y-5 flex-1 flex flex-col justify-between">
-              <div className="space-y-2">
-                <p className="text-lg font-bold text-orange-50">
+            <div className="p-3 sm:p-5 space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                <p className="text-xs sm:text-base font-bold text-orange-50 truncate">
                   Sınıf Yaşamı
                 </p>
-                <p className="text-sm text-orange-100/90 leading-relaxed">
-                  {THEMES[2].subtitleTr}. 24 sesli kelime, 4 konu anlatımı, 4 eğlenceli oyun ve 10 soruluk sınav.
+                <p className="hidden sm:block text-xs sm:text-sm text-orange-100/90 leading-relaxed line-clamp-2">
+                  {THEMES[2].subtitleTr}. {THEMES[2].vocab.length} sesli kelime, 4 konu ve 4 oyun.
                 </p>
               </div>
 
-              <div className="space-y-3">
-                <div className="w-full h-2.5 bg-orange-950/60 rounded-full overflow-hidden">
+              <div className="space-y-2">
+                <div className="w-full h-1.5 sm:h-2 bg-orange-950/60 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-amber-300 rounded-full transition-all duration-300"
                     style={{ width: `${theme2Percent}%` }}
                   />
                 </div>
-                <div className="flex items-center justify-between text-sm font-bold text-white pt-1">
-                  <span>{expandedThemeId === 2 ? 'Alt Başlıklar Açıldı' : '2. Temayı Aç'}</span>
-                  <span className="inline-flex items-center gap-1.5 bg-white/15 group-hover:bg-white/25 px-3.5 py-1.5 rounded-lg transition-colors whitespace-nowrap">
-                    {expandedThemeId === 2 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                <div className="flex items-center justify-between gap-1 text-[11px] sm:text-sm font-bold text-white pt-0.5">
+                  <span className="truncate">
+                    {expandedThemeId === 2 ? 'Açıldı' : '2. Temayı Aç'}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-white/15 group-hover:bg-white/25 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors whitespace-nowrap shrink-0">
+                    <span className="sm:hidden">{expandedThemeId === 2 ? 'Gizle' : 'Aç'}</span>
+                    <span className="hidden sm:inline">
+                      {expandedThemeId === 2 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                    </span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform ${
                         expandedThemeId === 2 ? 'rotate-180' : ''
                       }`}
                     />
@@ -318,52 +391,55 @@ export const HomeView: React.FC<HomeViewProps> = ({
               expandedThemeId === 3 ? 'ring-4 ring-purple-400' : ''
             }`}
           >
-            <div className="h-52 w-full overflow-hidden relative bg-purple-950">
+            <div className="h-24 sm:h-44 w-full overflow-hidden relative bg-purple-950">
               <img
                 src={THEMES[3].heroImage}
                 alt="3. Tema Personal Life Görseli"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#3B0764] via-[#3B0764]/25 to-transparent" />
-              <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-xs font-bold tracking-wider text-purple-200 uppercase">
-                    3. Tema
-                  </p>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-                    Personal Life
-                  </h3>
-                </div>
-                <span className="text-sm font-bold text-purple-100 tabular-nums whitespace-nowrap">
-                  %{theme3Percent} Tamamlandı
-                </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#3B0764] via-[#3B0764]/35 to-transparent" />
+              <span className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/45 text-[10px] sm:text-xs font-bold text-purple-100 tabular-nums backdrop-blur-xs">
+                %{theme3Percent}
+              </span>
+              <div className="absolute bottom-2.5 left-3 right-3 sm:bottom-3.5 sm:left-5 sm:right-5">
+                <p className="text-[10px] sm:text-xs font-bold tracking-wider text-purple-200 uppercase">
+                  3. Tema
+                </p>
+                <h3 className="text-sm sm:text-xl lg:text-2xl font-extrabold text-white leading-tight truncate">
+                  Personal Life
+                </h3>
               </div>
             </div>
 
-            <div className="p-6 space-y-5 flex-1 flex flex-col justify-between">
-              <div className="space-y-2">
-                <p className="text-lg font-bold text-purple-50">
+            <div className="p-3 sm:p-5 space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                <p className="text-xs sm:text-base font-bold text-purple-50 truncate">
                   Kişisel Hayat
                 </p>
-                <p className="text-sm text-purple-100/90 leading-relaxed">
-                  {THEMES[3].subtitleTr}. 24 sesli kelime, 4 konu anlatımı, 4 eğlenceli oyun ve 10 soruluk sınav.
+                <p className="hidden sm:block text-xs sm:text-sm text-purple-100/90 leading-relaxed line-clamp-2">
+                  {THEMES[3].subtitleTr}. {THEMES[3].vocab.length} sesli kelime, 4 konu ve 4 oyun.
                 </p>
               </div>
 
-              <div className="space-y-3">
-                <div className="w-full h-2.5 bg-purple-950/60 rounded-full overflow-hidden">
+              <div className="space-y-2">
+                <div className="w-full h-1.5 sm:h-2 bg-purple-950/60 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-amber-300 rounded-full transition-all duration-300"
                     style={{ width: `${theme3Percent}%` }}
                   />
                 </div>
-                <div className="flex items-center justify-between text-sm font-bold text-white pt-1">
-                  <span>{expandedThemeId === 3 ? 'Alt Başlıklar Açıldı' : '3. Temayı Aç'}</span>
-                  <span className="inline-flex items-center gap-1.5 bg-white/15 group-hover:bg-white/25 px-3.5 py-1.5 rounded-lg transition-colors whitespace-nowrap">
-                    {expandedThemeId === 3 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                <div className="flex items-center justify-between gap-1 text-[11px] sm:text-sm font-bold text-white pt-0.5">
+                  <span className="truncate">
+                    {expandedThemeId === 3 ? 'Açıldı' : '3. Temayı Aç'}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-white/15 group-hover:bg-white/25 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors whitespace-nowrap shrink-0">
+                    <span className="sm:hidden">{expandedThemeId === 3 ? 'Gizle' : 'Aç'}</span>
+                    <span className="hidden sm:inline">
+                      {expandedThemeId === 3 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                    </span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform ${
                         expandedThemeId === 3 ? 'rotate-180' : ''
                       }`}
                     />
@@ -379,7 +455,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div
             ref={subMenuRef}
             className={`rounded-2xl border-2 p-5 sm:p-7 space-y-5 shadow-sm transition-all ${
-              expandedThemeId === 2
+              expandedThemeId === 1
+                ? 'bg-teal-50/70 border-teal-300'
+                : expandedThemeId === 2
                 ? 'bg-orange-50/70 border-orange-300'
                 : 'bg-purple-50/70 border-purple-300'
             }`}
@@ -388,7 +466,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div>
                 <p
                   className={`text-xs font-extrabold uppercase tracking-wider ${
-                    expandedThemeId === 2 ? 'text-orange-800' : 'text-purple-900'
+                    expandedThemeId === 1
+                      ? 'text-teal-900'
+                      : expandedThemeId === 2
+                      ? 'text-orange-800'
+                      : 'text-purple-900'
                   }`}
                 >
                   {THEMES[expandedThemeId].code} · {THEMES[expandedThemeId].titleEn}
@@ -408,15 +490,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
 
             {(() => {
+              const currentTheme = THEMES[expandedThemeId];
               const p =
-                expandedThemeId === 2 ? student?.theme2 : student?.theme3;
-              const isOrange = expandedThemeId === 2;
-              const iconBoxClass = isOrange
-                ? 'bg-[#9A3412] text-white'
-                : 'bg-[#4C1D95] text-white';
-              const hoverBorderClass = isOrange
-                ? 'hover:border-orange-500'
-                : 'hover:border-purple-600';
+                expandedThemeId === 1
+                  ? student?.theme1
+                  : expandedThemeId === 2
+                  ? student?.theme2
+                  : student?.theme3;
+              const iconBoxClass =
+                expandedThemeId === 1
+                  ? 'bg-[#115E59] text-white'
+                  : expandedThemeId === 2
+                  ? 'bg-[#9A3412] text-white'
+                  : 'bg-[#4C1D95] text-white';
+              const hoverBorderClass =
+                expandedThemeId === 1
+                  ? 'hover:border-teal-600'
+                  : expandedThemeId === 2
+                  ? 'hover:border-orange-500'
+                  : 'hover:border-purple-600';
 
               const subBoxes: {
                 tab: StudyTabId;
@@ -429,28 +521,28 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   tab: 'words',
                   title: 'Temanın Kelimeleri',
                   desc: 'Sesli telaffuz ve örnek cümleler',
-                  stat: `${p?.listenedWordIds.length ?? 0}/24 dinlendi`,
+                  stat: `${p?.listenedWordIds.length ?? 0}/${currentTheme.vocab.length} dinlendi`,
                   icon: BookOpen,
                 },
                 {
                   tab: 'grammar',
                   title: 'Tema Konu Anlatımı',
                   desc: 'Kalıplar ve örnek sınıf diyalogları',
-                  stat: `${p?.completedLessonIds.length ?? 0}/4 konu`,
+                  stat: `${p?.completedLessonIds.length ?? 0}/${currentTheme.grammarLessons.length} konu`,
                   icon: GraduationCap,
                 },
                 {
                   tab: 'pictures',
                   title: 'Tema Kelimelerinin Resimleri',
                   desc: 'Görsele tıkla, kadın sesiyle dinle',
-                  stat: '24 resimli kart',
+                  stat: `${currentTheme.vocab.length} resimli kart`,
                   icon: ImageIcon,
                 },
                 {
                   tab: 'flashcards',
                   title: 'Sesli Kelime Kartları',
                   desc: 'Çevir, dinle ve öğrendiklerini işaretle',
-                  stat: `${p?.masteredWordIds.length ?? 0}/24 öğrenildi`,
+                  stat: `${p?.masteredWordIds.length ?? 0}/${currentTheme.vocab.length} öğrenildi`,
                   icon: Layers,
                 },
                 {
@@ -467,7 +559,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   stat: `${
                     (p?.sentenceBuildCompletedIds.length ?? 0) +
                     (p?.fillBlankCompletedIds.length ?? 0)
-                  }/12 etkinlik`,
+                  }/${currentTheme.sentenceBuilds.length + currentTheme.fillBlanks.length} etkinlik`,
                   icon: Puzzle,
                 },
                 {
@@ -477,7 +569,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   stat:
                     p?.quizBestScore !== null && p?.quizBestScore !== undefined
                       ? `Rekor: ${p.quizBestScore} puan`
-                      : '10 soru',
+                      : `${currentTheme.quizQuestions.length} soru`,
                   icon: ListChecks,
                 },
               ];
@@ -567,12 +659,23 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         {/* Summary Metrics Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+          <div className="bg-teal-50/70 border border-teal-200/80 rounded-xl p-4 space-y-1">
+            <p className="text-xs font-bold text-teal-900">1. Tema İlerlemesi</p>
+            <p className="text-2xl font-extrabold text-teal-800 tabular-nums">%{theme1Percent}</p>
+            <p className="text-xs text-teal-900/80 tabular-nums">
+              Dinlenen: {student?.theme1.listenedWordIds.length ?? 0}/{THEMES[1].vocab.length} · Sınav:{' '}
+              {student?.theme1.quizBestScore !== null && student?.theme1.quizBestScore !== undefined
+                ? `${student.theme1.quizBestScore} puan`
+                : 'Henüz yok'}
+            </p>
+          </div>
+
           <div className="bg-orange-50/70 border border-orange-200/80 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-orange-900">2. Tema İlerlemesi</p>
             <p className="text-2xl font-extrabold text-orange-800 tabular-nums">%{theme2Percent}</p>
             <p className="text-xs text-orange-900/80 tabular-nums">
-              Dinlenen: {student?.theme2.listenedWordIds.length ?? 0}/24 · Sınav:{' '}
+              Dinlenen: {student?.theme2.listenedWordIds.length ?? 0}/{THEMES[2].vocab.length} · Sınav:{' '}
               {student?.theme2.quizBestScore !== null && student?.theme2.quizBestScore !== undefined
                 ? `${student.theme2.quizBestScore} puan`
                 : 'Henüz yok'}
@@ -583,7 +686,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <p className="text-xs font-bold text-purple-900">3. Tema İlerlemesi</p>
             <p className="text-2xl font-extrabold text-purple-900 tabular-nums">%{theme3Percent}</p>
             <p className="text-xs text-purple-900/80 tabular-nums">
-              Dinlenen: {student?.theme3.listenedWordIds.length ?? 0}/24 · Sınav:{' '}
+              Dinlenen: {student?.theme3.listenedWordIds.length ?? 0}/{THEMES[3].vocab.length} · Sınav:{' '}
               {student?.theme3.quizBestScore !== null && student?.theme3.quizBestScore !== undefined
                 ? `${student.theme3.quizBestScore} puan`
                 : 'Henüz yok'}
@@ -593,18 +696,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-slate-700">Öğrenilen Kelime Kartı</p>
             <p className="text-2xl font-extrabold text-slate-900 tabular-nums">
-              {(student?.theme2.masteredWordIds.length ?? 0) +
+              {(student?.theme1.masteredWordIds.length ?? 0) +
+                (student?.theme2.masteredWordIds.length ?? 0) +
                 (student?.theme3.masteredWordIds.length ?? 0)}{' '}
-              / 48
+              / {THEMES[1].vocab.length + THEMES[2].vocab.length + THEMES[3].vocab.length}
             </p>
             <p className="text-xs text-slate-600">Sesli kelime kartlarında işaretlenen</p>
           </div>
 
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1">
+          <div className="col-span-2 sm:col-span-1 bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-slate-700">Tamamlanan Etkinlikler</p>
             <p className="text-2xl font-extrabold text-slate-900 tabular-nums">
-              {(student?.theme2.completedLessonIds.length ?? 0) +
+              {(student?.theme1.completedLessonIds.length ?? 0) +
+                (student?.theme2.completedLessonIds.length ?? 0) +
                 (student?.theme3.completedLessonIds.length ?? 0) +
+                (student?.theme1.sentenceBuildCompletedIds.length ?? 0) +
+                (student?.theme1.fillBlankCompletedIds.length ?? 0) +
                 (student?.theme2.sentenceBuildCompletedIds.length ?? 0) +
                 (student?.theme2.fillBlankCompletedIds.length ?? 0) +
                 (student?.theme3.sentenceBuildCompletedIds.length ?? 0) +

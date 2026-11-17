@@ -22,14 +22,18 @@ export const GrammarSection: React.FC<GrammarSectionProps> = ({
   const [selectedIndex, setSelectedIndex] = useState(0);
   const current = lessons[selectedIndex] ?? lessons[0];
   const isCompleted = completedLessonIds.includes(current.id);
-  const isOrange = themeId === 2;
-
-  const activeTabClass = isOrange
-    ? 'bg-[#9A3412] text-white'
-    : 'bg-[#4C1D95] text-white';
-  const accentBtnClass = isOrange
-    ? 'bg-[#C2410C] hover:bg-[#9A3412] text-white'
-    : 'bg-[#5B21B6] hover:bg-[#4C1D95] text-white';
+  const activeTabClass =
+    themeId === 1
+      ? 'bg-[#115E59] text-white'
+      : themeId === 2
+      ? 'bg-[#9A3412] text-white'
+      : 'bg-[#4C1D95] text-white';
+  const accentBtnClass =
+    themeId === 1
+      ? 'bg-[#0F766E] hover:bg-[#115E59] text-white'
+      : themeId === 2
+      ? 'bg-[#C2410C] hover:bg-[#9A3412] text-white'
+      : 'bg-[#5B21B6] hover:bg-[#4C1D95] text-white';
 
   return (
     <div className="space-y-6">
@@ -136,7 +140,9 @@ export const GrammarSection: React.FC<GrammarSectionProps> = ({
                     className={`p-2.5 rounded-lg shrink-0 ${
                       isSpeaking
                         ? 'bg-emerald-600 text-white'
-                        : isOrange
+                        : themeId === 1
+                        ? 'bg-teal-100 text-teal-900'
+                        : themeId === 2
                         ? 'bg-orange-100 text-orange-900'
                         : 'bg-purple-100 text-purple-900'
                     }`}

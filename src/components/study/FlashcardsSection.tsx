@@ -28,7 +28,6 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
 
   const current = vocab[index] ?? vocab[0];
   const isMastered = masteredIds.includes(current.id);
-  const isOrange = themeId === 2;
 
   const handleFlip = () => {
     playFlipSound();
@@ -45,7 +44,8 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
     setIndex((prev) => (prev - 1 + vocab.length) % vocab.length);
   };
 
-  const accentBg = isOrange ? 'bg-[#9A3412]' : 'bg-[#4C1D95]';
+  const accentBg =
+    themeId === 1 ? 'bg-[#115E59]' : themeId === 2 ? 'bg-[#9A3412]' : 'bg-[#4C1D95]';
 
   return (
     <div className="space-y-6">

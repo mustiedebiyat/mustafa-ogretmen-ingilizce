@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B21B6" />
+      <stop offset="100%" stop-color="#3B0764" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)" />
+  <!-- Safe zone book & star badge inside central 70% -->
+  <g transform="translate(86 96)">
+    <rect x="44" y="132" width="252" height="148" rx="22" fill="#FFFFFF" />
+    <path d="M170 132V280" stroke="#4C1D95" stroke-width="10" stroke-linecap="round" />
+    <rect x="68" y="160" width="76" height="16" rx="8" fill="#DDD6FE" />
+    <rect x="68" y="192" width="60" height="16" rx="8" fill="#DDD6FE" />
+    <rect x="196" y="160" width="76" height="16" rx="8" fill="#DDD6FE" />
+    <rect x="196" y="192" width="60" height="16" rx="8" fill="#DDD6FE" />
+    <!-- Graduation cap on top -->
+    <polygon points="170,32 292,86 170,140 48,86" fill="#FACC15" stroke="#FEF08A" stroke-width="6" stroke-linejoin="round" />
+    <path d="M104 114V146C104 162 236 162 236 146V114" fill="#EAB308" />
+    <line x1="276" y1="94" x2="276" y2="152" stroke="#FACC15" stroke-width="8" stroke-linecap="round" />
+    <circle cx="276" cy="158" r="10" fill="#FACC15" />
+  </g>
+</svg>

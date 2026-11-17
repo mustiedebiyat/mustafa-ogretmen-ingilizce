@@ -32,13 +32,18 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
     return vocab.filter((v) => v.category === activeCategory);
   }, [vocab, activeCategory]);
 
-  const isOrange = themeId === 2;
-  const activeBtnClass = isOrange
-    ? 'bg-[#9A3412] text-white shadow-xs'
-    : 'bg-[#4C1D95] text-white shadow-xs';
-  const speakBtnClass = isOrange
-    ? 'bg-orange-100 text-orange-900 hover:bg-orange-200'
-    : 'bg-purple-100 text-purple-900 hover:bg-purple-200';
+  const activeBtnClass =
+    themeId === 1
+      ? 'bg-[#115E59] text-white shadow-xs'
+      : themeId === 2
+      ? 'bg-[#9A3412] text-white shadow-xs'
+      : 'bg-[#4C1D95] text-white shadow-xs';
+  const speakBtnClass =
+    themeId === 1
+      ? 'bg-teal-100 text-teal-900 hover:bg-teal-200'
+      : themeId === 2
+      ? 'bg-orange-100 text-orange-900 hover:bg-orange-200'
+      : 'bg-purple-100 text-purple-900 hover:bg-purple-200';
 
   return (
     <div className="space-y-6">

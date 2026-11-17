@@ -18,7 +18,8 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
 }) => {
   const [showTurkish, setShowTurkish] = useState(true);
   const [lastClicked, setLastClicked] = useState<VocabItem | null>(null);
-  const isOrange = themeId === 2;
+  const bannerBg =
+    themeId === 1 ? 'bg-[#115E59]' : themeId === 2 ? 'bg-[#9A3412]' : 'bg-[#4C1D95]';
 
   const handleCardClick = (item: VocabItem) => {
     setLastClicked(item);
@@ -50,9 +51,7 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
       {/* Live Spoken Banner */}
       {lastClicked && (
         <div
-          className={`rounded-2xl p-4 sm:p-5 text-white flex items-center justify-between gap-4 ${
-            isOrange ? 'bg-[#9A3412]' : 'bg-[#4C1D95]'
-          }`}
+          className={`rounded-2xl p-4 sm:p-5 text-white flex items-center justify-between gap-4 ${bannerBg}`}
         >
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-xl bg-white flex items-center justify-center shrink-0">
@@ -91,7 +90,9 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
               onClick={() => handleCardClick(item)}
               className={`group rounded-2xl border p-4 text-center flex flex-col items-center justify-between gap-3 transition-all duration-150 cursor-pointer ${
                 isSpeaking
-                  ? isOrange
+                  ? themeId === 1
+                    ? 'bg-teal-50 border-teal-700 ring-2 ring-teal-600 -translate-y-0.5'
+                    : themeId === 2
                     ? 'bg-orange-50 border-orange-600 ring-2 ring-orange-500 -translate-y-0.5'
                     : 'bg-purple-50 border-purple-700 ring-2 ring-purple-600 -translate-y-0.5'
                   : 'bg-white border-slate-200 hover:border-slate-400 hover:-translate-y-0.5 shadow-xs'

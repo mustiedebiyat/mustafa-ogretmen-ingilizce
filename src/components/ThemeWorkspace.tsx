@@ -80,7 +80,8 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
   onFinishQuiz,
 }) => {
   const theme = THEMES[themeId];
-  const progress = themeId === 2 ? student.theme2 : student.theme3;
+  const progress =
+    themeId === 1 ? student.theme1 : themeId === 2 ? student.theme2 : student.theme3;
   const completionPercent = getThemeCompletionPercent(student, themeId);
 
   const [activeTab, setActiveTab] = useState<StudyTabId>(initialTab);
@@ -133,14 +134,19 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
     setSfxEnabled(next);
   };
 
-  const isOrange = themeId === 2;
-  const headerGradient = isOrange
-    ? 'from-[#B43B0B] via-[#9A3412] to-[#7C2D12]'
-    : 'from-[#5B21B6] via-[#4C1D95] to-[#3B0764]';
+  const headerGradient =
+    themeId === 1
+      ? 'from-[#0F766E] via-[#115E59] to-[#134E4A]'
+      : themeId === 2
+      ? 'from-[#B43B0B] via-[#9A3412] to-[#7C2D12]'
+      : 'from-[#5B21B6] via-[#4C1D95] to-[#3B0764]';
 
-  const activeTabStyle = isOrange
-    ? 'bg-[#9A3412] text-white shadow-xs'
-    : 'bg-[#4C1D95] text-white shadow-xs';
+  const activeTabStyle =
+    themeId === 1
+      ? 'bg-[#115E59] text-white shadow-xs'
+      : themeId === 2
+      ? 'bg-[#9A3412] text-white shadow-xs'
+      : 'bg-[#4C1D95] text-white shadow-xs';
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">

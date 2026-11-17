@@ -66,6 +66,7 @@ function normalizeProfile(raw: StudentProfile): StudentProfile {
     stars: typeof raw.stars === 'number' ? raw.stars : 0,
     starHistory,
     earnedBadgeIds: Array.isArray(raw.earnedBadgeIds) ? raw.earnedBadgeIds : [],
+    theme1: normalizeThemeProgress(raw.theme1),
     theme2: normalizeThemeProgress(raw.theme2),
     theme3: normalizeThemeProgress(raw.theme3),
   };
@@ -81,6 +82,7 @@ export function createEmptyProfile(name: string): StudentProfile {
     stars: 0,
     starHistory: [{ date: today, starsEarned: 0, totalStars: 0 }],
     earnedBadgeIds: [],
+    theme1: createEmptyThemeProgress(),
     theme2: createEmptyThemeProgress(),
     theme3: createEmptyThemeProgress(),
   };
@@ -240,7 +242,8 @@ export function clearActiveStudent(): void {
 
 export function getThemeCompletionPercent(profile: StudentProfile | null, themeId: ThemeId): number {
   if (!profile) return 0;
-  const progress = themeId === 2 ? profile.theme2 : profile.theme3;
+  const progress =
+    themeId === 1 ? profile.theme1 : themeId === 2 ? profile.theme2 : profile.theme3;
   const theme = THEMES[themeId];
 
   const vocabScore = Math.min(1, progress.listenedWordIds.length / Math.max(1, theme.vocab.length * 0.5));
@@ -272,17 +275,26 @@ export function evaluateEarnedBadges(profile: StudentProfile): {
   const newlyEarned: string[] = [];
 
   const totalListened =
-    profile.theme2.listenedWordIds.length + profile.theme3.listenedWordIds.length;
+    profile.theme1.listenedWordIds.length +
+    profile.theme2.listenedWordIds.length +
+    profile.theme3.listenedWordIds.length;
   const totalMastered =
-    profile.theme2.masteredWordIds.length + profile.theme3.masteredWordIds.length;
+    profile.theme1.masteredWordIds.length +
+    profile.theme2.masteredWordIds.length +
+    profile.theme3.masteredWordIds.length;
   const totalLessons =
-    profile.theme2.completedLessonIds.length + profile.theme3.completedLessonIds.length;
+    profile.theme1.completedLessonIds.length +
+    profile.theme2.completedLessonIds.length +
+    profile.theme3.completedLessonIds.length;
   const totalSentences =
+    profile.theme1.sentenceBuildCompletedIds.length +
+    profile.theme1.fillBlankCompletedIds.length +
     profile.theme2.sentenceBuildCompletedIds.length +
     profile.theme2.fillBlankCompletedIds.length +
     profile.theme3.sentenceBuildCompletedIds.length +
     profile.theme3.fillBlankCompletedIds.length;
 
+  const t1Percent = getThemeCompletionPercent(profile, 1);
   const t2Percent = getThemeCompletionPercent(profile, 2);
   const t3Percent = getThemeCompletionPercent(profile, 3);
 
@@ -291,18 +303,29 @@ export function evaluateEarnedBadges(profile: StudentProfile): {
     ['audio_explorer', totalListened >= 12],
     ['word_master', totalMastered >= 15],
     ['grammar_scholar', totalLessons >= 4],
-    ['memory_champ', profile.theme2.memoryBestMoves !== null || profile.theme3.memoryBestMoves !== null],
+    [
+      'memory_champ',
+      profile.theme1.memoryBestMoves !== null ||
+        profile.theme2.memoryBestMoves !== null ||
+        profile.theme3.memoryBestMoves !== null,
+    ],
     [
       'matching_star',
-      profile.theme2.matchingCompletedCount >= 1 ||
+      profile.theme1.matchingCompletedCount >= 1 ||
+        profile.theme2.matchingCompletedCount >= 1 ||
         profile.theme3.matchingCompletedCount >= 1 ||
+        profile.theme1.raceCompletedCount >= 1 ||
         profile.theme2.raceCompletedCount >= 1 ||
         profile.theme3.raceCompletedCount >= 1,
     ],
     ['sentence_builder', totalSentences >= 6],
+    ['theme1_hero', (profile.theme1.quizBestScore ?? 0) >= 80 && t1Percent >= 60],
     ['theme2_hero', (profile.theme2.quizBestScore ?? 0) >= 80 && t2Percent >= 60],
     ['theme3_hero', (profile.theme3.quizBestScore ?? 0) >= 80 && t3Percent >= 60],
-    ['super_star', profile.stars >= 150 && t2Percent >= 75 && t3Percent >= 75],
+    [
+      'super_star',
+      profile.stars >= 150 && t1Percent >= 70 && t2Percent >= 70 && t3Percent >= 70,
+    ],
   ];
 
   for (const [id, condition] of checks) {

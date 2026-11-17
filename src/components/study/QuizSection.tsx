@@ -25,8 +25,8 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
   const [correctCount, setCorrectCount] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const isOrange = themeId === 2;
-  const accentBg = isOrange ? 'bg-[#9A3412]' : 'bg-[#4C1D95]';
+  const accentBg =
+    themeId === 1 ? 'bg-[#115E59]' : themeId === 2 ? 'bg-[#9A3412]' : 'bg-[#4C1D95]';
   const current = questions[qIndex];
 
   const handleSelectOption = (idx: number) => {

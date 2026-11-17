@@ -3,7 +3,7 @@ import { StudentProfile, ThemeId } from '../types/curriculum';
 import { TeacherAvatar } from './TeacherAvatar';
 import { Star, UserCheck } from 'lucide-react';
 
-export type AppRoute = 'home' | 'theme2' | 'theme3';
+export type AppRoute = 'home' | 'theme1' | 'theme2' | 'theme3';
 
 interface NavbarProps {
   route: AppRoute;
@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSwitchStudent,
 }) => {
   const handleThemeNav = (themeId: ThemeId) => {
-    onNavigate(themeId === 2 ? 'theme2' : 'theme3');
+    onNavigate(themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : 'theme3');
   };
 
   return (
@@ -36,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* Zone 2: Concise single-line navigation links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <nav className="hidden md:flex items-center gap-5 text-sm font-medium text-slate-600">
           <button
             type="button"
             onClick={() => onNavigate('home')}
@@ -47,6 +47,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Anasayfa
+          </button>
+          <button
+            type="button"
+            onClick={() => handleThemeNav(1)}
+            className={`py-1 border-b-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              route === 'theme1'
+                ? 'border-teal-700 text-teal-800 font-semibold'
+                : 'border-transparent hover:text-teal-800'
+            }`}
+          >
+            1. Tema
           </button>
           <button
             type="button"

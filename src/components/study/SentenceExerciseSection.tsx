@@ -39,8 +39,12 @@ export const SentenceExerciseSection: React.FC<SentenceExerciseSectionProps> = (
   onSpeakText,
 }) => {
   const [mode, setMode] = useState<'build' | 'fill'>('build');
-  const isOrange = themeId === 2;
-  const accentBtn = isOrange ? 'bg-[#9A3412] text-white' : 'bg-[#4C1D95] text-white';
+  const accentBtn =
+    themeId === 1
+      ? 'bg-[#115E59] text-white'
+      : themeId === 2
+      ? 'bg-[#9A3412] text-white'
+      : 'bg-[#4C1D95] text-white';
 
   // --- SENTENCE BUILD STATE ---
   const [sbIndex, setSbIndex] = useState(0);
@@ -218,7 +222,9 @@ export const SentenceExerciseSection: React.FC<SentenceExerciseSectionProps> = (
                 type="button"
                 onClick={() => handlePickToken(token)}
                 className={`px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base text-white transition-transform hover:-translate-y-0.5 cursor-pointer ${
-                  isOrange
+                  themeId === 1
+                    ? 'bg-[#0F766E] hover:bg-[#115E59]'
+                    : themeId === 2
                     ? 'bg-[#C2410C] hover:bg-[#9A3412]'
                     : 'bg-[#5B21B6] hover:bg-[#4C1D95]'
                 }`}

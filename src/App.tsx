@@ -18,6 +18,7 @@ import { playRewardSound } from './utils/soundFx';
 import { AppRoute, Navbar } from './components/Navbar';
 import { HomeView } from './components/HomeView';
 import { ThemeWorkspace } from './components/ThemeWorkspace';
+import { AppDownloadBox } from './components/AppDownloadBox';
 import { Award, X } from 'lucide-react';
 
 export default function App() {
@@ -80,7 +81,7 @@ export default function App() {
   };
 
   const handleNavigate = (nextRoute: AppRoute, scrollToProfile = false) => {
-    if ((nextRoute === 'theme2' || nextRoute === 'theme3') && !student) {
+    if ((nextRoute === 'theme1' || nextRoute === 'theme2' || nextRoute === 'theme3') && !student) {
       setRoute('home');
       setTimeout(() => {
         nameInputRef.current?.focus();
@@ -110,11 +111,12 @@ export default function App() {
   const handleSelectTheme = (themeId: ThemeId, initialTab: StudyTabId = 'words') => {
     setLastExpandedTheme(themeId);
     setSelectedTab(initialTab);
-    setRoute(themeId === 2 ? 'theme2' : 'theme3');
+    setRoute(themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : 'theme3');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const getThemeKey = (themeId: ThemeId) => (themeId === 2 ? 'theme2' : 'theme3');
+  const getThemeKey = (themeId: ThemeId) =>
+    themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : 'theme3';
 
   const handleRecordWordListened = (themeId: ThemeId, wordId: string) => {
     applyProfileUpdate((prev) => {
@@ -329,13 +331,14 @@ export default function App() {
           />
         )}
 
-        {(route === 'theme2' || route === 'theme3') && student && (
+        {(route === 'theme1' || route === 'theme2' || route === 'theme3') && student && (
           <ThemeWorkspace
-            themeId={route === 'theme2' ? 2 : 3}
+            key={route}
+            themeId={route === 'theme1' ? 1 : route === 'theme2' ? 2 : 3}
             initialTab={selectedTab}
             student={student}
             onBackHome={() => {
-              setLastExpandedTheme(route === 'theme2' ? 2 : 3);
+              setLastExpandedTheme(route === 'theme1' ? 1 : route === 'theme2' ? 2 : 3);
               handleNavigate('home');
             }}
             onRecordWordListened={handleRecordWordListened}
@@ -352,7 +355,9 @@ export default function App() {
         )}
       </div>
 
-      <footer className="border-t border-slate-200 bg-white mt-12">
+      <AppDownloadBox />
+
+      <footer className="border-t border-slate-200 bg-white mt-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-slate-600">
           <p className="font-semibold text-slate-800">
             Mustafa Öğretmenle İngilizce · Hazırlayan: Mustafa ŞAHİN

@@ -1,4 +1,4 @@
-export type ThemeId = 2 | 3;
+export type ThemeId = 1 | 2 | 3;
 
 export type StudyTabId =
   | 'words'
@@ -124,6 +124,7 @@ export interface StudentProfile {
   stars: number;
   starHistory: StarHistoryEntry[];
   earnedBadgeIds: string[];
+  theme1: ThemeProgress;
   theme2: ThemeProgress;
   theme3: ThemeProgress;
 }

@@ -85,8 +85,12 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
   onSpeakText,
 }) => {
   const [mode, setMode] = useState<GameModeId | null>(null);
-  const isOrange = themeId === 2;
-  const accentBtn = isOrange ? 'bg-[#9A3412] text-white' : 'bg-[#4C1D95] text-white';
+  const accentBtn =
+    themeId === 1
+      ? 'bg-[#115E59] text-white'
+      : themeId === 2
+      ? 'bg-[#9A3412] text-white'
+      : 'bg-[#4C1D95] text-white';
 
   useEffect(() => {
     setMode(null);
@@ -396,8 +400,13 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
   ];
 
   const currentRaceQ = raceQuestions[raceStep];
-  const iconBoxBg = isOrange ? 'bg-[#9A3412] text-white' : 'bg-[#4C1D95] text-white';
-  const cardHoverBorder = isOrange ? 'hover:border-orange-500' : 'hover:border-purple-600';
+  const iconBoxBg = accentBtn;
+  const cardHoverBorder =
+    themeId === 1
+      ? 'hover:border-teal-600'
+      : themeId === 2
+      ? 'hover:border-orange-500'
+      : 'hover:border-purple-600';
 
   return (
     <div className="space-y-6">
@@ -465,7 +474,15 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
 
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-500 tabular-nums">
                   <span>{card.stat}</span>
-                  <span className={isOrange ? 'text-orange-800' : 'text-purple-800'}>
+                  <span
+                    className={
+                      themeId === 1
+                        ? 'text-teal-800'
+                        : themeId === 2
+                        ? 'text-orange-800'
+                        : 'text-purple-800'
+                    }
+                  >
                     Tıkla ve Başla
                   </span>
                 </div>
@@ -562,7 +579,9 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                       ? 'bg-emerald-50 border-emerald-400'
                       : isRevealed
                       ? 'bg-white border-slate-400 shadow-sm'
-                      : isOrange
+                      : themeId === 1
+                      ? 'bg-[#115E59] border-[#134E4A] hover:bg-[#0F766E]'
+                      : themeId === 2
                       ? 'bg-[#9A3412] border-[#7C2D12] hover:bg-[#B43B0B]'
                       : 'bg-[#4C1D95] border-[#3B0764] hover:bg-[#5B21B6]'
                   }`}
@@ -652,7 +671,9 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                         isMatched
                           ? 'bg-emerald-50 border-emerald-400 opacity-70'
                           : isSelected
-                          ? isOrange
+                          ? themeId === 1
+                            ? 'bg-teal-50 border-[#115E59] ring-2 ring-teal-500'
+                            : themeId === 2
                             ? 'bg-orange-50 border-[#9A3412] ring-2 ring-orange-400'
                             : 'bg-purple-50 border-[#4C1D95] ring-2 ring-purple-400'
                           : 'bg-white border-slate-200 hover:border-slate-400'
@@ -750,7 +771,9 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                     key={idx}
                     className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-extrabold tabular-nums ${
                       idx <= raceStep
-                        ? isOrange
+                        ? themeId === 1
+                          ? 'bg-[#0F766E] text-white'
+                          : themeId === 2
                           ? 'bg-[#C2410C] text-white'
                           : 'bg-[#5B21B6] text-white'
                         : 'bg-white text-slate-500 border border-slate-300'
@@ -764,7 +787,7 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
               {/* Progress fill */}
               <div
                 className={`absolute left-0 top-0 bottom-0 opacity-20 transition-all duration-300 ${
-                  isOrange ? 'bg-orange-600' : 'bg-purple-700'
+                  themeId === 1 ? 'bg-teal-600' : themeId === 2 ? 'bg-orange-600' : 'bg-purple-700'
                 }`}
                 style={{ width: `${(raceStep / RACE_STEPS) * 100}%` }}
               />
@@ -933,9 +956,7 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
             <div className="space-y-6">
               {/* Target Audio Prompt Bar */}
               <div
-                className={`rounded-2xl p-4 sm:p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4 ${
-                  isOrange ? 'bg-[#9A3412]' : 'bg-[#4C1D95]'
-                }`}
+                className={`rounded-2xl p-4 sm:p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4 ${accentBtn}`}
               >
                 <div>
                   <p className="text-xs font-bold text-amber-200 uppercase tracking-wider">
