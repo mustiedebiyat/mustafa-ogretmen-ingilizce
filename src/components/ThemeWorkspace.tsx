@@ -149,14 +149,14 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
         className={`rounded-2xl bg-gradient-to-r ${headerGradient} text-white p-6 sm:p-8 shadow-sm`}
       >
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <button
               type="button"
               onClick={onBackHome}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-white/90 hover:text-white transition-colors cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white text-slate-900 hover:bg-amber-100 active:scale-[0.99] text-sm font-extrabold shadow-md transition-all cursor-pointer min-h-[44px]"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Anasayfaya Dön</span>
+              <ArrowLeft className="w-5 h-5 shrink-0" />
+              <span>Geri Dön · Tema Alt Başlıkları</span>
             </button>
 
             <div className="space-y-1">
@@ -371,6 +371,18 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
           />
         )}
       </main>
+
+      {/* Prominent Bottom Back Button (especially helpful on mobile after scrolling) */}
+      <div className="pt-2">
+        <button
+          type="button"
+          onClick={onBackHome}
+          className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl text-white font-extrabold text-sm sm:text-base shadow-md hover:opacity-95 transition-all cursor-pointer min-h-[48px] bg-gradient-to-r ${headerGradient}`}
+        >
+          <ArrowLeft className="w-5 h-5 shrink-0" />
+          <span>Geri Dön · Tema Alt Başlıklarına Git</span>
+        </button>
+      </div>
     </div>
   );
 };

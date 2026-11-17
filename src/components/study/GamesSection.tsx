@@ -417,10 +417,10 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
           <button
             type="button"
             onClick={() => setMode(null)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-bold hover:bg-slate-50 transition-colors whitespace-nowrap shrink-0 cursor-pointer self-start sm:self-auto"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-extrabold shadow-sm transition-colors whitespace-nowrap shrink-0 cursor-pointer min-h-[44px]"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Oyun Kutularına Dön</span>
+            <ArrowLeft className="w-4 h-4 shrink-0" />
+            <span>Geri Dön · Oyun Kutuları</span>
           </button>
         )}
       </div>

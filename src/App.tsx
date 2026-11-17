@@ -23,6 +23,7 @@ import { Award, X } from 'lucide-react';
 export default function App() {
   const [route, setRoute] = useState<AppRoute>('home');
   const [selectedTab, setSelectedTab] = useState<StudyTabId>('words');
+  const [lastExpandedTheme, setLastExpandedTheme] = useState<ThemeId | null>(null);
   const [student, setStudent] = useState<StudentProfile | null>(() => loadActiveProfile());
   const [savedProfiles, setSavedProfiles] = useState<StudentProfile[]>(() =>
     Object.values(loadAllProfiles())
@@ -107,6 +108,7 @@ export default function App() {
   };
 
   const handleSelectTheme = (themeId: ThemeId, initialTab: StudyTabId = 'words') => {
+    setLastExpandedTheme(themeId);
     setSelectedTab(initialTab);
     setRoute(themeId === 2 ? 'theme2' : 'theme3');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -323,6 +325,7 @@ export default function App() {
             onSelectTheme={handleSelectTheme}
             nameInputRef={nameInputRef}
             profileSectionRef={profileSectionRef}
+            initialExpandedTheme={lastExpandedTheme}
           />
         )}
 
@@ -331,7 +334,10 @@ export default function App() {
             themeId={route === 'theme2' ? 2 : 3}
             initialTab={selectedTab}
             student={student}
-            onBackHome={() => handleNavigate('home')}
+            onBackHome={() => {
+              setLastExpandedTheme(route === 'theme2' ? 2 : 3);
+              handleNavigate('home');
+            }}
             onRecordWordListened={handleRecordWordListened}
             onToggleMastered={handleToggleMastered}
             onCompleteLesson={handleCompleteLesson}
