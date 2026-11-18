@@ -37,13 +37,17 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
       ? 'bg-[#115E59] text-white shadow-xs'
       : themeId === 2
       ? 'bg-[#9A3412] text-white shadow-xs'
-      : 'bg-[#4C1D95] text-white shadow-xs';
+      : themeId === 3
+      ? 'bg-[#4C1D95] text-white shadow-xs'
+      : 'bg-[#9F1239] text-white shadow-xs';
   const speakBtnClass =
     themeId === 1
       ? 'bg-teal-100 text-teal-900 hover:bg-teal-200'
       : themeId === 2
       ? 'bg-orange-100 text-orange-900 hover:bg-orange-200'
-      : 'bg-purple-100 text-purple-900 hover:bg-purple-200';
+      : themeId === 3
+      ? 'bg-purple-100 text-purple-900 hover:bg-purple-200'
+      : 'bg-rose-100 text-rose-900 hover:bg-rose-200';
 
   return (
     <div className="space-y-6">

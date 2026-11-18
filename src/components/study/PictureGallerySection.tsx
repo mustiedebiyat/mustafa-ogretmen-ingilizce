@@ -19,7 +19,13 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
   const [showTurkish, setShowTurkish] = useState(true);
   const [lastClicked, setLastClicked] = useState<VocabItem | null>(null);
   const bannerBg =
-    themeId === 1 ? 'bg-[#115E59]' : themeId === 2 ? 'bg-[#9A3412]' : 'bg-[#4C1D95]';
+    themeId === 1
+      ? 'bg-[#115E59]'
+      : themeId === 2
+      ? 'bg-[#9A3412]'
+      : themeId === 3
+      ? 'bg-[#4C1D95]'
+      : 'bg-[#9F1239]';
 
   const handleCardClick = (item: VocabItem) => {
     setLastClicked(item);
@@ -94,7 +100,9 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
                     ? 'bg-teal-50 border-teal-700 ring-2 ring-teal-600 -translate-y-0.5'
                     : themeId === 2
                     ? 'bg-orange-50 border-orange-600 ring-2 ring-orange-500 -translate-y-0.5'
-                    : 'bg-purple-50 border-purple-700 ring-2 ring-purple-600 -translate-y-0.5'
+                    : themeId === 3
+                    ? 'bg-purple-50 border-purple-700 ring-2 ring-purple-600 -translate-y-0.5'
+                    : 'bg-rose-50 border-rose-700 ring-2 ring-rose-600 -translate-y-0.5'
                   : 'bg-white border-slate-200 hover:border-slate-400 hover:-translate-y-0.5 shadow-xs'
               }`}
             >

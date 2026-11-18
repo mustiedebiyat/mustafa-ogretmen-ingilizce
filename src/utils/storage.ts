@@ -69,6 +69,7 @@ function normalizeProfile(raw: StudentProfile): StudentProfile {
     theme1: normalizeThemeProgress(raw.theme1),
     theme2: normalizeThemeProgress(raw.theme2),
     theme3: normalizeThemeProgress(raw.theme3),
+    theme4: normalizeThemeProgress(raw.theme4),
   };
 }
 
@@ -85,6 +86,7 @@ export function createEmptyProfile(name: string): StudentProfile {
     theme1: createEmptyThemeProgress(),
     theme2: createEmptyThemeProgress(),
     theme3: createEmptyThemeProgress(),
+    theme4: createEmptyThemeProgress(),
   };
 }
 
@@ -243,7 +245,13 @@ export function clearActiveStudent(): void {
 export function getThemeCompletionPercent(profile: StudentProfile | null, themeId: ThemeId): number {
   if (!profile) return 0;
   const progress =
-    themeId === 1 ? profile.theme1 : themeId === 2 ? profile.theme2 : profile.theme3;
+    themeId === 1
+      ? profile.theme1
+      : themeId === 2
+      ? profile.theme2
+      : themeId === 3
+      ? profile.theme3
+      : profile.theme4;
   const theme = THEMES[themeId];
 
   const vocabScore = Math.min(1, progress.listenedWordIds.length / Math.max(1, theme.vocab.length * 0.5));
@@ -277,26 +285,32 @@ export function evaluateEarnedBadges(profile: StudentProfile): {
   const totalListened =
     profile.theme1.listenedWordIds.length +
     profile.theme2.listenedWordIds.length +
-    profile.theme3.listenedWordIds.length;
+    profile.theme3.listenedWordIds.length +
+    profile.theme4.listenedWordIds.length;
   const totalMastered =
     profile.theme1.masteredWordIds.length +
     profile.theme2.masteredWordIds.length +
-    profile.theme3.masteredWordIds.length;
+    profile.theme3.masteredWordIds.length +
+    profile.theme4.masteredWordIds.length;
   const totalLessons =
     profile.theme1.completedLessonIds.length +
     profile.theme2.completedLessonIds.length +
-    profile.theme3.completedLessonIds.length;
+    profile.theme3.completedLessonIds.length +
+    profile.theme4.completedLessonIds.length;
   const totalSentences =
     profile.theme1.sentenceBuildCompletedIds.length +
     profile.theme1.fillBlankCompletedIds.length +
     profile.theme2.sentenceBuildCompletedIds.length +
     profile.theme2.fillBlankCompletedIds.length +
     profile.theme3.sentenceBuildCompletedIds.length +
-    profile.theme3.fillBlankCompletedIds.length;
+    profile.theme3.fillBlankCompletedIds.length +
+    profile.theme4.sentenceBuildCompletedIds.length +
+    profile.theme4.fillBlankCompletedIds.length;
 
   const t1Percent = getThemeCompletionPercent(profile, 1);
   const t2Percent = getThemeCompletionPercent(profile, 2);
   const t3Percent = getThemeCompletionPercent(profile, 3);
+  const t4Percent = getThemeCompletionPercent(profile, 4);
 
   const checks: [string, boolean][] = [
     ['first_step', totalListened >= 1 || totalLessons >= 1 || profile.stars >= 5],
@@ -307,24 +321,32 @@ export function evaluateEarnedBadges(profile: StudentProfile): {
       'memory_champ',
       profile.theme1.memoryBestMoves !== null ||
         profile.theme2.memoryBestMoves !== null ||
-        profile.theme3.memoryBestMoves !== null,
+        profile.theme3.memoryBestMoves !== null ||
+        profile.theme4.memoryBestMoves !== null,
     ],
     [
       'matching_star',
       profile.theme1.matchingCompletedCount >= 1 ||
         profile.theme2.matchingCompletedCount >= 1 ||
         profile.theme3.matchingCompletedCount >= 1 ||
+        profile.theme4.matchingCompletedCount >= 1 ||
         profile.theme1.raceCompletedCount >= 1 ||
         profile.theme2.raceCompletedCount >= 1 ||
-        profile.theme3.raceCompletedCount >= 1,
+        profile.theme3.raceCompletedCount >= 1 ||
+        profile.theme4.raceCompletedCount >= 1,
     ],
     ['sentence_builder', totalSentences >= 6],
     ['theme1_hero', (profile.theme1.quizBestScore ?? 0) >= 80 && t1Percent >= 60],
     ['theme2_hero', (profile.theme2.quizBestScore ?? 0) >= 80 && t2Percent >= 60],
     ['theme3_hero', (profile.theme3.quizBestScore ?? 0) >= 80 && t3Percent >= 60],
+    ['theme4_hero', (profile.theme4.quizBestScore ?? 0) >= 80 && t4Percent >= 60],
     [
       'super_star',
-      profile.stars >= 150 && t1Percent >= 70 && t2Percent >= 70 && t3Percent >= 70,
+      profile.stars >= 150 &&
+        t1Percent >= 70 &&
+        t2Percent >= 70 &&
+        t3Percent >= 70 &&
+        t4Percent >= 70,
     ],
   ];
 

@@ -45,7 +45,13 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
   };
 
   const accentBg =
-    themeId === 1 ? 'bg-[#115E59]' : themeId === 2 ? 'bg-[#9A3412]' : 'bg-[#4C1D95]';
+    themeId === 1
+      ? 'bg-[#115E59]'
+      : themeId === 2
+      ? 'bg-[#9A3412]'
+      : themeId === 3
+      ? 'bg-[#4C1D95]'
+      : 'bg-[#9F1239]';
 
   return (
     <div className="space-y-6">

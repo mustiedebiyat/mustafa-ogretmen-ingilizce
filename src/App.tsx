@@ -81,7 +81,13 @@ export default function App() {
   };
 
   const handleNavigate = (nextRoute: AppRoute, scrollToProfile = false) => {
-    if ((nextRoute === 'theme1' || nextRoute === 'theme2' || nextRoute === 'theme3') && !student) {
+    if (
+      (nextRoute === 'theme1' ||
+        nextRoute === 'theme2' ||
+        nextRoute === 'theme3' ||
+        nextRoute === 'theme4') &&
+      !student
+    ) {
       setRoute('home');
       setTimeout(() => {
         nameInputRef.current?.focus();
@@ -111,12 +117,14 @@ export default function App() {
   const handleSelectTheme = (themeId: ThemeId, initialTab: StudyTabId = 'words') => {
     setLastExpandedTheme(themeId);
     setSelectedTab(initialTab);
-    setRoute(themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : 'theme3');
+    setRoute(
+      themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : themeId === 3 ? 'theme3' : 'theme4'
+    );
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const getThemeKey = (themeId: ThemeId) =>
-    themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : 'theme3';
+    themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : themeId === 3 ? 'theme3' : 'theme4';
 
   const handleRecordWordListened = (themeId: ThemeId, wordId: string) => {
     applyProfileUpdate((prev) => {
@@ -331,16 +339,21 @@ export default function App() {
           />
         )}
 
-        {(route === 'theme1' || route === 'theme2' || route === 'theme3') && student && (
-          <ThemeWorkspace
-            key={route}
-            themeId={route === 'theme1' ? 1 : route === 'theme2' ? 2 : 3}
-            initialTab={selectedTab}
-            student={student}
-            onBackHome={() => {
-              setLastExpandedTheme(route === 'theme1' ? 1 : route === 'theme2' ? 2 : 3);
-              handleNavigate('home');
-            }}
+        {(route === 'theme1' || route === 'theme2' || route === 'theme3' || route === 'theme4') &&
+          student && (
+            <ThemeWorkspace
+              key={route}
+              themeId={
+                route === 'theme1' ? 1 : route === 'theme2' ? 2 : route === 'theme3' ? 3 : 4
+              }
+              initialTab={selectedTab}
+              student={student}
+              onBackHome={() => {
+                setLastExpandedTheme(
+                  route === 'theme1' ? 1 : route === 'theme2' ? 2 : route === 'theme3' ? 3 : 4
+                );
+                handleNavigate('home');
+              }}
             onRecordWordListened={handleRecordWordListened}
             onToggleMastered={handleToggleMastered}
             onCompleteLesson={handleCompleteLesson}

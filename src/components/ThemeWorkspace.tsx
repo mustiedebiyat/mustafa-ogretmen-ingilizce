@@ -81,7 +81,13 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
 }) => {
   const theme = THEMES[themeId];
   const progress =
-    themeId === 1 ? student.theme1 : themeId === 2 ? student.theme2 : student.theme3;
+    themeId === 1
+      ? student.theme1
+      : themeId === 2
+      ? student.theme2
+      : themeId === 3
+      ? student.theme3
+      : student.theme4;
   const completionPercent = getThemeCompletionPercent(student, themeId);
 
   const [activeTab, setActiveTab] = useState<StudyTabId>(initialTab);
@@ -139,14 +145,18 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
       ? 'from-[#0F766E] via-[#115E59] to-[#134E4A]'
       : themeId === 2
       ? 'from-[#B43B0B] via-[#9A3412] to-[#7C2D12]'
-      : 'from-[#5B21B6] via-[#4C1D95] to-[#3B0764]';
+      : themeId === 3
+      ? 'from-[#5B21B6] via-[#4C1D95] to-[#3B0764]'
+      : 'from-[#BE123C] via-[#9F1239] to-[#881337]';
 
   const activeTabStyle =
     themeId === 1
       ? 'bg-[#115E59] text-white shadow-xs'
       : themeId === 2
       ? 'bg-[#9A3412] text-white shadow-xs'
-      : 'bg-[#4C1D95] text-white shadow-xs';
+      : themeId === 3
+      ? 'bg-[#4C1D95] text-white shadow-xs'
+      : 'bg-[#9F1239] text-white shadow-xs';
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">

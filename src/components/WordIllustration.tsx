@@ -1018,6 +1018,417 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
           </svg>
         );
 
+      case 'parents':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="42" cy="40" r="14" fill="#FDE68A" stroke="#78350F" strokeWidth="2.5" />
+            <path d="M28 40C28 24 56 24 56 40" fill="#7C2D12" />
+            <rect x="24" y="58" width="36" height="40" rx="12" fill="#0284C7" stroke="#0C4A6E" strokeWidth="2.5" />
+            <circle cx="78" cy="42" r="13" fill="#FDE68A" stroke="#78350F" strokeWidth="2.5" />
+            <path d="M64 42C64 24 92 24 92 48" stroke="#9A3412" strokeWidth="6" strokeLinecap="round" />
+            <rect x="60" y="59" width="36" height="39" rx="12" fill="#E11D48" stroke="#881337" strokeWidth="2.5" />
+            <path d="M60 22C56 17 48 18 48 24C48 30 60 36 60 36C60 36 72 30 72 24C72 18 64 17 60 22Z" fill="#F43F5E" />
+          </svg>
+        );
+
+      case 'mother':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <path d="M36 42C36 22 84 22 84 42V72H36V42Z" fill="#78350F" />
+            <circle cx="60" cy="44" r="18" fill="#FDE68A" stroke="#78350F" strokeWidth="3" />
+            <circle cx="53" cy="42" r="2.2" fill="#1E293B" />
+            <circle cx="67" cy="42" r="2.2" fill="#1E293B" />
+            <path d="M54 50C57 54 63 54 66 50" stroke="#BE123C" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M34 98C34 74 44 64 60 64C76 64 86 74 86 98Z" fill="#F43F5E" stroke="#881337" strokeWidth="3" />
+            <circle cx="60" cy="70" r="6" fill="#FECDD3" />
+          </svg>
+        );
+
+      case 'father':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="42" r="18" fill="#FDE68A" stroke="#78350F" strokeWidth="3" />
+            <path d="M42 36C44 22 76 22 78 36Z" fill="#334155" />
+            <circle cx="53" cy="40" r="2.2" fill="#1E293B" />
+            <circle cx="67" cy="40" r="2.2" fill="#1E293B" />
+            <path d="M50 47C55 44 65 44 70 47" stroke="#334155" strokeWidth="3.5" strokeLinecap="round" />
+            <path d="M55 52C58 54 62 54 65 52" stroke="#9A3412" strokeWidth="2" strokeLinecap="round" />
+            <rect x="34" y="64" width="52" height="36" rx="14" fill="#0EA5E9" stroke="#0C4A6E" strokeWidth="3" />
+            <path d="M54 64L60 76L66 64" fill="#FFFFFF" />
+          </svg>
+        );
+
+      case 'brother':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="46" r="18" fill="#FDE68A" stroke="#78350F" strokeWidth="3" />
+            <path d="M40 36C44 22 76 22 80 38L72 34L62 38L52 33Z" fill="#92400E" stroke="#78350F" strokeWidth="2" />
+            <circle cx="53" cy="45" r="2.3" fill="#1E293B" />
+            <circle cx="67" cy="45" r="2.3" fill="#1E293B" />
+            <path d="M54 53C57 57 63 57 66 53" stroke="#9A3412" strokeWidth="2.5" strokeLinecap="round" />
+            <rect x="36" y="68" width="48" height="32" rx="12" fill="#4F46E5" stroke="#312E81" strokeWidth="3" />
+            <rect x="44" y="78" width="32" height="6" rx="3" fill="#FACC15" />
+          </svg>
+        );
+
+      case 'sister':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="36" cy="44" r="9" fill="#92400E" />
+            <circle cx="84" cy="44" r="9" fill="#92400E" />
+            <circle cx="38" cy="38" r="4" fill="#FB7185" />
+            <circle cx="82" cy="38" r="4" fill="#FB7185" />
+            <circle cx="60" cy="46" r="17" fill="#FDE68A" stroke="#78350F" strokeWidth="3" />
+            <path d="M43 40C47 26 73 26 77 40" fill="#92400E" />
+            <circle cx="54" cy="46" r="2.2" fill="#1E293B" />
+            <circle cx="66" cy="46" r="2.2" fill="#1E293B" />
+            <path d="M55 53C58 56 62 56 65 53" stroke="#BE123C" strokeWidth="2.5" strokeLinecap="round" />
+            <polygon points="44,66 76,66 86,98 34,98" fill="#EC4899" stroke="#831843" strokeWidth="3" strokeLinejoin="round" />
+          </svg>
+        );
+
+      case 'aunt':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <path d="M34 46C34 22 86 22 86 46V68H34V46Z" fill="#F59E0B" />
+            <circle cx="60" cy="44" r="17" fill="#FEF3C7" stroke="#92400E" strokeWidth="3" />
+            <circle cx="54" cy="43" r="2.2" fill="#1E293B" />
+            <circle cx="66" cy="43" r="2.2" fill="#1E293B" />
+            <path d="M54 51C57 54 63 54 66 51" stroke="#BE123C" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M36 98C36 74 44 65 60 65C76 65 84 74 84 98Z" fill="#A855F7" stroke="#581C87" strokeWidth="3" />
+            <circle cx="42" cy="52" r="3" fill="#FACC15" />
+            <circle cx="78" cy="52" r="3" fill="#FACC15" />
+          </svg>
+        );
+
+      case 'uncle':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="42" r="18" fill="#FDE68A" stroke="#78350F" strokeWidth="3" />
+            <path d="M42 35C44 22 76 22 78 35Z" fill="#78350F" />
+            <rect x="47" y="37" width="11" height="8" rx="2" stroke="#1E293B" strokeWidth="2.2" />
+            <rect x="62" y="37" width="11" height="8" rx="2" stroke="#1E293B" strokeWidth="2.2" />
+            <line x1="58" y1="41" x2="62" y2="41" stroke="#1E293B" strokeWidth="2" />
+            <path d="M54 52C58 55 62 55 66 52" stroke="#9A3412" strokeWidth="2.5" strokeLinecap="round" />
+            <rect x="34" y="64" width="52" height="36" rx="14" fill="#0F766E" stroke="#134E4A" strokeWidth="3" />
+          </svg>
+        );
+
+      case 'cousin':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="42" cy="46" r="14" fill="#FDE68A" stroke="#78350F" strokeWidth="2.5" />
+            <path d="M28 40C30 28 54 28 56 40" fill="#B45309" />
+            <rect x="26" y="64" width="32" height="32" rx="10" fill="#10B981" stroke="#065F46" strokeWidth="2.5" />
+            <circle cx="78" cy="46" r="14" fill="#FDE68A" stroke="#78350F" strokeWidth="2.5" />
+            <path d="M64 40C66 26 90 26 92 48" stroke="#7C2D12" strokeWidth="5" strokeLinecap="round" />
+            <rect x="62" y="64" width="32" height="32" rx="10" fill="#8B5CF6" stroke="#4C1D95" strokeWidth="2.5" />
+            <circle cx="60" cy="24" r="5" fill="#FACC15" />
+          </svg>
+        );
+
+      case 'grandmother':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="22" r="10" fill="#E2E8F0" stroke="#64748B" strokeWidth="2.5" />
+            <circle cx="60" cy="46" r="18" fill="#FEF3C7" stroke="#92400E" strokeWidth="3" />
+            <path d="M42 42C44 26 76 26 78 42" fill="#E2E8F0" />
+            <circle cx="53" cy="45" r="5.5" stroke="#475569" strokeWidth="2.2" />
+            <circle cx="67" cy="45" r="5.5" stroke="#475569" strokeWidth="2.2" />
+            <line x1="58.5" y1="45" x2="61.5" y2="45" stroke="#475569" strokeWidth="2" />
+            <path d="M54 55C57 58 63 58 66 55" stroke="#BE123C" strokeWidth="2.2" strokeLinecap="round" />
+            <path d="M34 98C34 74 44 66 60 66C76 66 86 74 86 98Z" fill="#FB923C" stroke="#9A3412" strokeWidth="3" />
+          </svg>
+        );
+
+      case 'grandfather':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="44" r="18" fill="#FEF3C7" stroke="#92400E" strokeWidth="3" />
+            <path d="M42 38C45 24 75 24 78 38" stroke="#CBD5E1" strokeWidth="7" strokeLinecap="round" />
+            <path d="M44 50C44 64 76 64 76 50" fill="#E2E8F0" stroke="#94A3B8" strokeWidth="2" />
+            <circle cx="53" cy="43" r="5.5" stroke="#334155" strokeWidth="2.2" />
+            <circle cx="67" cy="43" r="5.5" stroke="#334155" strokeWidth="2.2" />
+            <line x1="58.5" y1="43" x2="61.5" y2="43" stroke="#334155" strokeWidth="2" />
+            <rect x="34" y="66" width="52" height="34" rx="14" fill="#10B981" stroke="#065F46" strokeWidth="3" />
+          </svg>
+        );
+
+      case 'wake_up':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="64" r="32" fill="#FEF3C7" stroke="#D97706" strokeWidth="4" />
+            <circle cx="60" cy="64" r="24" fill="#FFFFFF" stroke="#F59E0B" strokeWidth="2" />
+            <path d="M32 32L22 42M88 32L98 42" stroke="#EA580C" strokeWidth="5" strokeLinecap="round" />
+            <line x1="60" y1="64" x2="60" y2="48" stroke="#1E293B" strokeWidth="3.5" strokeLinecap="round" />
+            <line x1="60" y1="64" x2="73" y2="64" stroke="#E11D48" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="60" cy="64" r="3.5" fill="#1E293B" />
+            <path d="M18 52C14 48 14 40 18 36M102 52C106 48 106 40 102 36" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        );
+
+      case 'wash_face':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="54" r="24" fill="#FDE68A" stroke="#78350F" strokeWidth="3" />
+            <circle cx="51" cy="50" r="2.5" fill="#1E293B" />
+            <circle cx="69" cy="50" r="2.5" fill="#1E293B" />
+            <path d="M53 62C57 66 63 66 67 62" stroke="#BE123C" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M30 74C24 64 28 54 34 62C38 68 42 74 44 82" fill="#38BDF8" stroke="#0284C7" strokeWidth="2" />
+            <path d="M90 74C96 64 92 54 86 62C82 68 78 74 76 82" fill="#38BDF8" stroke="#0284C7" strokeWidth="2" />
+            <circle cx="30" cy="36" r="5" fill="#BAE6FD" stroke="#0284C7" strokeWidth="2" />
+            <circle cx="92" cy="34" r="4" fill="#BAE6FD" stroke="#0284C7" strokeWidth="2" />
+            <rect x="34" y="84" width="52" height="14" rx="7" fill="#E0F2FE" stroke="#0284C7" strokeWidth="2.5" />
+          </svg>
+        );
+
+      case 'brush_teeth':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="18" y="64" width="84" height="14" rx="7" fill="#0EA5E9" stroke="#0C4A6E" strokeWidth="3" />
+            <rect x="64" y="46" width="32" height="18" rx="4" fill="#FFFFFF" stroke="#0C4A6E" strokeWidth="2.5" />
+            <line x1="72" y1="46" x2="72" y2="64" stroke="#CBD5E1" strokeWidth="2" />
+            <line x1="80" y1="46" x2="80" y2="64" stroke="#CBD5E1" strokeWidth="2" />
+            <line x1="88" y1="46" x2="88" y2="64" stroke="#CBD5E1" strokeWidth="2" />
+            <path d="M64 46C66 36 92 34 94 46" fill="#F43F5E" stroke="#881337" strokeWidth="2.5" />
+            <circle cx="48" cy="38" r="5" fill="#E0F2FE" stroke="#0284C7" strokeWidth="2" />
+            <circle cx="36" cy="48" r="3.5" fill="#E0F2FE" stroke="#0284C7" strokeWidth="2" />
+          </svg>
+        );
+
+      case 'have_breakfast':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="54" cy="64" r="32" fill="#FFFFFF" stroke="#64748B" strokeWidth="3" />
+            <circle cx="54" cy="64" r="24" fill="#FFFBEB" stroke="#CBD5E1" strokeWidth="2" />
+            <ellipse cx="48" cy="62" rx="11" ry="9" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1.5" />
+            <circle cx="48" cy="62" r="5.5" fill="#FACC15" stroke="#D97706" strokeWidth="1.5" />
+            <rect x="58" y="54" width="14" height="18" rx="3" fill="#F59E0B" stroke="#78350F" strokeWidth="2" />
+            <rect x="90" y="42" width="18" height="36" rx="4" fill="#FDBA74" stroke="#9A3412" strokeWidth="2.5" />
+            <rect x="92" y="48" width="14" height="26" fill="#F97316" />
+          </svg>
+        );
+
+      case 'go_to_school':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <polygon points="60,20 18,48 102,48" fill="#E11D48" stroke="#881337" strokeWidth="3" strokeLinejoin="round" />
+            <rect x="26" y="48" width="68" height="50" rx="4" fill="#FEF3C7" stroke="#92400E" strokeWidth="3" />
+            <rect x="52" y="68" width="16" height="30" rx="3" fill="#9A3412" />
+            <rect x="33" y="58" width="14" height="14" rx="2" fill="#38BDF8" stroke="#0C4A6E" strokeWidth="2" />
+            <rect x="73" y="58" width="14" height="14" rx="2" fill="#38BDF8" stroke="#0C4A6E" strokeWidth="2" />
+            <circle cx="60" cy="37" r="6" fill="#FFFFFF" stroke="#881337" strokeWidth="2" />
+          </svg>
+        );
+
+      case 'study_lessons':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="18" y="68" width="84" height="12" rx="4" fill="#B45309" stroke="#78350F" strokeWidth="2.5" />
+            <rect x="28" y="40" width="44" height="28" rx="4" fill="#FFFFFF" stroke="#312E81" strokeWidth="3" />
+            <line x1="50" y1="40" x2="50" y2="68" stroke="#312E81" strokeWidth="2.5" />
+            <path d="M33 48H45M33 56H45M55 48H67M55 56H67" stroke="#4F46E5" strokeWidth="2.2" strokeLinecap="round" />
+            <rect x="82" y="34" width="10" height="34" rx="3" fill="#FACC15" stroke="#713F12" strokeWidth="2" />
+            <polygon points="82,34 92,34 87,24" fill="#FDE68A" stroke="#713F12" strokeWidth="2" />
+          </svg>
+        );
+
+      case 'read_book':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <path d="M20 34C20 28 56 28 60 36C64 28 100 28 100 34V86C100 86 64 80 60 90C56 80 20 86 20 86V34Z" fill="#ECFDF5" stroke="#065F46" strokeWidth="3.5" strokeLinejoin="round" />
+            <line x1="60" y1="36" x2="60" y2="90" stroke="#065F46" strokeWidth="3" />
+            <path d="M30 46H50M30 56H50M30 66H46" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M70 46H90M70 56H90M70 66H86" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
+        );
+
+      case 'go_to_bed':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <path d="M84 22C74 24 72 38 82 42C75 44 68 38 68 30C68 23 76 19 84 22Z" fill="#FACC15" stroke="#B45309" strokeWidth="2" />
+            <rect x="18" y="48" width="10" height="48" rx="3" fill="#78350F" />
+            <rect x="92" y="60" width="10" height="36" rx="3" fill="#78350F" />
+            <rect x="28" y="64" width="64" height="22" rx="4" fill="#6D28D9" stroke="#3B0764" strokeWidth="3" />
+            <rect x="30" y="54" width="22" height="12" rx="5" fill="#FFFFFF" stroke="#4C1D95" strokeWidth="2.5" />
+            <rect x="52" y="58" width="40" height="20" rx="4" fill="#A78BFA" stroke="#4C1D95" strokeWidth="2.5" />
+          </svg>
+        );
+
+      case 'make_bed':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="18" y="42" width="10" height="54" rx="3" fill="#92400E" />
+            <rect x="92" y="56" width="10" height="40" rx="3" fill="#92400E" />
+            <rect x="28" y="62" width="64" height="24" rx="4" fill="#0EA5E9" stroke="#0C4A6E" strokeWidth="3" />
+            <rect x="30" y="50" width="24" height="14" rx="5" fill="#FFFFFF" stroke="#0C4A6E" strokeWidth="2.5" />
+            <path d="M54 58H90V78H54V58Z" fill="#38BDF8" stroke="#0C4A6E" strokeWidth="2.5" />
+            <polygon points="82,24 85,32 94,32 87,37 90,45 82,40 74,45 77,37 70,32 79,32" fill="#FACC15" stroke="#B45309" strokeWidth="2" />
+          </svg>
+        );
+
+      case 'prepare_breakfast':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="20" y="72" width="80" height="10" rx="4" fill="#94A3B8" stroke="#334155" strokeWidth="2.5" />
+            <ellipse cx="52" cy="58" rx="22" ry="12" fill="#FEF3C7" stroke="#92400E" strokeWidth="2.5" />
+            <ellipse cx="52" cy="52" rx="18" ry="8" fill="#F59E0B" stroke="#78350F" strokeWidth="2" />
+            <circle cx="88" cy="58" r="12" fill="#FFF1F2" stroke="#E11D48" strokeWidth="2.5" />
+            <path d="M84 42C84 36 90 36 90 30" stroke="#94A3B8" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M44 36C44 30 50 30 50 24" stroke="#94A3B8" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
+        );
+
+      case 'cook_dinner':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="26" y="48" width="68" height="40" rx="10" fill="#E11D48" stroke="#881337" strokeWidth="3" />
+            <path d="M18 56H26M94 56H102" stroke="#334155" strokeWidth="5" strokeLinecap="round" />
+            <rect x="24" y="42" width="72" height="10" rx="4" fill="#CBD5E1" stroke="#475569" strokeWidth="2.5" />
+            <circle cx="60" cy="36" r="5" fill="#475569" />
+            <path d="M42 28C40 22 46 20 44 14M60 26C58 20 64 18 62 12M78 28C76 22 82 20 80 14" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        );
+
+      case 'wash_dishes':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="56" cy="60" r="30" fill="#FFFFFF" stroke="#0F766E" strokeWidth="3.5" />
+            <circle cx="56" cy="60" r="20" fill="#F0FDFA" stroke="#5EEAD4" strokeWidth="2.5" />
+            <circle cx="84" cy="36" r="10" fill="#BAE6FD" stroke="#0284C7" strokeWidth="2.5" />
+            <circle cx="34" cy="32" r="7" fill="#BAE6FD" stroke="#0284C7" strokeWidth="2" />
+            <circle cx="88" cy="78" r="6" fill="#BAE6FD" stroke="#0284C7" strokeWidth="2" />
+            <rect x="66" y="64" width="24" height="16" rx="4" fill="#FACC15" stroke="#B45309" strokeWidth="2.5" />
+          </svg>
+        );
+
+      case 'iron_clothes':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <path d="M22 80H96L86 54H46C34 54 26 64 22 80Z" fill="#7C3AED" stroke="#3B0764" strokeWidth="3" strokeLinejoin="round" />
+            <path d="M48 54V42H78L84 54" stroke="#3B0764" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <rect x="18" y="80" width="84" height="8" rx="4" fill="#CBD5E1" stroke="#475569" strokeWidth="2.5" />
+            <circle cx="38" cy="36" r="3.5" fill="#93C5FD" />
+            <circle cx="28" cy="44" r="3" fill="#93C5FD" />
+            <circle cx="48" cy="32" r="2.5" fill="#93C5FD" />
+          </svg>
+        );
+
+      case 'clean_room':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <line x1="74" y1="20" x2="54" y2="68" stroke="#92400E" strokeWidth="6" strokeLinecap="round" />
+            <polygon points="40,66 68,74 64,98 24,88" fill="#F59E0B" stroke="#78350F" strokeWidth="3" strokeLinejoin="round" />
+            <line x1="36" y1="90" x2="42" y2="74" stroke="#78350F" strokeWidth="2" />
+            <line x1="48" y1="94" x2="54" y2="76" stroke="#78350F" strokeWidth="2" />
+            <polygon points="88,42 91,49 98,51 91,53 88,60 85,53 78,51 85,49" fill="#10B981" />
+            <polygon points="32,36 34,41 39,43 34,45 32,50 30,45 25,43 30,41" fill="#38BDF8" />
+          </svg>
+        );
+
+      case 'put_rubbish_out':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="34" y="40" width="52" height="58" rx="8" fill="#16A34A" stroke="#14532D" strokeWidth="3" />
+            <rect x="28" y="32" width="64" height="10" rx="4" fill="#22C55E" stroke="#14532D" strokeWidth="3" />
+            <rect x="50" y="24" width="20" height="8" rx="3" fill="#15803D" stroke="#14532D" strokeWidth="2.5" />
+            <line x1="48" y1="52" x2="48" y2="86" stroke="#DCFCE7" strokeWidth="3" strokeLinecap="round" />
+            <line x1="60" y1="52" x2="60" y2="86" stroke="#DCFCE7" strokeWidth="3" strokeLinecap="round" />
+            <line x1="72" y1="52" x2="72" y2="86" stroke="#DCFCE7" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        );
+
+      case 'play_guitar':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <g transform="rotate(35 60 60)">
+              <ellipse cx="60" cy="76" rx="22" ry="18" fill="#EA580C" stroke="#7C2D12" strokeWidth="3" />
+              <ellipse cx="60" cy="56" rx="15" ry="13" fill="#F97316" stroke="#7C2D12" strokeWidth="3" />
+              <circle cx="60" cy="64" r="6" fill="#451A03" />
+              <rect x="56" y="18" width="8" height="36" rx="2" fill="#92400E" stroke="#451A03" strokeWidth="2.5" />
+              <rect x="52" y="82" width="16" height="5" rx="2" fill="#451A03" />
+            </g>
+          </svg>
+        );
+
+      case 'play_piano':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="18" y="34" width="84" height="54" rx="8" fill="#1E293B" stroke="#0F172A" strokeWidth="3" />
+            <rect x="24" y="48" width="12" height="34" rx="2" fill="#FFFFFF" stroke="#475569" strokeWidth="1.5" />
+            <rect x="36" y="48" width="12" height="34" rx="2" fill="#FFFFFF" stroke="#475569" strokeWidth="1.5" />
+            <rect x="48" y="48" width="12" height="34" rx="2" fill="#FFFFFF" stroke="#475569" strokeWidth="1.5" />
+            <rect x="60" y="48" width="12" height="34" rx="2" fill="#FFFFFF" stroke="#475569" strokeWidth="1.5" />
+            <rect x="72" y="48" width="12" height="34" rx="2" fill="#FFFFFF" stroke="#475569" strokeWidth="1.5" />
+            <rect x="84" y="48" width="12" height="34" rx="2" fill="#FFFFFF" stroke="#475569" strokeWidth="1.5" />
+            <rect x="32" y="48" width="8" height="20" rx="1.5" fill="#0F172A" />
+            <rect x="44" y="48" width="8" height="20" rx="1.5" fill="#0F172A" />
+            <rect x="68" y="48" width="8" height="20" rx="1.5" fill="#0F172A" />
+            <rect x="80" y="48" width="8" height="20" rx="1.5" fill="#0F172A" />
+          </svg>
+        );
+
+      case 'play_violin':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <g transform="rotate(-25 60 60)">
+              <ellipse cx="60" cy="76" rx="19" ry="16" fill="#D97706" stroke="#78350F" strokeWidth="3" />
+              <ellipse cx="60" cy="56" rx="14" ry="12" fill="#F59E0B" stroke="#78350F" strokeWidth="3" />
+              <rect x="57" y="20" width="6" height="32" rx="2" fill="#451A03" />
+              <line x1="28" y1="68" x2="92" y2="54" stroke="#78350F" strokeWidth="3.5" strokeLinecap="round" />
+            </g>
+          </svg>
+        );
+
+      case 'play_chess':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="20" y="70" width="80" height="26" rx="6" fill="#E2E8F0" stroke="#334155" strokeWidth="3" />
+            <rect x="26" y="74" width="17" height="18" fill="#1E293B" />
+            <rect x="60" y="74" width="17" height="18" fill="#1E293B" />
+            <path d="M44 70L48 44H58L62 70Z" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2.5" />
+            <circle cx="53" cy="36" r="8" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2.5" />
+            <path d="M53 24V30M50 27H56" stroke="#1E293B" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M72 70L75 48H83L86 70Z" fill="#334155" stroke="#0F172A" strokeWidth="2.5" />
+            <circle cx="79" cy="42" r="6" fill="#334155" stroke="#0F172A" strokeWidth="2.5" />
+          </svg>
+        );
+
+      case 'play_basketball':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <circle cx="60" cy="60" r="38" fill="#F97316" stroke="#7C2D12" strokeWidth="3.5" />
+            <line x1="22" y1="60" x2="98" y2="60" stroke="#7C2D12" strokeWidth="3" />
+            <line x1="60" y1="22" x2="60" y2="98" stroke="#7C2D12" strokeWidth="3" />
+            <path d="M34 32C46 46 46 74 34 88" stroke="#7C2D12" strokeWidth="3" fill="none" />
+            <path d="M86 32C74 46 74 74 86 88" stroke="#7C2D12" strokeWidth="3" fill="none" />
+          </svg>
+        );
+
+      case 'swim':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <rect x="16" y="22" width="88" height="76" rx="14" fill="#E0F2FE" stroke="#0284C7" strokeWidth="3" />
+            <circle cx="44" cy="48" r="10" fill="#FDE68A" stroke="#78350F" strokeWidth="2.5" />
+            <rect x="38" y="44" width="12" height="5" rx="2" fill="#0EA5E9" stroke="#0C4A6E" strokeWidth="1.5" />
+            <path d="M56 54L80 42L88 52" stroke="#FDE68A" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M22 68C32 62 42 74 52 68C62 62 72 74 82 68C90 63 96 68 98 70" stroke="#0284C7" strokeWidth="4" strokeLinecap="round" />
+            <path d="M22 82C32 76 42 88 52 82C62 76 72 88 82 82C90 77 96 82 98 84" stroke="#38BDF8" strokeWidth="3.5" strokeLinecap="round" />
+          </svg>
+        );
+
+      case 'watch_tv':
+        return (
+          <svg viewBox="0 0 120 120" className={className} fill="none">
+            <path d="M44 24L60 36L76 24" stroke="#475569" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <rect x="20" y="34" width="80" height="54" rx="10" fill="#334155" stroke="#0F172A" strokeWidth="3" />
+            <rect x="28" y="42" width="64" height="38" rx="5" fill="#7DD3FC" />
+            <circle cx="60" cy="61" r="10" fill="#FACC15" />
+            <polygon points="57,56 66,61 57,66" fill="#E11D48" />
+            <rect x="44" y="88" width="32" height="8" rx="3" fill="#475569" />
+          </svg>
+        );
+
       default:
         return (
           <svg viewBox="0 0 120 120" className={className} fill="none">

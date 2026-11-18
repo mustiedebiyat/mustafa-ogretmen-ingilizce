@@ -89,6 +89,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const theme1Percent = getThemeCompletionPercent(student, 1);
   const theme2Percent = getThemeCompletionPercent(student, 2);
   const theme3Percent = getThemeCompletionPercent(student, 3);
+  const theme4Percent = getThemeCompletionPercent(student, 4);
 
   const renderBadgeIcon = (iconKey: string, unlocked: boolean) => {
     const cls = `w-6 h-6 ${unlocked ? 'text-amber-600' : 'text-slate-400'}`;
@@ -111,6 +112,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
         return <Medal className={`w-6 h-6 ${unlocked ? 'text-orange-700' : 'text-slate-400'}`} />;
       case 'purpleMedal':
         return <Medal className={`w-6 h-6 ${unlocked ? 'text-purple-800' : 'text-slate-400'}`} />;
+      case 'roseMedal':
+        return <Medal className={`w-6 h-6 ${unlocked ? 'text-rose-700' : 'text-slate-400'}`} />;
       case 'trophy':
         return <Trophy className={cls} />;
       default:
@@ -231,7 +234,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* Theme Selection Boxes: Compact 2-column grid on mobile (1 & 2 side-by-side, 3 below), 3-column on desktop */}
+      {/* Theme Selection Boxes: Compact 2-column grid on mobile (1 & 2 row 1, 3 & 4 row 2), 4-column on desktop */}
       <section className="space-y-4 sm:space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
@@ -243,11 +246,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
           <span className="text-xs sm:text-sm font-medium text-slate-500 whitespace-nowrap">
-            MEB Maarif Modeli · 3 Ayrı Tema
+            MEB Maarif Modeli · 4 Ayrı Tema
           </span>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {/* 1. TEMA: Koyu Yeşil-Turkuaz (Teal) */}
           <button
             type="button"
@@ -448,6 +451,73 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
             </div>
           </button>
+
+          {/* 4. TEMA: Koyu Gül / Bordo (Rose) */}
+          <button
+            type="button"
+            onClick={() => handleThemeClick(4)}
+            aria-expanded={expandedThemeId === 4}
+            className={`group text-left rounded-2xl overflow-hidden bg-gradient-to-br from-[#BE123C] via-[#9F1239] to-[#881337] text-white shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-rose-400 cursor-pointer flex flex-col justify-between ${
+              expandedThemeId === 4 ? 'ring-4 ring-rose-400' : ''
+            }`}
+          >
+            <div className="h-24 sm:h-44 w-full overflow-hidden relative bg-rose-950">
+              <img
+                src={THEMES[4].heroImage}
+                alt="4. Tema Family Life Görseli"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#881337] via-[#881337]/35 to-transparent" />
+              <span className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/45 text-[10px] sm:text-xs font-bold text-rose-100 tabular-nums backdrop-blur-xs">
+                %{theme4Percent}
+              </span>
+              <div className="absolute bottom-2.5 left-3 right-3 sm:bottom-3.5 sm:left-5 sm:right-5">
+                <p className="text-[10px] sm:text-xs font-bold tracking-wider text-rose-200 uppercase">
+                  4. Tema
+                </p>
+                <h3 className="text-sm sm:text-xl lg:text-2xl font-extrabold text-white leading-tight truncate">
+                  Family Life
+                </h3>
+              </div>
+            </div>
+
+            <div className="p-3 sm:p-5 space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                <p className="text-xs sm:text-base font-bold text-rose-50 truncate">
+                  Aile Hayatı
+                </p>
+                <p className="hidden sm:block text-xs sm:text-sm text-rose-100/90 leading-relaxed line-clamp-2">
+                  {THEMES[4].subtitleTr}. {THEMES[4].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <div className="w-full h-1.5 sm:h-2 bg-rose-950/60 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-amber-300 rounded-full transition-all duration-300"
+                    style={{ width: `${theme4Percent}%` }}
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-1 text-[11px] sm:text-sm font-bold text-white pt-0.5">
+                  <span className="truncate">
+                    {expandedThemeId === 4 ? 'Açıldı' : '4. Temayı Aç'}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-white/15 group-hover:bg-white/25 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors whitespace-nowrap shrink-0">
+                    <span className="sm:hidden">{expandedThemeId === 4 ? 'Gizle' : 'Aç'}</span>
+                    <span className="hidden sm:inline">
+                      {expandedThemeId === 4 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                    </span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform ${
+                        expandedThemeId === 4 ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </button>
         </div>
 
         {/* Expanded Sub-Section Icon Boxes Panel */}
@@ -459,7 +529,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 ? 'bg-teal-50/70 border-teal-300'
                 : expandedThemeId === 2
                 ? 'bg-orange-50/70 border-orange-300'
-                : 'bg-purple-50/70 border-purple-300'
+                : expandedThemeId === 3
+                ? 'bg-purple-50/70 border-purple-300'
+                : 'bg-rose-50/70 border-rose-300'
             }`}
           >
             <div className="flex items-center justify-between gap-4">
@@ -470,7 +542,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       ? 'text-teal-900'
                       : expandedThemeId === 2
                       ? 'text-orange-800'
-                      : 'text-purple-900'
+                      : expandedThemeId === 3
+                      ? 'text-purple-900'
+                      : 'text-rose-900'
                   }`}
                 >
                   {THEMES[expandedThemeId].code} · {THEMES[expandedThemeId].titleEn}
@@ -496,19 +570,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   ? student?.theme1
                   : expandedThemeId === 2
                   ? student?.theme2
-                  : student?.theme3;
+                  : expandedThemeId === 3
+                  ? student?.theme3
+                  : student?.theme4;
               const iconBoxClass =
                 expandedThemeId === 1
                   ? 'bg-[#115E59] text-white'
                   : expandedThemeId === 2
                   ? 'bg-[#9A3412] text-white'
-                  : 'bg-[#4C1D95] text-white';
+                  : expandedThemeId === 3
+                  ? 'bg-[#4C1D95] text-white'
+                  : 'bg-[#9F1239] text-white';
               const hoverBorderClass =
                 expandedThemeId === 1
                   ? 'hover:border-teal-600'
                   : expandedThemeId === 2
                   ? 'hover:border-orange-500'
-                  : 'hover:border-purple-600';
+                  : expandedThemeId === 3
+                  ? 'hover:border-purple-600'
+                  : 'hover:border-rose-600';
 
               const subBoxes: {
                 tab: StudyTabId;
@@ -659,7 +739,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         {/* Summary Metrics Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           <div className="bg-teal-50/70 border border-teal-200/80 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-teal-900">1. Tema İlerlemesi</p>
             <p className="text-2xl font-extrabold text-teal-800 tabular-nums">%{theme1Percent}</p>
@@ -693,29 +773,44 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
 
+          <div className="bg-rose-50/70 border border-rose-200/80 rounded-xl p-4 space-y-1">
+            <p className="text-xs font-bold text-rose-900">4. Tema İlerlemesi</p>
+            <p className="text-2xl font-extrabold text-rose-800 tabular-nums">%{theme4Percent}</p>
+            <p className="text-xs text-rose-900/80 tabular-nums">
+              Dinlenen: {student?.theme4.listenedWordIds.length ?? 0}/{THEMES[4].vocab.length} · Sınav:{' '}
+              {student?.theme4.quizBestScore !== null && student?.theme4.quizBestScore !== undefined
+                ? `${student.theme4.quizBestScore} puan`
+                : 'Henüz yok'}
+            </p>
+          </div>
+
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-slate-700">Öğrenilen Kelime Kartı</p>
             <p className="text-2xl font-extrabold text-slate-900 tabular-nums">
               {(student?.theme1.masteredWordIds.length ?? 0) +
                 (student?.theme2.masteredWordIds.length ?? 0) +
-                (student?.theme3.masteredWordIds.length ?? 0)}{' '}
-              / {THEMES[1].vocab.length + THEMES[2].vocab.length + THEMES[3].vocab.length}
+                (student?.theme3.masteredWordIds.length ?? 0) +
+                (student?.theme4.masteredWordIds.length ?? 0)}{' '}
+              / {THEMES[1].vocab.length + THEMES[2].vocab.length + THEMES[3].vocab.length + THEMES[4].vocab.length}
             </p>
             <p className="text-xs text-slate-600">Sesli kelime kartlarında işaretlenen</p>
           </div>
 
-          <div className="col-span-2 sm:col-span-1 bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1">
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-slate-700">Tamamlanan Etkinlikler</p>
             <p className="text-2xl font-extrabold text-slate-900 tabular-nums">
               {(student?.theme1.completedLessonIds.length ?? 0) +
                 (student?.theme2.completedLessonIds.length ?? 0) +
                 (student?.theme3.completedLessonIds.length ?? 0) +
+                (student?.theme4.completedLessonIds.length ?? 0) +
                 (student?.theme1.sentenceBuildCompletedIds.length ?? 0) +
                 (student?.theme1.fillBlankCompletedIds.length ?? 0) +
                 (student?.theme2.sentenceBuildCompletedIds.length ?? 0) +
                 (student?.theme2.fillBlankCompletedIds.length ?? 0) +
                 (student?.theme3.sentenceBuildCompletedIds.length ?? 0) +
-                (student?.theme3.fillBlankCompletedIds.length ?? 0)}
+                (student?.theme3.fillBlankCompletedIds.length ?? 0) +
+                (student?.theme4.sentenceBuildCompletedIds.length ?? 0) +
+                (student?.theme4.fillBlankCompletedIds.length ?? 0)}
             </p>
             <p className="text-xs text-slate-600">Konu anlatımı ve cümle alıştırması</p>
           </div>

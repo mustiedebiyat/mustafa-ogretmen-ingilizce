@@ -3,7 +3,7 @@ import { StudentProfile, ThemeId } from '../types/curriculum';
 import { TeacherAvatar } from './TeacherAvatar';
 import { Star, UserCheck } from 'lucide-react';
 
-export type AppRoute = 'home' | 'theme1' | 'theme2' | 'theme3';
+export type AppRoute = 'home' | 'theme1' | 'theme2' | 'theme3' | 'theme4';
 
 interface NavbarProps {
   route: AppRoute;
@@ -19,7 +19,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSwitchStudent,
 }) => {
   const handleThemeNav = (themeId: ThemeId) => {
-    onNavigate(themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : 'theme3');
+    onNavigate(
+      themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : themeId === 3 ? 'theme3' : 'theme4'
+    );
   };
 
   return (
@@ -80,6 +82,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             3. Tema
+          </button>
+          <button
+            type="button"
+            onClick={() => handleThemeNav(4)}
+            className={`py-1 border-b-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              route === 'theme4'
+                ? 'border-rose-700 text-rose-800 font-semibold'
+                : 'border-transparent hover:text-rose-800'
+            }`}
+          >
+            4. Tema
           </button>
           <button
             type="button"
