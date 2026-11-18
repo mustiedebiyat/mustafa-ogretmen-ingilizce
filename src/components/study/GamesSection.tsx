@@ -92,7 +92,11 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
       ? 'bg-[#9A3412] text-white'
       : themeId === 3
       ? 'bg-[#4C1D95] text-white'
-      : 'bg-[#9F1239] text-white';
+      : themeId === 4
+      ? 'bg-[#9F1239] text-white'
+      : themeId === 5
+      ? 'bg-[#166534] text-white'
+      : 'bg-[#1E40AF] text-white';
 
   useEffect(() => {
     setMode(null);
@@ -410,7 +414,11 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
       ? 'hover:border-orange-500'
       : themeId === 3
       ? 'hover:border-purple-600'
-      : 'hover:border-rose-600';
+      : themeId === 4
+      ? 'hover:border-rose-600'
+      : themeId === 5
+      ? 'hover:border-emerald-600'
+      : 'hover:border-blue-600';
 
   return (
     <div className="space-y-6">
@@ -486,7 +494,11 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                         ? 'text-orange-800'
                         : themeId === 3
                         ? 'text-purple-800'
-                        : 'text-rose-800'
+                        : themeId === 4
+                        ? 'text-rose-800'
+                        : themeId === 5
+                        ? 'text-emerald-800'
+                        : 'text-blue-800'
                     }
                   >
                     Tıkla ve Başla
@@ -591,7 +603,11 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                       ? 'bg-[#9A3412] border-[#7C2D12] hover:bg-[#B43B0B]'
                       : themeId === 3
                       ? 'bg-[#4C1D95] border-[#3B0764] hover:bg-[#5B21B6]'
-                      : 'bg-[#9F1239] border-[#881337] hover:bg-[#BE123C]'
+                      : themeId === 4
+                      ? 'bg-[#9F1239] border-[#881337] hover:bg-[#BE123C]'
+                      : themeId === 5
+                      ? 'bg-[#166534] border-[#14532D] hover:bg-[#15803D]'
+                      : 'bg-[#1E40AF] border-[#1E3A8A] hover:bg-[#1D4ED8]'
                   }`}
                 >
                   {isRevealed ? (
@@ -685,7 +701,11 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                             ? 'bg-orange-50 border-[#9A3412] ring-2 ring-orange-400'
                             : themeId === 3
                             ? 'bg-purple-50 border-[#4C1D95] ring-2 ring-purple-400'
-                            : 'bg-rose-50 border-[#9F1239] ring-2 ring-rose-400'
+                            : themeId === 4
+                            ? 'bg-rose-50 border-[#9F1239] ring-2 ring-rose-400'
+                            : themeId === 5
+                            ? 'bg-emerald-50 border-[#166534] ring-2 ring-emerald-400'
+                            : 'bg-blue-50 border-[#1E40AF] ring-2 ring-blue-400'
                           : 'bg-white border-slate-200 hover:border-slate-400'
                       }`}
                     >
@@ -787,7 +807,11 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                           ? 'bg-[#C2410C] text-white'
                           : themeId === 3
                           ? 'bg-[#5B21B6] text-white'
-                          : 'bg-[#BE123C] text-white'
+                          : themeId === 4
+                          ? 'bg-[#BE123C] text-white'
+                          : themeId === 5
+                          ? 'bg-[#15803D] text-white'
+                          : 'bg-[#1D4ED8] text-white'
                         : 'bg-white text-slate-500 border border-slate-300'
                     }`}
                   >
@@ -805,7 +829,11 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
                     ? 'bg-orange-600'
                     : themeId === 3
                     ? 'bg-purple-700'
-                    : 'bg-rose-600'
+                    : themeId === 4
+                    ? 'bg-rose-600'
+                    : themeId === 5
+                    ? 'bg-emerald-600'
+                    : 'bg-blue-600'
                 }`}
                 style={{ width: `${(raceStep / RACE_STEPS) * 100}%` }}
               />

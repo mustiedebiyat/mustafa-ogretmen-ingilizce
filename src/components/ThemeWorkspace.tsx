@@ -87,7 +87,11 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
       ? student.theme2
       : themeId === 3
       ? student.theme3
-      : student.theme4;
+      : themeId === 4
+      ? student.theme4
+      : themeId === 5
+      ? student.theme5
+      : student.theme6;
   const completionPercent = getThemeCompletionPercent(student, themeId);
 
   const [activeTab, setActiveTab] = useState<StudyTabId>(initialTab);
@@ -147,7 +151,11 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
       ? 'from-[#B43B0B] via-[#9A3412] to-[#7C2D12]'
       : themeId === 3
       ? 'from-[#5B21B6] via-[#4C1D95] to-[#3B0764]'
-      : 'from-[#BE123C] via-[#9F1239] to-[#881337]';
+      : themeId === 4
+      ? 'from-[#BE123C] via-[#9F1239] to-[#881337]'
+      : themeId === 5
+      ? 'from-[#15803D] via-[#166534] to-[#14532D]'
+      : 'from-[#1D4ED8] via-[#1E40AF] to-[#1E3A8A]';
 
   const activeTabStyle =
     themeId === 1
@@ -156,7 +164,11 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
       ? 'bg-[#9A3412] text-white shadow-xs'
       : themeId === 3
       ? 'bg-[#4C1D95] text-white shadow-xs'
-      : 'bg-[#9F1239] text-white shadow-xs';
+      : themeId === 4
+      ? 'bg-[#9F1239] text-white shadow-xs'
+      : themeId === 5
+      ? 'bg-[#166534] text-white shadow-xs'
+      : 'bg-[#1E40AF] text-white shadow-xs';
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">

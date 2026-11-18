@@ -25,7 +25,11 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
       ? 'bg-[#9A3412]'
       : themeId === 3
       ? 'bg-[#4C1D95]'
-      : 'bg-[#9F1239]';
+      : themeId === 4
+      ? 'bg-[#9F1239]'
+      : themeId === 5
+      ? 'bg-[#166534]'
+      : 'bg-[#1E40AF]';
 
   const handleCardClick = (item: VocabItem) => {
     setLastClicked(item);
@@ -102,7 +106,11 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
                     ? 'bg-orange-50 border-orange-600 ring-2 ring-orange-500 -translate-y-0.5'
                     : themeId === 3
                     ? 'bg-purple-50 border-purple-700 ring-2 ring-purple-600 -translate-y-0.5'
-                    : 'bg-rose-50 border-rose-700 ring-2 ring-rose-600 -translate-y-0.5'
+                    : themeId === 4
+                    ? 'bg-rose-50 border-rose-700 ring-2 ring-rose-600 -translate-y-0.5'
+                    : themeId === 5
+                    ? 'bg-emerald-50 border-emerald-700 ring-2 ring-emerald-600 -translate-y-0.5'
+                    : 'bg-blue-50 border-blue-700 ring-2 ring-blue-600 -translate-y-0.5'
                   : 'bg-white border-slate-200 hover:border-slate-400 hover:-translate-y-0.5 shadow-xs'
               }`}
             >

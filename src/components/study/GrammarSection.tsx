@@ -29,7 +29,11 @@ export const GrammarSection: React.FC<GrammarSectionProps> = ({
       ? 'bg-[#9A3412] text-white'
       : themeId === 3
       ? 'bg-[#4C1D95] text-white'
-      : 'bg-[#9F1239] text-white';
+      : themeId === 4
+      ? 'bg-[#9F1239] text-white'
+      : themeId === 5
+      ? 'bg-[#166534] text-white'
+      : 'bg-[#1E40AF] text-white';
   const accentBtnClass =
     themeId === 1
       ? 'bg-[#0F766E] hover:bg-[#115E59] text-white'
@@ -37,7 +41,11 @@ export const GrammarSection: React.FC<GrammarSectionProps> = ({
       ? 'bg-[#C2410C] hover:bg-[#9A3412] text-white'
       : themeId === 3
       ? 'bg-[#5B21B6] hover:bg-[#4C1D95] text-white'
-      : 'bg-[#BE123C] hover:bg-[#9F1239] text-white';
+      : themeId === 4
+      ? 'bg-[#BE123C] hover:bg-[#9F1239] text-white'
+      : themeId === 5
+      ? 'bg-[#15803D] hover:bg-[#166534] text-white'
+      : 'bg-[#1D4ED8] hover:bg-[#1E40AF] text-white';
 
   return (
     <div className="space-y-6">
@@ -150,7 +158,11 @@ export const GrammarSection: React.FC<GrammarSectionProps> = ({
                         ? 'bg-orange-100 text-orange-900'
                         : themeId === 3
                         ? 'bg-purple-100 text-purple-900'
-                        : 'bg-rose-100 text-rose-900'
+                        : themeId === 4
+                        ? 'bg-rose-100 text-rose-900'
+                        : themeId === 5
+                        ? 'bg-emerald-100 text-emerald-900'
+                        : 'bg-blue-100 text-blue-900'
                     }`}
                   >
                     <Volume2 className="w-4 h-4" />

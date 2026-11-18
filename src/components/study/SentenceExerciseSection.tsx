@@ -46,7 +46,11 @@ export const SentenceExerciseSection: React.FC<SentenceExerciseSectionProps> = (
       ? 'bg-[#9A3412] text-white'
       : themeId === 3
       ? 'bg-[#4C1D95] text-white'
-      : 'bg-[#9F1239] text-white';
+      : themeId === 4
+      ? 'bg-[#9F1239] text-white'
+      : themeId === 5
+      ? 'bg-[#166534] text-white'
+      : 'bg-[#1E40AF] text-white';
 
   // --- SENTENCE BUILD STATE ---
   const [sbIndex, setSbIndex] = useState(0);
@@ -230,7 +234,11 @@ export const SentenceExerciseSection: React.FC<SentenceExerciseSectionProps> = (
                     ? 'bg-[#C2410C] hover:bg-[#9A3412]'
                     : themeId === 3
                     ? 'bg-[#5B21B6] hover:bg-[#4C1D95]'
-                    : 'bg-[#BE123C] hover:bg-[#9F1239]'
+                    : themeId === 4
+                    ? 'bg-[#BE123C] hover:bg-[#9F1239]'
+                    : themeId === 5
+                    ? 'bg-[#15803D] hover:bg-[#166534]'
+                    : 'bg-[#1D4ED8] hover:bg-[#1E40AF]'
                 }`}
               >
                 {token.text}

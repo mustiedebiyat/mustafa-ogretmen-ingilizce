@@ -51,7 +51,11 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
       ? 'bg-[#9A3412]'
       : themeId === 3
       ? 'bg-[#4C1D95]'
-      : 'bg-[#9F1239]';
+      : themeId === 4
+      ? 'bg-[#9F1239]'
+      : themeId === 5
+      ? 'bg-[#166534]'
+      : 'bg-[#1E40AF]';
 
   return (
     <div className="space-y-6">

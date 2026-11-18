@@ -32,7 +32,11 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
       ? 'bg-[#9A3412]'
       : themeId === 3
       ? 'bg-[#4C1D95]'
-      : 'bg-[#9F1239]';
+      : themeId === 4
+      ? 'bg-[#9F1239]'
+      : themeId === 5
+      ? 'bg-[#166534]'
+      : 'bg-[#1E40AF]';
   const current = questions[qIndex];
 
   const handleSelectOption = (idx: number) => {

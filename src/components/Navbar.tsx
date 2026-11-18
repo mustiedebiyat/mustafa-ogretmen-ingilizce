@@ -3,7 +3,7 @@ import { StudentProfile, ThemeId } from '../types/curriculum';
 import { TeacherAvatar } from './TeacherAvatar';
 import { Star, UserCheck } from 'lucide-react';
 
-export type AppRoute = 'home' | 'theme1' | 'theme2' | 'theme3' | 'theme4';
+export type AppRoute = 'home' | 'theme1' | 'theme2' | 'theme3' | 'theme4' | 'theme5' | 'theme6';
 
 interface NavbarProps {
   route: AppRoute;
@@ -19,26 +19,32 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSwitchStudent,
 }) => {
   const handleThemeNav = (themeId: ThemeId) => {
-    onNavigate(
-      themeId === 1 ? 'theme1' : themeId === 2 ? 'theme2' : themeId === 3 ? 'theme3' : 'theme4'
-    );
+    const map: Record<ThemeId, AppRoute> = {
+      1: 'theme1',
+      2: 'theme2',
+      3: 'theme3',
+      4: 'theme4',
+      5: 'theme5',
+      6: 'theme6',
+    };
+    onNavigate(map[themeId]);
   };
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         {/* Zone 1: Brand Wordmark */}
         <button
           type="button"
           onClick={() => onNavigate('home')}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#4C1D95] hover:bg-[#5B21B6] text-white text-sm sm:text-base font-extrabold tracking-tight transition-colors whitespace-nowrap shrink-0 cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#4C1D95] hover:bg-[#5B21B6] text-white text-sm sm:text-base font-extrabold tracking-tight transition-colors whitespace-nowrap shrink-0 cursor-pointer shadow-xs"
         >
           <TeacherAvatar className="w-7 h-7 shrink-0" />
           <span>Mustafa Öğretmenle İngilizce</span>
         </button>
 
         {/* Zone 2: Concise single-line navigation links */}
-        <nav className="hidden md:flex items-center gap-5 text-sm font-medium text-slate-600">
+        <nav className="hidden lg:flex items-center gap-3.5 text-sm font-medium text-slate-600">
           <button
             type="button"
             onClick={() => onNavigate('home')}
@@ -93,6 +99,28 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             4. Tema
+          </button>
+          <button
+            type="button"
+            onClick={() => handleThemeNav(5)}
+            className={`py-1 border-b-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              route === 'theme5'
+                ? 'border-emerald-700 text-emerald-800 font-semibold'
+                : 'border-transparent hover:text-emerald-800'
+            }`}
+          >
+            5. Tema
+          </button>
+          <button
+            type="button"
+            onClick={() => handleThemeNav(6)}
+            className={`py-1 border-b-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              route === 'theme6'
+                ? 'border-blue-700 text-blue-800 font-semibold'
+                : 'border-transparent hover:text-blue-800'
+            }`}
+          >
+            6. Tema
           </button>
           <button
             type="button"

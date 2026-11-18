@@ -39,7 +39,11 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
       ? 'bg-[#9A3412] text-white shadow-xs'
       : themeId === 3
       ? 'bg-[#4C1D95] text-white shadow-xs'
-      : 'bg-[#9F1239] text-white shadow-xs';
+      : themeId === 4
+      ? 'bg-[#9F1239] text-white shadow-xs'
+      : themeId === 5
+      ? 'bg-[#166534] text-white shadow-xs'
+      : 'bg-[#1E40AF] text-white shadow-xs';
   const speakBtnClass =
     themeId === 1
       ? 'bg-teal-100 text-teal-900 hover:bg-teal-200'
@@ -47,7 +51,11 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
       ? 'bg-orange-100 text-orange-900 hover:bg-orange-200'
       : themeId === 3
       ? 'bg-purple-100 text-purple-900 hover:bg-purple-200'
-      : 'bg-rose-100 text-rose-900 hover:bg-rose-200';
+      : themeId === 4
+      ? 'bg-rose-100 text-rose-900 hover:bg-rose-200'
+      : themeId === 5
+      ? 'bg-emerald-100 text-emerald-900 hover:bg-emerald-200'
+      : 'bg-blue-100 text-blue-900 hover:bg-blue-200';
 
   return (
     <div className="space-y-6">

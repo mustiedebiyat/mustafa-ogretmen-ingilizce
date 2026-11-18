@@ -90,6 +90,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const theme2Percent = getThemeCompletionPercent(student, 2);
   const theme3Percent = getThemeCompletionPercent(student, 3);
   const theme4Percent = getThemeCompletionPercent(student, 4);
+  const theme5Percent = getThemeCompletionPercent(student, 5);
+  const theme6Percent = getThemeCompletionPercent(student, 6);
 
   const renderBadgeIcon = (iconKey: string, unlocked: boolean) => {
     const cls = `w-6 h-6 ${unlocked ? 'text-amber-600' : 'text-slate-400'}`;
@@ -114,6 +116,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
         return <Medal className={`w-6 h-6 ${unlocked ? 'text-purple-800' : 'text-slate-400'}`} />;
       case 'roseMedal':
         return <Medal className={`w-6 h-6 ${unlocked ? 'text-rose-700' : 'text-slate-400'}`} />;
+      case 'emeraldMedal':
+        return <Medal className={`w-6 h-6 ${unlocked ? 'text-emerald-700' : 'text-slate-400'}`} />;
+      case 'blueMedal':
+        return <Medal className={`w-6 h-6 ${unlocked ? 'text-blue-700' : 'text-slate-400'}`} />;
       case 'trophy':
         return <Trophy className={cls} />;
       default:
@@ -234,7 +240,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* Theme Selection Boxes: Compact 2-column grid on mobile (1 & 2 row 1, 3 & 4 row 2), 4-column on desktop */}
+      {/* Theme Selection Boxes: Compact 2-column grid on mobile (1-2, 3-4, 5-6), 3-column on desktop */}
       <section className="space-y-4 sm:space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
@@ -246,11 +252,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
           <span className="text-xs sm:text-sm font-medium text-slate-500 whitespace-nowrap">
-            MEB Maarif Modeli · 4 Ayrı Tema
+            MEB Maarif Modeli · 6 Ayrı Tema
           </span>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
           {/* 1. TEMA: Koyu Yeşil-Turkuaz (Teal) */}
           <button
             type="button"
@@ -518,6 +524,140 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
             </div>
           </button>
+
+          {/* 5. TEMA: Koyu Orman Yeşili (Emerald) */}
+          <button
+            type="button"
+            onClick={() => handleThemeClick(5)}
+            aria-expanded={expandedThemeId === 5}
+            className={`group text-left rounded-2xl overflow-hidden bg-gradient-to-br from-[#15803D] via-[#166534] to-[#14532D] text-white shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400 cursor-pointer flex flex-col justify-between ${
+              expandedThemeId === 5 ? 'ring-4 ring-emerald-400' : ''
+            }`}
+          >
+            <div className="h-24 sm:h-44 w-full overflow-hidden relative bg-emerald-950">
+              <img
+                src={THEMES[5].heroImage}
+                alt="5. Tema Homes & Neighbourhood Görseli"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#14532D] via-[#14532D]/35 to-transparent" />
+              <span className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/45 text-[10px] sm:text-xs font-bold text-emerald-100 tabular-nums backdrop-blur-xs">
+                %{theme5Percent}
+              </span>
+              <div className="absolute bottom-2.5 left-3 right-3 sm:bottom-3.5 sm:left-5 sm:right-5">
+                <p className="text-[10px] sm:text-xs font-bold tracking-wider text-emerald-200 uppercase">
+                  5. Tema
+                </p>
+                <h3 className="text-sm sm:text-xl lg:text-2xl font-extrabold text-white leading-tight truncate">
+                  Homes &amp; Neighbourhood
+                </h3>
+              </div>
+            </div>
+
+            <div className="p-3 sm:p-5 space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                <p className="text-xs sm:text-base font-bold text-emerald-50 truncate">
+                  Evler, Çiftlik ve Çevremiz
+                </p>
+                <p className="hidden sm:block text-xs sm:text-sm text-emerald-100/90 leading-relaxed line-clamp-2">
+                  {THEMES[5].subtitleTr}. {THEMES[5].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <div className="w-full h-1.5 sm:h-2 bg-emerald-950/60 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-amber-300 rounded-full transition-all duration-300"
+                    style={{ width: `${theme5Percent}%` }}
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-1 text-[11px] sm:text-sm font-bold text-white pt-0.5">
+                  <span className="truncate">
+                    {expandedThemeId === 5 ? 'Açıldı' : '5. Temayı Aç'}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-white/15 group-hover:bg-white/25 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors whitespace-nowrap shrink-0">
+                    <span className="sm:hidden">{expandedThemeId === 5 ? 'Gizle' : 'Aç'}</span>
+                    <span className="hidden sm:inline">
+                      {expandedThemeId === 5 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                    </span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform ${
+                        expandedThemeId === 5 ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          {/* 6. TEMA: Koyu Kraliyet Mavisi (Royal Blue) */}
+          <button
+            type="button"
+            onClick={() => handleThemeClick(6)}
+            aria-expanded={expandedThemeId === 6}
+            className={`group text-left rounded-2xl overflow-hidden bg-gradient-to-br from-[#1D4ED8] via-[#1E40AF] to-[#1E3A8A] text-white shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 cursor-pointer flex flex-col justify-between ${
+              expandedThemeId === 6 ? 'ring-4 ring-blue-400' : ''
+            }`}
+          >
+            <div className="h-24 sm:h-44 w-full overflow-hidden relative bg-blue-950">
+              <img
+                src={THEMES[6].heroImage}
+                alt="6. Tema City & The World Görseli"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A] via-[#1E3A8A]/35 to-transparent" />
+              <span className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/45 text-[10px] sm:text-xs font-bold text-blue-100 tabular-nums backdrop-blur-xs">
+                %{theme6Percent}
+              </span>
+              <div className="absolute bottom-2.5 left-3 right-3 sm:bottom-3.5 sm:left-5 sm:right-5">
+                <p className="text-[10px] sm:text-xs font-bold tracking-wider text-blue-200 uppercase">
+                  6. Tema
+                </p>
+                <h3 className="text-sm sm:text-xl lg:text-2xl font-extrabold text-white leading-tight truncate">
+                  City &amp; The World
+                </h3>
+              </div>
+            </div>
+
+            <div className="p-3 sm:p-5 space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-between">
+              <div className="space-y-1">
+                <p className="text-xs sm:text-base font-bold text-blue-50 truncate">
+                  Şehirde Yaşam ve Yiyecekler
+                </p>
+                <p className="hidden sm:block text-xs sm:text-sm text-blue-100/90 leading-relaxed line-clamp-2">
+                  {THEMES[6].subtitleTr}. {THEMES[6].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <div className="w-full h-1.5 sm:h-2 bg-blue-950/60 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-amber-300 rounded-full transition-all duration-300"
+                    style={{ width: `${theme6Percent}%` }}
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-1 text-[11px] sm:text-sm font-bold text-white pt-0.5">
+                  <span className="truncate">
+                    {expandedThemeId === 6 ? 'Açıldı' : '6. Temayı Aç'}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-white/15 group-hover:bg-white/25 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg transition-colors whitespace-nowrap shrink-0">
+                    <span className="sm:hidden">{expandedThemeId === 6 ? 'Gizle' : 'Aç'}</span>
+                    <span className="hidden sm:inline">
+                      {expandedThemeId === 6 ? 'Başlıkları Gizle' : 'Alt Başlıkları Gör'}
+                    </span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform ${
+                        expandedThemeId === 6 ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </button>
         </div>
 
         {/* Expanded Sub-Section Icon Boxes Panel */}
@@ -531,7 +671,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 ? 'bg-orange-50/70 border-orange-300'
                 : expandedThemeId === 3
                 ? 'bg-purple-50/70 border-purple-300'
-                : 'bg-rose-50/70 border-rose-300'
+                : expandedThemeId === 4
+                ? 'bg-rose-50/70 border-rose-300'
+                : expandedThemeId === 5
+                ? 'bg-emerald-50/70 border-emerald-300'
+                : 'bg-blue-50/70 border-blue-300'
             }`}
           >
             <div className="flex items-center justify-between gap-4">
@@ -544,7 +688,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       ? 'text-orange-800'
                       : expandedThemeId === 3
                       ? 'text-purple-900'
-                      : 'text-rose-900'
+                      : expandedThemeId === 4
+                      ? 'text-rose-900'
+                      : expandedThemeId === 5
+                      ? 'text-emerald-900'
+                      : 'text-blue-900'
                   }`}
                 >
                   {THEMES[expandedThemeId].code} · {THEMES[expandedThemeId].titleEn}
@@ -572,7 +720,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   ? student?.theme2
                   : expandedThemeId === 3
                   ? student?.theme3
-                  : student?.theme4;
+                  : expandedThemeId === 4
+                  ? student?.theme4
+                  : expandedThemeId === 5
+                  ? student?.theme5
+                  : student?.theme6;
               const iconBoxClass =
                 expandedThemeId === 1
                   ? 'bg-[#115E59] text-white'
@@ -580,7 +732,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   ? 'bg-[#9A3412] text-white'
                   : expandedThemeId === 3
                   ? 'bg-[#4C1D95] text-white'
-                  : 'bg-[#9F1239] text-white';
+                  : expandedThemeId === 4
+                  ? 'bg-[#9F1239] text-white'
+                  : expandedThemeId === 5
+                  ? 'bg-[#166534] text-white'
+                  : 'bg-[#1E40AF] text-white';
               const hoverBorderClass =
                 expandedThemeId === 1
                   ? 'hover:border-teal-600'
@@ -588,7 +744,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   ? 'hover:border-orange-500'
                   : expandedThemeId === 3
                   ? 'hover:border-purple-600'
-                  : 'hover:border-rose-600';
+                  : expandedThemeId === 4
+                  ? 'hover:border-rose-600'
+                  : expandedThemeId === 5
+                  ? 'hover:border-emerald-600'
+                  : 'hover:border-blue-600';
 
               const subBoxes: {
                 tab: StudyTabId;
@@ -739,7 +899,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         {/* Summary Metrics Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           <div className="bg-teal-50/70 border border-teal-200/80 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-teal-900">1. Tema İlerlemesi</p>
             <p className="text-2xl font-extrabold text-teal-800 tabular-nums">%{theme1Percent}</p>
@@ -784,14 +944,44 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
 
+          <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-4 space-y-1">
+            <p className="text-xs font-bold text-emerald-900">5. Tema İlerlemesi</p>
+            <p className="text-2xl font-extrabold text-emerald-800 tabular-nums">%{theme5Percent}</p>
+            <p className="text-xs text-emerald-900/80 tabular-nums">
+              Dinlenen: {student?.theme5.listenedWordIds.length ?? 0}/{THEMES[5].vocab.length} · Sınav:{' '}
+              {student?.theme5.quizBestScore !== null && student?.theme5.quizBestScore !== undefined
+                ? `${student.theme5.quizBestScore} puan`
+                : 'Henüz yok'}
+            </p>
+          </div>
+
+          <div className="bg-blue-50/70 border border-blue-200/80 rounded-xl p-4 space-y-1">
+            <p className="text-xs font-bold text-blue-900">6. Tema İlerlemesi</p>
+            <p className="text-2xl font-extrabold text-blue-800 tabular-nums">%{theme6Percent}</p>
+            <p className="text-xs text-blue-900/80 tabular-nums">
+              Dinlenen: {student?.theme6.listenedWordIds.length ?? 0}/{THEMES[6].vocab.length} · Sınav:{' '}
+              {student?.theme6.quizBestScore !== null && student?.theme6.quizBestScore !== undefined
+                ? `${student.theme6.quizBestScore} puan`
+                : 'Henüz yok'}
+            </p>
+          </div>
+
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-slate-700">Öğrenilen Kelime Kartı</p>
             <p className="text-2xl font-extrabold text-slate-900 tabular-nums">
               {(student?.theme1.masteredWordIds.length ?? 0) +
                 (student?.theme2.masteredWordIds.length ?? 0) +
                 (student?.theme3.masteredWordIds.length ?? 0) +
-                (student?.theme4.masteredWordIds.length ?? 0)}{' '}
-              / {THEMES[1].vocab.length + THEMES[2].vocab.length + THEMES[3].vocab.length + THEMES[4].vocab.length}
+                (student?.theme4.masteredWordIds.length ?? 0) +
+                (student?.theme5.masteredWordIds.length ?? 0) +
+                (student?.theme6.masteredWordIds.length ?? 0)}{' '}
+              /{' '}
+              {THEMES[1].vocab.length +
+                THEMES[2].vocab.length +
+                THEMES[3].vocab.length +
+                THEMES[4].vocab.length +
+                THEMES[5].vocab.length +
+                THEMES[6].vocab.length}
             </p>
             <p className="text-xs text-slate-600">Sesli kelime kartlarında işaretlenen</p>
           </div>
@@ -803,6 +993,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 (student?.theme2.completedLessonIds.length ?? 0) +
                 (student?.theme3.completedLessonIds.length ?? 0) +
                 (student?.theme4.completedLessonIds.length ?? 0) +
+                (student?.theme5.completedLessonIds.length ?? 0) +
+                (student?.theme6.completedLessonIds.length ?? 0) +
                 (student?.theme1.sentenceBuildCompletedIds.length ?? 0) +
                 (student?.theme1.fillBlankCompletedIds.length ?? 0) +
                 (student?.theme2.sentenceBuildCompletedIds.length ?? 0) +
@@ -810,7 +1002,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 (student?.theme3.sentenceBuildCompletedIds.length ?? 0) +
                 (student?.theme3.fillBlankCompletedIds.length ?? 0) +
                 (student?.theme4.sentenceBuildCompletedIds.length ?? 0) +
-                (student?.theme4.fillBlankCompletedIds.length ?? 0)}
+                (student?.theme4.fillBlankCompletedIds.length ?? 0) +
+                (student?.theme5.sentenceBuildCompletedIds.length ?? 0) +
+                (student?.theme5.fillBlankCompletedIds.length ?? 0) +
+                (student?.theme6.sentenceBuildCompletedIds.length ?? 0) +
+                (student?.theme6.fillBlankCompletedIds.length ?? 0)}
             </p>
             <p className="text-xs text-slate-600">Konu anlatımı ve cümle alıştırması</p>
           </div>

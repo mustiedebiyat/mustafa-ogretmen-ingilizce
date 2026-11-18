@@ -1,4 +1,4 @@
-export type ThemeId = 1 | 2 | 3 | 4;
+export type ThemeId = 1 | 2 | 3 | 4 | 5 | 6;
 
 export type StudyTabId =
   | 'words'
@@ -128,4 +128,6 @@ export interface StudentProfile {
   theme2: ThemeProgress;
   theme3: ThemeProgress;
   theme4: ThemeProgress;
+  theme5: ThemeProgress;
+  theme6: ThemeProgress;
 }
