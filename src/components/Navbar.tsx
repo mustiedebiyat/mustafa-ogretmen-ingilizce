@@ -9,14 +9,14 @@ interface NavbarProps {
   route: AppRoute;
   onNavigate: (route: AppRoute, scrollToProfile?: boolean) => void;
   student: StudentProfile | null;
-  onSwitchStudent: () => void;
+  onOpenProfile: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   route,
   onNavigate,
   student,
-  onSwitchStudent,
+  onOpenProfile,
 }) => {
   const handleThemeNav = (themeId: ThemeId) => {
     const map: Record<ThemeId, AppRoute> = {
@@ -136,8 +136,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           {student ? (
             <button
               type="button"
-              onClick={onSwitchStudent}
-              title="Öğrenci Değiştir"
+              onClick={onOpenProfile}
+              title="Profilim ve Ödüllerim"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
               <UserCheck className="w-4 h-4 text-amber-300" />

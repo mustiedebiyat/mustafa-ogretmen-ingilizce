@@ -97,15 +97,17 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
           return (
             <div
               key={item.id}
-              className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 flex items-start gap-4 hover:border-slate-300 transition-colors"
+              className="bg-white border-2 border-slate-200 rounded-2xl p-4 sm:p-5 flex items-start gap-4 hover:border-slate-400 shadow-xs transition-colors"
             >
               <button
                 type="button"
                 onClick={() => onSpeakWord(item)}
-                className={`w-20 h-20 rounded-xl ${item.bgTone} border border-slate-200/80 flex items-center justify-center shrink-0 hover:scale-105 transition-transform cursor-pointer`}
+                className={`w-24 h-24 rounded-2xl ${item.bgTone} p-1.5 border-2 border-slate-200 flex items-center justify-center shrink-0 hover:scale-105 transition-transform cursor-pointer shadow-xs`}
                 title={`${item.word} kelimesini dinle`}
               >
-                <WordIllustration illustrationKey={item.illustrationKey} className="w-16 h-16" />
+                <div className="w-full h-full rounded-xl bg-white flex items-center justify-center">
+                  <WordIllustration illustrationKey={item.illustrationKey} className="w-20 h-20" />
+                </div>
               </button>
 
               <div className="flex-1 min-w-0 space-y-2">
@@ -117,14 +119,15 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
                       </h3>
                       {isListened && (
                         <CheckCircle2
-                          className="w-4 h-4 text-emerald-600 shrink-0"
+                          className="w-5 h-5 text-emerald-600 shrink-0"
+                          strokeWidth={2.5}
                           aria-label="Dinlendi"
                         />
                       )}
                     </div>
                     <p className="text-sm font-bold text-slate-700">
                       {item.turkish}{' '}
-                      <span className="font-normal text-xs text-slate-500">
+                      <span className="font-medium text-xs text-slate-500">
                         · Okunuşu: /{item.phonetic}/
                       </span>
                     </p>
@@ -133,20 +136,20 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
                   <button
                     type="button"
                     onClick={() => onSpeakWord(item)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                       isSpeakingWord
                         ? 'bg-emerald-600 text-white'
                         : speakBtnClass
                     }`}
                   >
-                    <Volume2 className="w-4 h-4" />
+                    <Volume2 className="w-4 h-4" strokeWidth={2.5} />
                     <span>{isSpeakingWord ? 'Okunuyor' : 'Dinle'}</span>
                   </button>
                 </div>
 
                 <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
                   <div className="min-w-0">
-                    <p className="text-xs sm:text-sm font-medium text-slate-800">
+                    <p className="text-xs sm:text-sm font-semibold text-slate-800">
                       “{item.exampleEn}”
                     </p>
                     <p className="text-xs text-slate-500 mt-0.5">{item.exampleTr}</p>
@@ -155,13 +158,13 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({
                     type="button"
                     onClick={() => onSpeakSentence(item.exampleEn, `sent_${item.id}`)}
                     title="Örnek cümleyi dinle"
-                    className={`p-2 rounded-lg transition-colors shrink-0 cursor-pointer ${
+                    className={`p-2.5 rounded-xl transition-colors shrink-0 cursor-pointer ${
                       isSpeakingSent
                         ? 'bg-emerald-600 text-white'
                         : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
                   >
-                    <Volume2 className="w-4 h-4" />
+                    <Volume2 className="w-4 h-4" strokeWidth={2.5} />
                   </button>
                 </div>
               </div>

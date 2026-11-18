@@ -17,20 +17,22 @@ import {
   Layers,
   ListChecks,
   Lock,
+  LogOut,
   Medal,
   Puzzle,
   Sparkles,
   Sprout,
   Star,
   Trophy,
+  UserCheck,
   UserPlus,
   X,
 } from 'lucide-react';
 
 interface HomeViewProps {
   student: StudentProfile | null;
-  savedProfiles: StudentProfile[];
   onStartStudent: (name: string) => void;
+  onLogoutStudent: () => void;
   onSelectTheme: (themeId: ThemeId, initialTab?: StudyTabId) => void;
   nameInputRef: React.RefObject<HTMLInputElement | null>;
   profileSectionRef: React.RefObject<HTMLElement | null>;
@@ -39,14 +41,14 @@ interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({
   student,
-  savedProfiles,
   onStartStudent,
+  onLogoutStudent,
   onSelectTheme,
   nameInputRef,
   profileSectionRef,
   initialExpandedTheme = null,
 }) => {
-  const [nameInput, setNameInput] = useState(student?.name ?? '');
+  const [nameInput, setNameInput] = useState('');
   const [nameError, setNameError] = useState('');
   const [expandedThemeId, setExpandedThemeId] = useState<ThemeId | null>(initialExpandedTheme);
   const subMenuRef = useRef<HTMLDivElement | null>(null);
@@ -160,71 +162,99 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </div>
               </div>
 
-              <p className="text-base sm:text-lg text-slate-700 font-medium max-w-xl leading-relaxed">
-                Maarif Modele uygun İngilizce çalışma programı. Bol görselli kelime kartları, kadın seslendirmeli telaffuzlar, eğlenceli oyunlar ve mini sınavlarla öğren!
-              </p>
+              <ul className="space-y-2.5 max-w-xl pt-1" aria-label="Program Özellikleri">
+                <li className="flex items-center gap-3 text-sm sm:text-base font-semibold text-slate-800">
+                  <span className="w-8 h-8 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center shrink-0">
+                    <GraduationCap className="w-4 h-4" strokeWidth={2.5} />
+                  </span>
+                  <span>Maarif Modele uygun İngilizce çalışma programı.</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm sm:text-base font-semibold text-slate-800">
+                  <span className="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                    <Layers className="w-4 h-4" strokeWidth={2.5} />
+                  </span>
+                  <span>Bol görselli kelime kartları.</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm sm:text-base font-semibold text-slate-800">
+                  <span className="w-8 h-8 rounded-lg bg-teal-100 text-teal-800 flex items-center justify-center shrink-0">
+                    <Gamepad2 className="w-4 h-4" strokeWidth={2.5} />
+                  </span>
+                  <span>Eğlenceli oyunlar.</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm sm:text-base font-semibold text-slate-800">
+                  <span className="w-8 h-8 rounded-lg bg-rose-100 text-rose-800 flex items-center justify-center shrink-0">
+                    <ListChecks className="w-4 h-4" strokeWidth={2.5} />
+                  </span>
+                  <span>Mini sınavlarla öğren!</span>
+                </li>
+              </ul>
             </div>
 
-            {/* Student Name Entry Box */}
+            {/* Student Name Entry / Active Private Student Box */}
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-3">
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <label
-                  htmlFor="student-name-input"
-                  className="block text-sm font-bold text-slate-800"
-                >
-                  {student
-                    ? `Hoş geldin ${student.name}! Başka bir öğrenci adına geçmek için isim yazabilirsin:`
-                    : 'Öğrenci Adını Yaz ve Çalışmaya Başla:'}
-                </label>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <input
-                    ref={nameInputRef}
-                    id="student-name-input"
-                    type="text"
-                    value={nameInput}
-                    onChange={(e) => {
-                      setNameInput(e.target.value);
-                      if (nameError) setNameError('');
-                    }}
-                    placeholder="Örn: Elif Yılmaz"
-                    className="flex-1 px-4 py-3 rounded-lg bg-white border border-slate-300 text-slate-900 font-medium placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-700 focus:border-purple-700"
-                  />
+              {student ? (
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="w-11 h-11 rounded-xl bg-slate-900 text-amber-300 flex items-center justify-center shrink-0">
+                      <UserCheck className="w-5 h-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-base font-extrabold text-slate-900 truncate">
+                        Hoş geldin, {student.name}!
+                      </p>
+                      <p className="text-xs font-medium text-slate-600">
+                        Bu cihazda yalnızca senin adın ve kendi profilin görünür.
+                      </p>
+                    </div>
+                  </div>
                   <button
-                    type="submit"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                    type="button"
+                    onClick={() => {
+                      setNameInput('');
+                      setNameError('');
+                      onLogoutStudent();
+                    }}
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm font-bold hover:bg-slate-100 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                   >
-                    <UserPlus className="w-4 h-4" />
-                    <span>{student ? 'Profili Aç' : 'Başla'}</span>
+                    <LogOut className="w-4 h-4" />
+                    <span>Çıkış Yap</span>
                   </button>
                 </div>
-                {nameError && (
-                  <p className="text-sm font-semibold text-red-700" role="alert">
-                    {nameError}
-                  </p>
-                )}
-              </form>
-
-              {savedProfiles.length > 0 && (
-                <div className="pt-2 border-t border-slate-200 flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-medium text-slate-500">Kayıtlı Öğrenciler:</span>
-                  {savedProfiles.slice(0, 5).map((p) => (
-                    <button
-                      key={p.name}
-                      type="button"
-                      onClick={() => {
-                        setNameInput(p.name);
-                        onStartStudent(p.name);
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  <label
+                    htmlFor="student-name-input"
+                    className="block text-sm font-bold text-slate-800"
+                  >
+                    Öğrenci Adını Yaz ve Çalışmaya Başla:
+                  </label>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      ref={nameInputRef}
+                      id="student-name-input"
+                      type="text"
+                      value={nameInput}
+                      onChange={(e) => {
+                        setNameInput(e.target.value);
+                        if (nameError) setNameError('');
                       }}
-                      className={`px-3 py-1 rounded-md text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
-                        student?.name.toLowerCase() === p.name.toLowerCase()
-                          ? 'bg-slate-900 text-white'
-                          : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'
-                      }`}
+                      placeholder="Örn: Elif Yılmaz"
+                      className="flex-1 px-4 py-3 rounded-lg bg-white border border-slate-300 text-slate-900 font-medium placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-700 focus:border-purple-700"
+                    />
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                     >
-                      {p.name} ({p.stars} ★)
+                      <UserPlus className="w-4 h-4" />
+                      <span>Başla</span>
                     </button>
-                  ))}
-                </div>
+                  </div>
+                  {nameError && (
+                    <p className="text-sm font-semibold text-red-700" role="alert">
+                      {nameError}
+                    </p>
+                  )}
+                </form>
               )}
             </div>
           </div>

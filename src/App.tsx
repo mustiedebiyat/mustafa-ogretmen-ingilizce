@@ -7,11 +7,11 @@ import { useEffect, useRef, useState } from 'react';
 import { BADGES } from './data/curriculum';
 import { StudentProfile, StudyTabId, ThemeId } from './types/curriculum';
 import {
+  clearActiveStudent,
   evaluateEarnedBadges,
-  getOrCreateProfile,
   loadActiveProfile,
-  loadAllProfiles,
   saveProfile,
+  startStudentProfile,
   updateStarHistory,
 } from './utils/storage';
 import { playRewardSound } from './utils/soundFx';
@@ -26,9 +26,6 @@ export default function App() {
   const [selectedTab, setSelectedTab] = useState<StudyTabId>('words');
   const [lastExpandedTheme, setLastExpandedTheme] = useState<ThemeId | null>(null);
   const [student, setStudent] = useState<StudentProfile | null>(() => loadActiveProfile());
-  const [savedProfiles, setSavedProfiles] = useState<StudentProfile[]>(() =>
-    Object.values(loadAllProfiles())
-  );
   const [badgeToast, setBadgeToast] = useState<{ title: string; stars: number } | null>(null);
 
   const nameInputRef = useRef<HTMLInputElement | null>(null);
@@ -39,10 +36,6 @@ export default function App() {
     const timer = setTimeout(() => setBadgeToast(null), 5000);
     return () => clearTimeout(timer);
   }, [badgeToast]);
-
-  const refreshSavedProfiles = () => {
-    setSavedProfiles(Object.values(loadAllProfiles()));
-  };
 
   const applyProfileUpdate = (updater: (prev: StudentProfile) => StudentProfile) => {
     setStudent((prev) => {
@@ -69,15 +62,24 @@ export default function App() {
       }
 
       saveProfile(finalProfile);
-      refreshSavedProfiles();
       return finalProfile;
     });
   };
 
   const handleStartStudent = (name: string) => {
-    const profile = getOrCreateProfile(name);
+    const profile = startStudentProfile(name);
     setStudent(profile);
-    refreshSavedProfiles();
+  };
+
+  const handleLogoutStudent = () => {
+    clearActiveStudent();
+    setStudent(null);
+    setLastExpandedTheme(null);
+    setRoute('home');
+    setTimeout(() => {
+      nameInputRef.current?.focus();
+      nameInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 60);
   };
 
   const handleNavigate = (nextRoute: AppRoute, scrollToProfile = false) => {
@@ -100,12 +102,8 @@ export default function App() {
     }
   };
 
-  const handleSwitchStudent = () => {
-    setRoute('home');
-    setTimeout(() => {
-      nameInputRef.current?.focus();
-      nameInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 60);
+  const handleOpenMyProfile = () => {
+    handleNavigate('home', true);
   };
 
   const handleSelectTheme = (themeId: ThemeId, initialTab: StudyTabId = 'words') => {
@@ -308,7 +306,7 @@ export default function App() {
         route={route}
         onNavigate={handleNavigate}
         student={student}
-        onSwitchStudent={handleSwitchStudent}
+        onOpenProfile={handleOpenMyProfile}
       />
 
       {/* Badge Unlocked Notification */}
@@ -340,8 +338,8 @@ export default function App() {
         {route === 'home' && (
           <HomeView
             student={student}
-            savedProfiles={savedProfiles}
             onStartStudent={handleStartStudent}
+            onLogoutStudent={handleLogoutStudent}
             onSelectTheme={handleSelectTheme}
             nameInputRef={nameInputRef}
             profileSectionRef={profileSectionRef}

@@ -239,41 +239,47 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'open':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="26" y="20" width="68" height="80" rx="6" fill="#FEF3C7" stroke="#9A3412" strokeWidth="3" />
-            <path d="M30 22L68 34V94L30 98V22Z" fill="#EA580C" stroke="#7C2D12" strokeWidth="3" strokeLinejoin="round" />
-            <circle cx="58" cy="62" r="4" fill="#FDE047" />
-            <path d="M74 60H96M88 52L96 60L88 68" stroke="#059669" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <rect x="22" y="18" width="60" height="84" rx="6" fill="#E0F2FE" stroke="#7C2D12" strokeWidth="3.5" />
+            <path d="M24 20L60 32V94L24 100V20Z" fill="#EA580C" stroke="#7C2D12" strokeWidth="3.5" strokeLinejoin="round" />
+            <circle cx="51" cy="62" r="4" fill="#FDE047" stroke="#7C2D12" strokeWidth="1.5" />
+            <path d="M72 60H104M93 49L104 60L93 71" stroke="#059669" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         );
 
       case 'close':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="30" y="20" width="60" height="80" rx="6" fill="#EA580C" stroke="#7C2D12" strokeWidth="3" />
-            <rect x="38" y="28" width="44" height="28" rx="3" fill="#FDBA74" />
-            <circle cx="78" cy="64" r="4" fill="#FDE047" />
-            <path d="M104 60H86M94 52L86 60L94 68" stroke="#DC2626" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <rect x="26" y="18" width="60" height="84" rx="6" fill="#EA580C" stroke="#7C2D12" strokeWidth="3.5" />
+            <rect x="35" y="27" width="42" height="28" rx="4" fill="#FDBA74" stroke="#9A3412" strokeWidth="2" />
+            <rect x="35" y="64" width="42" height="26" rx="4" fill="#FDBA74" stroke="#9A3412" strokeWidth="2" />
+            <circle cx="75" cy="59" r="4.5" fill="#FDE047" stroke="#7C2D12" strokeWidth="1.5" />
+            <path d="M108 60H88M97 49L86 60L97 71" stroke="#DC2626" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         );
 
       case 'listen':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <path d="M54 28C38 28 28 42 28 56C28 70 38 78 44 86C48 91 54 94 60 90C64 87 64 80 60 76C56 72 52 70 52 62C52 54 60 50 64 56" fill="#FED7AA" stroke="#9A3412" strokeWidth="4" strokeLinecap="round" />
-            <path d="M76 44C82 50 82 66 76 72" stroke="#0284C7" strokeWidth="4" strokeLinecap="round" />
-            <path d="M88 34C98 44 98 72 88 82" stroke="#0284C7" strokeWidth="4" strokeLinecap="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <path d="M48 26C31 26 20 40 20 57C20 71 29 80 35 89C39 95 47 97 54 92C59 88 59 80 54 75C49 71 45 68 45 59C45 50 53 46 58 52" fill="#FDBA74" stroke="#7C2D12" strokeWidth="4" strokeLinecap="round" />
+            <path d="M36 46C31 52 31 63 38 69" stroke="#9A3412" strokeWidth="3" strokeLinecap="round" />
+            <path d="M70 46C77 53 77 67 70 74" stroke="#0284C7" strokeWidth="4.5" strokeLinecap="round" />
+            <path d="M82 36C93 48 93 72 82 84" stroke="#0284C7" strokeWidth="4.5" strokeLinecap="round" />
+            <path d="M96 42V24L108 21V37" stroke="#7C3AED" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="92" cy="43" r="4.5" fill="#7C3AED" />
+            <circle cx="104" cy="39" r="4.5" fill="#7C3AED" />
           </svg>
         );
 
       case 'repeat':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <path d="M32 52C32 36 46 28 62 28H84" stroke="#C2410C" strokeWidth="6" strokeLinecap="round" />
-            <polygon points="82,18 98,28 82,38" fill="#C2410C" />
-            <path d="M88 68C88 84 74 92 58 92H36" stroke="#EA580C" strokeWidth="6" strokeLinecap="round" />
-            <polygon points="38,82 22,92 38,102" fill="#EA580C" />
-            <text x="60" y="65" textAnchor="middle" fill="#7C2D12" fontSize="16" fontWeight="800">
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <circle cx="60" cy="60" r="24" fill="#FFF7ED" stroke="#FDBA74" strokeWidth="2.5" />
+            <path d="M28 50C28 32 44 24 62 24H82" stroke="#C2410C" strokeWidth="6.5" strokeLinecap="round" />
+            <polygon points="79,13 98,24 79,35" fill="#C2410C" />
+            <path d="M92 70C92 88 76 96 58 96H38" stroke="#EA580C" strokeWidth="6.5" strokeLinecap="round" />
+            <polygon points="41,85 22,96 41,107" fill="#EA580C" />
+            <text x="60" y="67" textAnchor="middle" fill="#7C2D12" fontSize="20" fontWeight="900" fontFamily="sans-serif">
               x2
             </text>
           </svg>
@@ -322,10 +328,14 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'chin':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <path d="M32 34C32 66 44 88 60 88C76 88 88 66 88 34" fill="#FDE68A" stroke="#78350F" strokeWidth="3.5" />
-            <path d="M46 60C52 68 68 68 74 60" stroke="#9A3412" strokeWidth="3.5" strokeLinecap="round" />
-            <path d="M60 104V92M52 98L60 91L68 98" stroke="#7C3AED" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <circle cx="60" cy="48" r="32" fill="#FDE68A" stroke="#78350F" strokeWidth="3.5" />
+            <path d="M28 42C32 20 88 20 92 42C80 32 40 32 28 42Z" fill="#78350F" />
+            <circle cx="48" cy="46" r="3.5" fill="#1E293B" />
+            <circle cx="72" cy="46" r="3.5" fill="#1E293B" />
+            <path d="M50 58C54 64 66 64 70 58" stroke="#BE123C" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="60" cy="76" r="7" fill="#FB7185" opacity="0.45" />
+            <path d="M60 108V86M51 94L60 85L69 94" stroke="#7C3AED" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         );
 
@@ -362,11 +372,12 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'back':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <circle cx="60" cy="26" r="13" fill="#4C1D95" />
-            <path d="M36 46C36 40 84 40 84 46L80 94H40L36 46Z" fill="#7C3AED" stroke="#3B0764" strokeWidth="3" />
-            <line x1="60" y1="48" x2="60" y2="88" stroke="#DDD6FE" strokeWidth="3" strokeDasharray="4 4" />
-            <path d="M98 62H84M90 54L82 62L90 70" stroke="#EA580C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <circle cx="52" cy="26" r="14" fill="#3B0764" />
+            <path d="M24 50C24 41 80 41 80 50L86 74L74 76L71 58V96H33V58L30 76L18 74L24 50Z" fill="#7C3AED" stroke="#3B0764" strokeWidth="3.5" strokeLinejoin="round" />
+            <line x1="52" y1="50" x2="52" y2="90" stroke="#DDD6FE" strokeWidth="3.5" strokeDasharray="5 4" />
+            <circle cx="52" cy="68" r="10" fill="#FACC15" opacity="0.35" />
+            <path d="M104 68H72M82 57L70 68L82 79" stroke="#EA580C" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         );
 
@@ -1156,14 +1167,15 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'wake_up':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <circle cx="32" cy="30" r="10" fill="#F97316" stroke="#7C2D12" strokeWidth="3" />
+            <circle cx="88" cy="30" r="10" fill="#F97316" stroke="#7C2D12" strokeWidth="3" />
             <circle cx="60" cy="64" r="32" fill="#FEF3C7" stroke="#D97706" strokeWidth="4" />
             <circle cx="60" cy="64" r="24" fill="#FFFFFF" stroke="#F59E0B" strokeWidth="2" />
-            <path d="M32 32L22 42M88 32L98 42" stroke="#EA580C" strokeWidth="5" strokeLinecap="round" />
-            <line x1="60" y1="64" x2="60" y2="48" stroke="#1E293B" strokeWidth="3.5" strokeLinecap="round" />
-            <line x1="60" y1="64" x2="73" y2="64" stroke="#E11D48" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="60" cy="64" r="3.5" fill="#1E293B" />
-            <path d="M18 52C14 48 14 40 18 36M102 52C106 48 106 40 102 36" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" />
+            <line x1="60" y1="64" x2="60" y2="47" stroke="#1E293B" strokeWidth="4" strokeLinecap="round" />
+            <line x1="60" y1="64" x2="74" y2="64" stroke="#E11D48" strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx="60" cy="64" r="4" fill="#1E293B" />
+            <path d="M16 46C12 40 12 30 18 24M104 46C108 40 108 30 102 24" stroke="#EA580C" strokeWidth="3.5" strokeLinecap="round" />
           </svg>
         );
 
@@ -1198,38 +1210,42 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'have_breakfast':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <circle cx="54" cy="64" r="32" fill="#FFFFFF" stroke="#64748B" strokeWidth="3" />
-            <circle cx="54" cy="64" r="24" fill="#FFFBEB" stroke="#CBD5E1" strokeWidth="2" />
-            <ellipse cx="48" cy="62" rx="11" ry="9" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1.5" />
-            <circle cx="48" cy="62" r="5.5" fill="#FACC15" stroke="#D97706" strokeWidth="1.5" />
-            <rect x="58" y="54" width="14" height="18" rx="3" fill="#F59E0B" stroke="#78350F" strokeWidth="2" />
-            <rect x="90" y="42" width="18" height="36" rx="4" fill="#FDBA74" stroke="#9A3412" strokeWidth="2.5" />
-            <rect x="92" y="48" width="14" height="26" fill="#F97316" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <circle cx="48" cy="66" r="32" fill="#FFFFFF" stroke="#475569" strokeWidth="3.5" />
+            <circle cx="48" cy="66" r="24" fill="#FFFBEB" stroke="#CBD5E1" strokeWidth="2" />
+            <ellipse cx="40" cy="64" rx="11" ry="9" fill="#FFFFFF" stroke="#94A3B8" strokeWidth="1.8" />
+            <circle cx="40" cy="64" r="5.5" fill="#FACC15" stroke="#D97706" strokeWidth="1.5" />
+            <rect x="54" y="54" width="14" height="18" rx="3" fill="#F59E0B" stroke="#78350F" strokeWidth="2.2" />
+            <polygon points="88,42 106,42 103,82 91,82" fill="#FB923C" stroke="#9A3412" strokeWidth="2.8" strokeLinejoin="round" />
+            <ellipse cx="97" cy="42" rx="9" ry="3" fill="#FDE047" stroke="#9A3412" strokeWidth="2" />
           </svg>
         );
 
       case 'go_to_school':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <polygon points="60,20 18,48 102,48" fill="#E11D48" stroke="#881337" strokeWidth="3" strokeLinejoin="round" />
-            <rect x="26" y="48" width="68" height="50" rx="4" fill="#FEF3C7" stroke="#92400E" strokeWidth="3" />
-            <rect x="52" y="68" width="16" height="30" rx="3" fill="#9A3412" />
-            <rect x="33" y="58" width="14" height="14" rx="2" fill="#38BDF8" stroke="#0C4A6E" strokeWidth="2" />
-            <rect x="73" y="58" width="14" height="14" rx="2" fill="#38BDF8" stroke="#0C4A6E" strokeWidth="2" />
-            <circle cx="60" cy="37" r="6" fill="#FFFFFF" stroke="#881337" strokeWidth="2" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <line x1="60" y1="12" x2="60" y2="26" stroke="#475569" strokeWidth="3" strokeLinecap="round" />
+            <rect x="60" y="12" width="18" height="11" rx="1.5" fill="#E11D48" />
+            <polygon points="60,24 18,50 102,50" fill="#E11D48" stroke="#881337" strokeWidth="3" strokeLinejoin="round" />
+            <rect x="24" y="50" width="72" height="50" rx="4" fill="#FEF3C7" stroke="#92400E" strokeWidth="3" />
+            <rect x="42" y="53" width="36" height="13" rx="3" fill="#0F766E" />
+            <text x="60" y="63" textAnchor="middle" fill="#FFFFFF" fontSize="8.5" fontWeight="800" fontFamily="sans-serif">SCHOOL</text>
+            <rect x="52" y="72" width="16" height="28" rx="3" fill="#9A3412" />
+            <rect x="30" y="68" width="14" height="14" rx="2" fill="#38BDF8" stroke="#0C4A6E" strokeWidth="2" />
+            <rect x="76" y="68" width="14" height="14" rx="2" fill="#38BDF8" stroke="#0C4A6E" strokeWidth="2" />
+            <circle cx="60" cy="40" r="6" fill="#FFFFFF" stroke="#881337" strokeWidth="2" />
           </svg>
         );
 
       case 'study_lessons':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="18" y="68" width="84" height="12" rx="4" fill="#B45309" stroke="#78350F" strokeWidth="2.5" />
-            <rect x="28" y="40" width="44" height="28" rx="4" fill="#FFFFFF" stroke="#312E81" strokeWidth="3" />
-            <line x1="50" y1="40" x2="50" y2="68" stroke="#312E81" strokeWidth="2.5" />
-            <path d="M33 48H45M33 56H45M55 48H67M55 56H67" stroke="#4F46E5" strokeWidth="2.2" strokeLinecap="round" />
-            <rect x="82" y="34" width="10" height="34" rx="3" fill="#FACC15" stroke="#713F12" strokeWidth="2" />
-            <polygon points="82,34 92,34 87,24" fill="#FDE68A" stroke="#713F12" strokeWidth="2" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <rect x="16" y="74" width="88" height="12" rx="4" fill="#B45309" stroke="#78350F" strokeWidth="2.8" />
+            <rect x="24" y="44" width="48" height="30" rx="4" fill="#FFFFFF" stroke="#312E81" strokeWidth="3" />
+            <line x1="48" y1="44" x2="48" y2="74" stroke="#312E81" strokeWidth="2.5" />
+            <path d="M30 53H43M30 62H43M53 53H66M53 62H66" stroke="#4F46E5" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M84 74V46L76 34" stroke="#475569" strokeWidth="4" strokeLinecap="round" />
+            <polygon points="66,34 86,22 92,38" fill="#FACC15" stroke="#B45309" strokeWidth="2.5" strokeLinejoin="round" />
           </svg>
         );
 
@@ -1269,13 +1285,13 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'prepare_breakfast':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="20" y="72" width="80" height="10" rx="4" fill="#94A3B8" stroke="#334155" strokeWidth="2.5" />
-            <ellipse cx="52" cy="58" rx="22" ry="12" fill="#FEF3C7" stroke="#92400E" strokeWidth="2.5" />
-            <ellipse cx="52" cy="52" rx="18" ry="8" fill="#F59E0B" stroke="#78350F" strokeWidth="2" />
-            <circle cx="88" cy="58" r="12" fill="#FFF1F2" stroke="#E11D48" strokeWidth="2.5" />
-            <path d="M84 42C84 36 90 36 90 30" stroke="#94A3B8" strokeWidth="2.5" strokeLinecap="round" />
-            <path d="M44 36C44 30 50 30 50 24" stroke="#94A3B8" strokeWidth="2.5" strokeLinecap="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <rect x="14" y="66" width="26" height="8" rx="4" fill="#475569" stroke="#0F172A" strokeWidth="2" />
+            <ellipse cx="64" cy="70" rx="34" ry="18" fill="#334155" stroke="#0F172A" strokeWidth="3" />
+            <ellipse cx="64" cy="70" rx="26" ry="13" fill="#475569" />
+            <ellipse cx="64" cy="70" rx="16" ry="9" fill="#FFFFFF" />
+            <circle cx="64" cy="70" r="6" fill="#FACC15" stroke="#D97706" strokeWidth="1.5" />
+            <path d="M52 38C50 30 56 26 54 18M68 38C66 30 72 26 70 18" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
           </svg>
         );
 
@@ -1640,12 +1656,12 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'field':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="16" y="20" width="88" height="80" rx="14" fill="#E0F2FE" stroke="#16A34A" strokeWidth="3" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <rect x="14" y="20" width="92" height="80" rx="14" fill="#E0F2FE" stroke="#16A34A" strokeWidth="3" />
             <circle cx="84" cy="36" r="9" fill="#FACC15" />
-            <path d="M16 68C40 56 80 56 104 68V100H16V68Z" fill="#4ADE80" />
-            <path d="M16 78C46 68 82 72 104 82V100H16V78Z" fill="#16A34A" />
-            <path d="M34 86L38 78M58 88L60 76M82 86L86 78" stroke="#DCFCE7" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M14 66C38 56 82 56 106 66V100H14V66Z" fill="#4ADE80" />
+            <path d="M14 78L106 72V100H14V78Z" fill="#16A34A" />
+            <path d="M22 96L54 68M52 96L74 68M82 96L96 72" stroke="#FEF08A" strokeWidth="3.5" strokeLinecap="round" />
           </svg>
         );
 
@@ -1696,27 +1712,32 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'milk_cow':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="24" y="28" width="46" height="36" rx="12" fill="#FFFFFF" stroke="#1E293B" strokeWidth="3" />
-            <circle cx="40" cy="44" r="7" fill="#1E293B" />
-            <rect x="30" y="64" width="7" height="22" rx="3" fill="#1E293B" />
-            <rect x="56" y="64" width="7" height="22" rx="3" fill="#1E293B" />
-            <polygon points="72,62 96,62 92,96 76,96" fill="#0284C7" stroke="#0C4A6E" strokeWidth="3" strokeLinejoin="round" />
-            <ellipse cx="84" cy="62" rx="12" ry="4" fill="#FFFFFF" stroke="#0C4A6E" strokeWidth="2" />
-            <path d="M50 64V76" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <rect x="18" y="24" width="52" height="38" rx="12" fill="#FFFFFF" stroke="#1E293B" strokeWidth="3" />
+            <circle cx="34" cy="40" r="8" fill="#1E293B" />
+            <rect x="24" y="62" width="7" height="24" rx="3" fill="#1E293B" />
+            <rect x="56" y="62" width="7" height="24" rx="3" fill="#1E293B" />
+            <ellipse cx="44" cy="63" rx="9" ry="5" fill="#FECDD3" stroke="#E11D48" strokeWidth="2" />
+            <path d="M40 68V84M48 68V82" stroke="#E0F2FE" strokeWidth="3.5" strokeLinecap="round" />
+            <polygon points="72,62 100,62 95,98 77,98" fill="#0284C7" stroke="#0C4A6E" strokeWidth="3" strokeLinejoin="round" />
+            <ellipse cx="86" cy="62" rx="14" ry="5" fill="#FFFFFF" stroke="#0C4A6E" strokeWidth="2.5" />
           </svg>
         );
 
       case 'feed_animals':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <ellipse cx="44" cy="70" rx="18" ry="15" fill="#FDBA74" stroke="#9A3412" strokeWidth="3" />
-            <circle cx="56" cy="50" r="10" fill="#FDBA74" stroke="#9A3412" strokeWidth="2.5" />
-            <polygon points="65,50 72,53 65,56" fill="#FACC15" />
-            <circle cx="82" cy="84" r="3.5" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
-            <circle cx="92" cy="88" r="3.5" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
-            <circle cx="74" cy="90" r="3.5" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
-            <path d="M74 30L94 42L84 54L64 42Z" fill="#0EA5E9" stroke="#0C4A6E" strokeWidth="2.5" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <ellipse cx="38" cy="70" rx="18" ry="15" fill="#FDBA74" stroke="#9A3412" strokeWidth="3" />
+            <circle cx="50" cy="48" r="11" fill="#FDBA74" stroke="#9A3412" strokeWidth="2.8" />
+            <polygon points="60,48 69,52 60,56" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
+            <circle cx="53" cy="46" r="2" fill="#1E293B" />
+            <polygon points="66,86 102,86 96,98 72,98" fill="#E11D48" stroke="#881337" strokeWidth="2.5" strokeLinejoin="round" />
+            <circle cx="78" cy="83" r="3.5" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
+            <circle cx="85" cy="81" r="3.5" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
+            <circle cx="92" cy="83" r="3.5" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
+            <circle cx="84" cy="68" r="3" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
+            <circle cx="90" cy="58" r="3" fill="#FACC15" stroke="#B45309" strokeWidth="1.5" />
+            <path d="M72 24L98 38L88 50L64 36Z" fill="#0EA5E9" stroke="#0C4A6E" strokeWidth="2.5" strokeLinejoin="round" />
           </svg>
         );
 
@@ -1749,12 +1770,14 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'plant_vegetables':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="18" y="76" width="84" height="20" rx="8" fill="#78350F" />
-            <polygon points="36,56 48,56 42,84" fill="#F97316" stroke="#9A3412" strokeWidth="2.5" strokeLinejoin="round" />
-            <path d="M42 56C38 46 32 46 34 54M42 56C46 46 52 46 50 54" stroke="#16A34A" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="78" cy="68" r="14" fill="#EF4444" stroke="#991B1B" strokeWidth="2.5" />
-            <path d="M78 54L72 46M78 54L84 46" stroke="#15803D" strokeWidth="3" strokeLinecap="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <rect x="16" y="76" width="88" height="22" rx="8" fill="#78350F" stroke="#451A03" strokeWidth="2.5" />
+            <polygon points="34,54 48,54 41,84" fill="#F97316" stroke="#9A3412" strokeWidth="2.8" strokeLinejoin="round" />
+            <path d="M41 54C36 42 29 44 33 52M41 54C46 42 53 44 49 52" stroke="#16A34A" strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx="78" cy="66" r="14" fill="#EF4444" stroke="#991B1B" strokeWidth="2.8" />
+            <path d="M78 52L72 42M78 52L84 42M78 52V40" stroke="#15803D" strokeWidth="3" strokeLinecap="round" />
+            <path d="M60 22V44" stroke="#475569" strokeWidth="4" strokeLinecap="round" />
+            <polygon points="54,42 66,42 60,56" fill="#94A3B8" stroke="#334155" strokeWidth="2" />
           </svg>
         );
 
@@ -1809,20 +1832,24 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'food_butter':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <rect x="18" y="76" width="84" height="14" rx="7" fill="#E2E8F0" stroke="#475569" strokeWidth="2.5" />
-            <rect x="30" y="46" width="60" height="30" rx="6" fill="#FDE047" stroke="#CA8A04" strokeWidth="3" />
-            <line x1="72" y1="46" x2="72" y2="76" stroke="#CA8A04" strokeWidth="2.5" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <ellipse cx="60" cy="82" rx="44" ry="12" fill="#E2E8F0" stroke="#475569" strokeWidth="2.8" />
+            <rect x="26" y="48" width="46" height="30" rx="5" fill="#FDE047" stroke="#A16207" strokeWidth="3" />
+            <polygon points="74,56 92,62 92,80 74,78" fill="#FEF08A" stroke="#A16207" strokeWidth="2.8" strokeLinejoin="round" />
+            <path d="M70 30L92 52" stroke="#64748B" strokeWidth="4" strokeLinecap="round" />
+            <rect x="64" y="24" width="10" height="8" rx="3" fill="#EA580C" />
           </svg>
         );
 
       case 'food_olives':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <ellipse cx="44" cy="64" rx="14" ry="18" fill="#1E293B" stroke="#0F172A" strokeWidth="2.5" />
-            <ellipse cx="76" cy="64" rx="14" ry="18" fill="#65A30D" stroke="#365314" strokeWidth="2.5" />
-            <ellipse cx="60" cy="46" rx="13" ry="16" fill="#1E293B" stroke="#0F172A" strokeWidth="2.5" />
-            <circle cx="76" cy="54" r="3" fill="#EF4444" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <path d="M24 68H96C92 88 78 96 60 96C42 96 28 88 24 68Z" fill="#F8FAFC" stroke="#475569" strokeWidth="3" />
+            <ellipse cx="44" cy="58" rx="12" ry="16" fill="#1E293B" stroke="#0F172A" strokeWidth="2.5" />
+            <ellipse cx="76" cy="58" rx="12" ry="16" fill="#65A30D" stroke="#365314" strokeWidth="2.5" />
+            <ellipse cx="60" cy="46" rx="12" ry="15" fill="#1E293B" stroke="#0F172A" strokeWidth="2.5" />
+            <circle cx="76" cy="50" r="3" fill="#EF4444" />
+            <path d="M60 30C68 20 82 22 80 32C72 34 64 34 60 30Z" fill="#22C55E" stroke="#15803D" strokeWidth="2" />
           </svg>
         );
 
@@ -1858,10 +1885,12 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'food_yoghurt':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <path d="M26 52H94C90 80 78 92 60 92C42 92 30 80 26 52Z" fill="#0EA5E9" stroke="#0C4A6E" strokeWidth="3" />
-            <ellipse cx="60" cy="52" rx="34" ry="8" fill="#FFFFFF" stroke="#0C4A6E" strokeWidth="2.5" />
-            <line x1="74" y1="26" x2="62" y2="52" stroke="#94A3B8" strokeWidth="4" strokeLinecap="round" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <path d="M30 44H90L82 94H38L30 44Z" fill="#F8FAFC" stroke="#0369A1" strokeWidth="3" strokeLinejoin="round" />
+            <rect x="34" y="60" width="52" height="18" fill="#0EA5E9" />
+            <ellipse cx="60" cy="44" rx="30" ry="7" fill="#FFFFFF" stroke="#0369A1" strokeWidth="2.5" />
+            <path d="M78 20L64 44" stroke="#64748B" strokeWidth="4.5" strokeLinecap="round" />
+            <ellipse cx="62" cy="45" rx="7" ry="4" fill="#CBD5E1" />
           </svg>
         );
 
@@ -1887,12 +1916,13 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'food_rice':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <path d="M26 62H94C90 86 76 96 60 96C44 96 30 86 26 62Z" fill="#1D4ED8" stroke="#1E3A8A" strokeWidth="3" />
-            <path d="M32 62C36 40 84 40 88 62Z" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="2.5" />
-            <circle cx="52" cy="54" r="2" fill="#94A3B8" />
-            <circle cx="64" cy="50" r="2" fill="#94A3B8" />
-            <circle cx="70" cy="56" r="2" fill="#94A3B8" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <path d="M24 62H96C92 86 78 96 60 96C42 96 28 86 24 62Z" fill="#1D4ED8" stroke="#1E3A8A" strokeWidth="3" />
+            <path d="M30 62C34 36 86 36 90 62Z" fill="#FFFFFF" stroke="#94A3B8" strokeWidth="2.5" />
+            <ellipse cx="48" cy="52" rx="3.5" ry="2" fill="#CBD5E1" transform="rotate(-20 48 52)" />
+            <ellipse cx="60" cy="46" rx="3.5" ry="2" fill="#CBD5E1" transform="rotate(15 60 46)" />
+            <ellipse cx="70" cy="54" rx="3.5" ry="2" fill="#CBD5E1" transform="rotate(-10 70 54)" />
+            <ellipse cx="56" cy="56" rx="3.5" ry="2" fill="#CBD5E1" transform="rotate(25 56 56)" />
           </svg>
         );
 
@@ -1908,13 +1938,14 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'food_salad':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
             <path d="M24 62H96C92 86 78 96 60 96C42 96 28 86 24 62Z" fill="#E2E8F0" stroke="#475569" strokeWidth="3" />
-            <circle cx="44" cy="54" r="14" fill="#22C55E" stroke="#15803D" strokeWidth="2" />
-            <circle cx="76" cy="54" r="14" fill="#4ADE80" stroke="#15803D" strokeWidth="2" />
-            <circle cx="60" cy="48" r="15" fill="#16A34A" stroke="#14532D" strokeWidth="2" />
-            <circle cx="52" cy="50" r="5" fill="#EF4444" />
-            <circle cx="70" cy="52" r="5" fill="#EF4444" />
+            <circle cx="42" cy="54" r="14" fill="#22C55E" stroke="#15803D" strokeWidth="2.5" />
+            <circle cx="78" cy="54" r="14" fill="#4ADE80" stroke="#15803D" strokeWidth="2.5" />
+            <circle cx="60" cy="46" r="15" fill="#16A34A" stroke="#14532D" strokeWidth="2.5" />
+            <circle cx="48" cy="50" r="6" fill="#EF4444" stroke="#991B1B" strokeWidth="1.5" />
+            <circle cx="72" cy="52" r="6" fill="#EF4444" stroke="#991B1B" strokeWidth="1.5" />
+            <circle cx="60" cy="56" r="5" fill="#FEF08A" stroke="#CA8A04" strokeWidth="1.5" />
           </svg>
         );
 
@@ -2027,21 +2058,25 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'meal_lunch':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <circle cx="60" cy="64" r="34" fill="#FFFFFF" stroke="#1E40AF" strokeWidth="3" />
-            <polygon points="36,68 62,48 66,78" fill="#FACC15" stroke="#B45309" strokeWidth="2" />
-            <circle cx="72" cy="62" r="10" fill="#22C55E" stroke="#15803D" strokeWidth="2" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
             <circle cx="60" cy="22" r="10" fill="#FACC15" stroke="#D97706" strokeWidth="2" />
+            <circle cx="60" cy="68" r="30" fill="#FFFFFF" stroke="#1E40AF" strokeWidth="3" />
+            <polygon points="40,70 64,52 68,80" fill="#FACC15" stroke="#B45309" strokeWidth="2.5" strokeLinejoin="round" />
+            <circle cx="74" cy="66" r="9" fill="#22C55E" stroke="#15803D" strokeWidth="2" />
+            <line x1="20" y1="50" x2="20" y2="86" stroke="#64748B" strokeWidth="3.5" strokeLinecap="round" />
+            <line x1="100" y1="50" x2="100" y2="86" stroke="#64748B" strokeWidth="3.5" strokeLinecap="round" />
           </svg>
         );
 
       case 'meal_dinner':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <path d="M90 22C80 24 78 36 88 40C80 42 74 36 74 28C74 21 82 18 90 22Z" fill="#FACC15" />
-            <circle cx="60" cy="66" r="32" fill="#FFFFFF" stroke="#1E3A8A" strokeWidth="3" />
-            <ellipse cx="52" cy="66" rx="14" ry="10" fill="#EA580C" stroke="#7C2D12" strokeWidth="2" />
-            <circle cx="72" cy="66" r="8" fill="#F1F5F9" stroke="#94A3B8" strokeWidth="2" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <path d="M92 20C82 22 80 34 90 38C82 40 76 34 76 26C76 19 84 16 92 20Z" fill="#FACC15" stroke="#CA8A04" strokeWidth="1.5" />
+            <circle cx="60" cy="68" r="30" fill="#FFFFFF" stroke="#1E3A8A" strokeWidth="3" />
+            <ellipse cx="52" cy="68" rx="13" ry="9" fill="#EA580C" stroke="#7C2D12" strokeWidth="2" />
+            <circle cx="73" cy="68" r="8" fill="#4ADE80" stroke="#15803D" strokeWidth="2" />
+            <line x1="20" y1="50" x2="20" y2="86" stroke="#64748B" strokeWidth="3.5" strokeLinecap="round" />
+            <line x1="100" y1="50" x2="100" y2="86" stroke="#64748B" strokeWidth="3.5" strokeLinecap="round" />
           </svg>
         );
 
@@ -2094,24 +2129,27 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
 
       case 'hungry':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <circle cx="60" cy="60" r="34" fill="#FDE68A" stroke="#D97706" strokeWidth="3" />
-            <circle cx="48" cy="52" r="3" fill="#1E293B" />
-            <circle cx="72" cy="52" r="3" fill="#1E293B" />
-            <ellipse cx="60" cy="72" rx="10" ry="7" fill="#E11D48" />
-            <circle cx="88" cy="30" r="14" fill="#FFFFFF" stroke="#64748B" strokeWidth="2.5" />
-            <circle cx="88" cy="30" r="5" fill="#F97316" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <circle cx="52" cy="64" r="32" fill="#FDE68A" stroke="#D97706" strokeWidth="3" />
+            <circle cx="41" cy="56" r="3" fill="#1E293B" />
+            <circle cx="63" cy="56" r="3" fill="#1E293B" />
+            <ellipse cx="52" cy="76" rx="9" ry="6" fill="#E11D48" />
+            <circle cx="92" cy="30" r="16" fill="#FFFFFF" stroke="#475569" strokeWidth="2.5" />
+            <circle cx="92" cy="30" r="9" fill="#F97316" />
+            <circle cx="72" cy="40" r="3" fill="#FFFFFF" stroke="#475569" strokeWidth="1.5" />
           </svg>
         );
 
       case 'salt':
         return (
-          <svg viewBox="0 0 120 120" className={className} fill="none">
-            <polygon points="44,44 76,44 82,94 38,94" fill="#E0F2FE" stroke="#0369A1" strokeWidth="3" strokeLinejoin="round" />
-            <path d="M44 44C44 30 76 30 76 44Z" fill="#94A3B8" stroke="#334155" strokeWidth="2.5" />
-            <circle cx="56" cy="37" r="1.5" fill="#0F172A" />
-            <circle cx="64" cy="37" r="1.5" fill="#0F172A" />
-            <polygon points="40,70 80,70 82,94 38,94" fill="#FFFFFF" />
+          <svg viewBox="0 0 120 120" className={className} fill="none" shapeRendering="geometricPrecision">
+            <polygon points="42,42 78,42 84,96 36,96" fill="#E0F2FE" stroke="#0369A1" strokeWidth="3" strokeLinejoin="round" />
+            <path d="M42 42C42 28 78 28 78 42Z" fill="#94A3B8" stroke="#334155" strokeWidth="2.5" />
+            <circle cx="54" cy="35" r="2" fill="#0F172A" />
+            <circle cx="66" cy="35" r="2" fill="#0F172A" />
+            <polygon points="38,68 82,68 84,96 36,96" fill="#FFFFFF" />
+            <rect x="44" y="64" width="32" height="14" rx="3" fill="#1D4ED8" />
+            <text x="60" y="74" textAnchor="middle" fill="#FFFFFF" fontSize="8.5" fontWeight="800" fontFamily="sans-serif">SALT</text>
           </svg>
         );
 

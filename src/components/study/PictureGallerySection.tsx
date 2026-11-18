@@ -90,7 +90,7 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
       )}
 
       {/* Rich Visual Picture Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {vocab.map((item) => {
           const isSpeaking = speakingKey === `word_${item.id}`;
           return (
@@ -98,7 +98,7 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
               key={item.id}
               type="button"
               onClick={() => handleCardClick(item)}
-              className={`group rounded-2xl border p-4 text-center flex flex-col items-center justify-between gap-3 transition-all duration-150 cursor-pointer ${
+              className={`group rounded-2xl border-2 p-4 text-center flex flex-col items-center justify-between gap-3 transition-all duration-150 cursor-pointer ${
                 isSpeaking
                   ? themeId === 1
                     ? 'bg-teal-50 border-teal-700 ring-2 ring-teal-600 -translate-y-0.5'
@@ -115,20 +115,22 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
               }`}
             >
               <div
-                className={`w-full aspect-square rounded-xl ${item.bgTone} flex items-center justify-center relative overflow-hidden`}
+                className={`w-full aspect-square rounded-2xl ${item.bgTone} p-2 border border-slate-200/90 flex items-center justify-center relative overflow-hidden`}
               >
-                <WordIllustration
-                  illustrationKey={item.illustrationKey}
-                  className="w-20 h-20 group-hover:scale-110 transition-transform duration-200"
-                />
+                <div className="w-full h-full rounded-xl bg-white flex items-center justify-center shadow-2xs">
+                  <WordIllustration
+                    illustrationKey={item.illustrationKey}
+                    className="w-24 h-24 group-hover:scale-110 transition-transform duration-200"
+                  />
+                </div>
                 <span
-                  className={`absolute top-2 right-2 w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                  className={`absolute top-2.5 right-2.5 w-8 h-8 rounded-xl flex items-center justify-center border transition-colors ${
                     isSpeaking
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-white/90 text-slate-700 shadow-xs'
+                      ? 'bg-emerald-600 border-emerald-700 text-white'
+                      : 'bg-white border-slate-200 text-slate-800 shadow-xs'
                   }`}
                 >
-                  <Volume2 className="w-4 h-4" />
+                  <Volume2 className="w-4 h-4" strokeWidth={2.5} />
                 </span>
               </div>
 
@@ -137,7 +139,7 @@ export const PictureGallerySection: React.FC<PictureGallerySectionProps> = ({
                   {item.word}
                 </p>
                 {showTurkish && (
-                  <p className="text-xs font-medium text-slate-500 truncate mt-0.5">
+                  <p className="text-xs font-semibold text-slate-500 truncate mt-0.5">
                     {item.turkish}
                   </p>
                 )}

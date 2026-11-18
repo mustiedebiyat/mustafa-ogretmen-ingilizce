@@ -6,8 +6,18 @@ import {
 } from '../types/curriculum';
 import { THEMES } from '../data/curriculum';
 
-const STORAGE_PROFILES_KEY = 'mustafa_hoca_ingilizce_profiles_v1';
-const STORAGE_ACTIVE_NAME_KEY = 'mustafa_hoca_ingilizce_active_v1';
+const STORAGE_CURRENT_PROFILE_KEY = 'mustafa_hoca_ingilizce_current_profile_v1';
+const LEGACY_PROFILES_KEY = 'mustafa_hoca_ingilizce_profiles_v1';
+const LEGACY_ACTIVE_NAME_KEY = 'mustafa_hoca_ingilizce_active_v1';
+
+function clearLegacyProfileStorage(): void {
+  try {
+    localStorage.removeItem(LEGACY_PROFILES_KEY);
+    localStorage.removeItem(LEGACY_ACTIVE_NAME_KEY);
+  } catch {
+    // Ignore storage errors
+  }
+}
 
 export function getLocalDateKey(date: Date = new Date()): string {
   const year = date.getFullYear();
@@ -178,32 +188,14 @@ export function getChartStarHistory(
   return result;
 }
 
-export function loadAllProfiles(): Record<string, StudentProfile> {
-  try {
-    const raw = localStorage.getItem(STORAGE_PROFILES_KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw) as Record<string, StudentProfile>;
-    if (!parsed || typeof parsed !== 'object') return {};
-    const normalized: Record<string, StudentProfile> = {};
-    for (const [k, v] of Object.entries(parsed)) {
-      normalized[k] = normalizeProfile(v);
-    }
-    return normalized;
-  } catch {
-    return {};
-  }
-}
-
 export function saveProfile(profile: StudentProfile): void {
   try {
-    const profiles = loadAllProfiles();
-    const key = profile.name.trim().toLocaleLowerCase('tr-TR');
-    profiles[key] = {
+    clearLegacyProfileStorage();
+    const normalized: StudentProfile = {
       ...normalizeProfile(profile),
       lastActiveAt: new Date().toISOString(),
     };
-    localStorage.setItem(STORAGE_PROFILES_KEY, JSON.stringify(profiles));
-    localStorage.setItem(STORAGE_ACTIVE_NAME_KEY, key);
+    localStorage.setItem(STORAGE_CURRENT_PROFILE_KEY, JSON.stringify(normalized));
   } catch {
     // Ignore storage quota errors
   }
@@ -211,27 +203,29 @@ export function saveProfile(profile: StudentProfile): void {
 
 export function loadActiveProfile(): StudentProfile | null {
   try {
-    const activeKey = localStorage.getItem(STORAGE_ACTIVE_NAME_KEY);
-    if (!activeKey) return null;
-    const profiles = loadAllProfiles();
-    return profiles[activeKey] ?? null;
+    clearLegacyProfileStorage();
+    const raw = localStorage.getItem(STORAGE_CURRENT_PROFILE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as StudentProfile;
+    if (!parsed || typeof parsed !== 'object' || !parsed.name) return null;
+    return normalizeProfile(parsed);
   } catch {
     return null;
   }
 }
 
-export function getOrCreateProfile(name: string): StudentProfile {
+export function startStudentProfile(name: string): StudentProfile {
   const cleanName = name.trim();
   const key = cleanName.toLocaleLowerCase('tr-TR');
-  const profiles = loadAllProfiles();
-  if (profiles[key]) {
-    const existing = normalizeProfile({
-      ...profiles[key],
+  const current = loadActiveProfile();
+  if (current && current.name.trim().toLocaleLowerCase('tr-TR') === key) {
+    const updated = normalizeProfile({
+      ...current,
       name: cleanName,
       lastActiveAt: new Date().toISOString(),
     });
-    saveProfile(existing);
-    return existing;
+    saveProfile(updated);
+    return updated;
   }
   const fresh = createEmptyProfile(cleanName);
   saveProfile(fresh);
@@ -240,7 +234,8 @@ export function getOrCreateProfile(name: string): StudentProfile {
 
 export function clearActiveStudent(): void {
   try {
-    localStorage.removeItem(STORAGE_ACTIVE_NAME_KEY);
+    localStorage.removeItem(STORAGE_CURRENT_PROFILE_KEY);
+    clearLegacyProfileStorage();
   } catch {
     // ignore
   }
