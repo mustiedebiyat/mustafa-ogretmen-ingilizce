@@ -9,7 +9,7 @@ export const THEME_IMAGES = {
   theme5Card: '/src/assets/images/theme_farm_neighbourhood_1794999874877.jpg',
   theme6Card: '/src/assets/images/theme_city_world_1794999876555.jpg',
   rewardTrophy: '/src/assets/images/reward_trophy_badge_1794936046247.jpg',
-  teacherEmblem: '/src/assets/images/teacher_study_emblem_1794936046634.jpg',
+  teacherEmblem: '/pwa-192x192.png',
 };
 
 export const BADGES: BadgeDefinition[] = [

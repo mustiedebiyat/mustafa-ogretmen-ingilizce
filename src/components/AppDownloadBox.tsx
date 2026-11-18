@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
-import { CheckCircle2, Download, Share, Smartphone, X } from 'lucide-react';
+import { CheckCircle2, Download, Share, X } from 'lucide-react';
 
 export const AppDownloadBox: React.FC = () => {
   const { isInstallable, isInstalled, install } = usePWAInstall();
@@ -24,9 +24,11 @@ export const AppDownloadBox: React.FC = () => {
     >
       <div className="rounded-2xl bg-gradient-to-r from-[#4C1D95] via-[#5B21B6] to-[#3B0764] text-white p-5 sm:p-7 shadow-md border border-purple-700/60 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div className="flex items-start sm:items-center gap-4">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center shrink-0">
-            <Smartphone className="w-6 h-6 sm:w-7 sm:h-7 text-amber-300" />
-          </div>
+          <img
+            src="/pwa-192x192.png"
+            alt="Mustafa Öğretmenle İngilizce Uygulama Simgesi"
+            className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border-2 border-white/30 shadow-md shrink-0 object-cover bg-white"
+          />
           <div className="space-y-1">
             <p className="text-xs font-extrabold uppercase tracking-wider text-amber-200">
               Mobil Uygulama Deneyimi

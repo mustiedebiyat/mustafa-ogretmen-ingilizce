@@ -12,7 +12,7 @@ export default defineConfig(() => {
       tailwindcss(),
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['apple-touch-icon.png', 'icon.svg'],
+        includeAssets: ['apple-touch-icon.png', 'pwa-192x192.png'],
         manifest: {
           id: '/',
           name: 'Mustafa Öğretmenle İngilizce',
