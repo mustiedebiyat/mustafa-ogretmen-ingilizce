@@ -43,14 +43,20 @@ export function createEmptyThemeProgress(): ThemeProgress {
   };
 }
 
-function normalizeThemeProgress(raw?: Partial<ThemeProgress>): ThemeProgress {
+function normalizeThemeProgress(raw?: Partial<ThemeProgress>, themeId?: ThemeId): ThemeProgress {
   const base = createEmptyThemeProgress();
   if (!raw) return base;
+  const validWordIds = themeId ? new Set(THEMES[themeId].vocab.map((v) => v.id)) : null;
+  const filterWordIds = (ids: unknown): string[] => {
+    if (!Array.isArray(ids)) return [];
+    const unique = Array.from(new Set(ids.filter((id): id is string => typeof id === 'string')));
+    return validWordIds ? unique.filter((id) => validWordIds.has(id)) : unique;
+  };
   return {
     ...base,
     ...raw,
-    listenedWordIds: Array.isArray(raw.listenedWordIds) ? raw.listenedWordIds : [],
-    masteredWordIds: Array.isArray(raw.masteredWordIds) ? raw.masteredWordIds : [],
+    listenedWordIds: filterWordIds(raw.listenedWordIds),
+    masteredWordIds: filterWordIds(raw.masteredWordIds),
     completedLessonIds: Array.isArray(raw.completedLessonIds) ? raw.completedLessonIds : [],
     sentenceBuildCompletedIds: Array.isArray(raw.sentenceBuildCompletedIds)
       ? raw.sentenceBuildCompletedIds
@@ -76,12 +82,12 @@ function normalizeProfile(raw: StudentProfile): StudentProfile {
     stars: typeof raw.stars === 'number' ? raw.stars : 0,
     starHistory,
     earnedBadgeIds: Array.isArray(raw.earnedBadgeIds) ? raw.earnedBadgeIds : [],
-    theme1: normalizeThemeProgress(raw.theme1),
-    theme2: normalizeThemeProgress(raw.theme2),
-    theme3: normalizeThemeProgress(raw.theme3),
-    theme4: normalizeThemeProgress(raw.theme4),
-    theme5: normalizeThemeProgress(raw.theme5),
-    theme6: normalizeThemeProgress(raw.theme6),
+    theme1: normalizeThemeProgress(raw.theme1, 1),
+    theme2: normalizeThemeProgress(raw.theme2, 2),
+    theme3: normalizeThemeProgress(raw.theme3, 3),
+    theme4: normalizeThemeProgress(raw.theme4, 4),
+    theme5: normalizeThemeProgress(raw.theme5, 5),
+    theme6: normalizeThemeProgress(raw.theme6, 6),
   };
 }
 

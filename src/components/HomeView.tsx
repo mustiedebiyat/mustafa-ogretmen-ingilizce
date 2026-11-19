@@ -325,6 +325,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <p className="hidden sm:block text-xs sm:text-sm text-teal-100/90 leading-relaxed line-clamp-2">
                   {THEMES[1].subtitleTr}. {THEMES[1].vocab.length} sesli kelime, 4 konu ve 4 oyun.
                 </p>
+                <p className="sm:hidden text-[11px] font-medium text-teal-100/90 tabular-nums">
+                  {THEMES[1].vocab.length} sesli kelime
+                </p>
               </div>
 
               <div className="space-y-2">
@@ -391,6 +394,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-orange-100/90 leading-relaxed line-clamp-2">
                   {THEMES[2].subtitleTr}. {THEMES[2].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                </p>
+                <p className="sm:hidden text-[11px] font-medium text-orange-100/90 tabular-nums">
+                  {THEMES[2].vocab.length} sesli kelime
                 </p>
               </div>
 
@@ -459,6 +465,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <p className="hidden sm:block text-xs sm:text-sm text-purple-100/90 leading-relaxed line-clamp-2">
                   {THEMES[3].subtitleTr}. {THEMES[3].vocab.length} sesli kelime, 4 konu ve 4 oyun.
                 </p>
+                <p className="sm:hidden text-[11px] font-medium text-purple-100/90 tabular-nums">
+                  {THEMES[3].vocab.length} sesli kelime
+                </p>
               </div>
 
               <div className="space-y-2">
@@ -525,6 +534,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-rose-100/90 leading-relaxed line-clamp-2">
                   {THEMES[4].subtitleTr}. {THEMES[4].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                </p>
+                <p className="sm:hidden text-[11px] font-medium text-rose-100/90 tabular-nums">
+                  {THEMES[4].vocab.length} sesli kelime
                 </p>
               </div>
 
@@ -593,6 +605,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <p className="hidden sm:block text-xs sm:text-sm text-emerald-100/90 leading-relaxed line-clamp-2">
                   {THEMES[5].subtitleTr}. {THEMES[5].vocab.length} sesli kelime, 4 konu ve 4 oyun.
                 </p>
+                <p className="sm:hidden text-[11px] font-medium text-emerald-100/90 tabular-nums">
+                  {THEMES[5].vocab.length} sesli kelime
+                </p>
               </div>
 
               <div className="space-y-2">
@@ -659,6 +674,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-blue-100/90 leading-relaxed line-clamp-2">
                   {THEMES[6].subtitleTr}. {THEMES[6].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                </p>
+                <p className="sm:hidden text-[11px] font-medium text-blue-100/90 tabular-nums">
+                  {THEMES[6].vocab.length} sesli kelime
                 </p>
               </div>
 

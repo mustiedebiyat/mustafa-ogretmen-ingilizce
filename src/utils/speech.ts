@@ -158,6 +158,19 @@ export interface SpeakOptions {
   onEnd?: () => void;
 }
 
+function normalizeTextForSpeech(raw: string): string {
+  return raw
+    .replace(/\((n|v|adj|adv)\)/gi, '')
+    .replace(/chicken\s*\(hen\)/gi, 'chicken, hen')
+    .replace(/\(It['’]s\)/gi, "It's")
+    .replace(/eyebrow\(s\)/gi, 'eyebrow')
+    .replace(/eyelash\(es\)/gi, 'eyelash')
+    .replace(/olive\(s\)/gi, 'olives')
+    .replace(/nice\/good/gi, 'nice')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export function speakEnglish(text: string, options?: SpeakOptions): void {
   if (!isSpeechSupported()) {
     options?.onEnd?.();
@@ -167,7 +180,7 @@ export function speakEnglish(text: string, options?: SpeakOptions): void {
   const synth = window.speechSynthesis;
   synth.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(text);
+  const utterance = new SpeechSynthesisUtterance(normalizeTextForSpeech(text));
   const voice = getBestFemaleVoice();
 
   if (voice) {

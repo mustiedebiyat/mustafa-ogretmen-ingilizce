@@ -1,4 +1,6 @@
 import React from 'react';
+import { renderExtraWordSvgA } from './illustrations/ExtraWordSvgsA';
+import { renderExtraWordSvgB } from './illustrations/ExtraWordSvgsB';
 
 interface WordIllustrationProps {
   illustrationKey: string;
@@ -2153,13 +2155,18 @@ export const WordIllustration: React.FC<WordIllustrationProps> = ({
           </svg>
         );
 
-      default:
+      default: {
+        const extraSvg =
+          renderExtraWordSvgA(illustrationKey, className) ??
+          renderExtraWordSvgB(illustrationKey, className);
+        if (extraSvg) return extraSvg;
         return (
           <svg viewBox="0 0 120 120" className={className} fill="none">
             <circle cx="60" cy="60" r="36" fill="#EDE9FE" stroke="#6D28D9" strokeWidth="3" />
             <polygon points="60,34 67,50 84,52 71,64 74,82 60,73 46,82 49,64 36,52 53,50" fill="#FACC15" stroke="#B45309" strokeWidth="2.5" />
           </svg>
         );
+      }
     }
   };
 
