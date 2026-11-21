@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mustafasahin.ingilizce3",
+      "sha256_cert_fingerprints": [
+        "A5:02:A4:98:00:D0:E7:7D:29:39:DC:DB:23:98:1F:32:6C:3B:56:93:64:3E:52:DF:1B:55:7F:A7:51:31:C9:A2"
+      ]
+    }
+  }
+]
