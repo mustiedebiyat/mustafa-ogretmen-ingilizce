@@ -19,6 +19,7 @@ import { AppRoute, Navbar } from './components/Navbar';
 import { HomeView } from './components/HomeView';
 import { ThemeWorkspace } from './components/ThemeWorkspace';
 import { AppDownloadBox } from './components/AppDownloadBox';
+import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { Award, X } from 'lucide-react';
 
 export default function App() {
@@ -27,6 +28,11 @@ export default function App() {
   const [lastExpandedTheme, setLastExpandedTheme] = useState<ThemeId | null>(null);
   const [student, setStudent] = useState<StudentProfile | null>(() => loadActiveProfile());
   const [badgeToast, setBadgeToast] = useState<{ title: string; stars: number } | null>(null);
+  const [privacyOpen, setPrivacyOpen] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    const params = new URLSearchParams(window.location.search);
+    return window.location.hash === '#gizlilik' || params.get('privacy') === '1';
+  });
 
   const nameInputRef = useRef<HTMLInputElement | null>(null);
   const profileSectionRef = useRef<HTMLElement | null>(null);
@@ -36,6 +42,23 @@ export default function App() {
     const timer = setTimeout(() => setBadgeToast(null), 5000);
     return () => clearTimeout(timer);
   }, [badgeToast]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#gizlilik') {
+        setPrivacyOpen(true);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleClosePrivacy = () => {
+    setPrivacyOpen(false);
+    if (window.location.hash === '#gizlilik') {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  };
 
   const applyProfileUpdate = (updater: (prev: StudentProfile) => StudentProfile) => {
     setStudent((prev) => {
@@ -403,9 +426,21 @@ export default function App() {
           <p className="font-semibold text-slate-800">
             Mustafa Öğretmenle İngilizce · Hazırlayan: Mustafa ŞAHİN
           </p>
-          <p>3. Sınıf Maarif Modele Uygun İngilizce Çalışma Programı</p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <span>3. Sınıf Maarif Modele Uygun İngilizce Çalışma Programı</span>
+            <span aria-hidden="true" className="text-slate-300">·</span>
+            <button
+              type="button"
+              onClick={() => setPrivacyOpen(true)}
+              className="font-semibold text-purple-800 hover:text-purple-950 underline underline-offset-2 cursor-pointer"
+            >
+              Gizlilik Politikası
+            </button>
+          </div>
         </div>
       </footer>
+
+      <PrivacyPolicyModal open={privacyOpen} onClose={handleClosePrivacy} />
     </div>
   );
 }
