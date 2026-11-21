@@ -46,7 +46,8 @@ export default defineConfig(() => {
           ],
         },
         workbox: {
-          globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2,json}'],
+          navigateFallbackDenylist: [/^\/\.well-known\//, /^\/privacy\.html$/],
           maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         },
         devOptions: {
@@ -69,6 +70,30 @@ export default defineConfig(() => {
           const distAssets = path.resolve(distDir, 'src/assets');
           if (fs.existsSync(distDir) && fs.existsSync(srcAssets)) {
             fs.cpSync(srcAssets, distAssets, {recursive: true, force: true});
+          }
+          const wellKnownDir = path.resolve(distDir, '.well-known');
+          const distAssetLinks = path.resolve(wellKnownDir, 'assetlinks.json');
+          if (fs.existsSync(distDir) && !fs.existsSync(distAssetLinks)) {
+            fs.mkdirSync(wellKnownDir, {recursive: true});
+            fs.writeFileSync(
+              distAssetLinks,
+              JSON.stringify(
+                [
+                  {
+                    relation: ['delegate_permission/common.handle_all_urls'],
+                    target: {
+                      namespace: 'android_app',
+                      package_name: 'com.mustafasahin.ingilizce3',
+                      sha256_cert_fingerprints: [
+                        'A5:02:A4:98:00:D0:E7:7D:29:39:DC:DB:23:98:1F:32:6C:3B:56:93:64:3E:52:DF:1B:55:7F:A7:51:31:C9:A2',
+                      ],
+                    },
+                  },
+                ],
+                null,
+                2,
+              ) + '\n',
+            );
           }
         },
       },
