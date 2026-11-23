@@ -73,7 +73,7 @@ export default defineConfig(() => {
           }
           const wellKnownDir = path.resolve(distDir, '.well-known');
           const distAssetLinks = path.resolve(wellKnownDir, 'assetlinks.json');
-          if (fs.existsSync(distDir) && !fs.existsSync(distAssetLinks)) {
+          if (fs.existsSync(distDir)) {
             fs.mkdirSync(wellKnownDir, {recursive: true});
             fs.writeFileSync(
               distAssetLinks,
@@ -85,6 +85,7 @@ export default defineConfig(() => {
                       namespace: 'android_app',
                       package_name: 'com.mustafasahin.ingilizce3',
                       sha256_cert_fingerprints: [
+                        '97:AE:C7:A4:2C:7A:2C:7E:D0:29:2C:72:78:F8:9F:F5:68:9D:43:F0:14:AF:4B:B2:FD:AC:9B:DD:18:83:60:E9',
                         'A5:02:A4:98:00:D0:E7:7D:29:39:DC:DB:23:98:1F:32:6C:3B:56:93:64:3E:52:DF:1B:55:7F:A7:51:31:C9:A2',
                       ],
                     },
