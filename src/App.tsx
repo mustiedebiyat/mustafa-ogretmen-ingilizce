@@ -26,6 +26,7 @@ export default function App() {
   const [route, setRoute] = useState<AppRoute>('home');
   const [selectedTab, setSelectedTab] = useState<StudyTabId>('words');
   const [lastExpandedTheme, setLastExpandedTheme] = useState<ThemeId | null>(null);
+  const [subMenuReturnTick, setSubMenuReturnTick] = useState(0);
   const [student, setStudent] = useState<StudentProfile | null>(() => loadActiveProfile());
   const [badgeToast, setBadgeToast] = useState<{ title: string; stars: number } | null>(null);
   const [privacyOpen, setPrivacyOpen] = useState<boolean>(() => {
@@ -273,6 +274,136 @@ export default function App() {
     });
   };
 
+  const handleCompleteSoundHunt = (themeId: ThemeId, score: number, correctCount: number) => {
+    applyProfileUpdate((prev) => {
+      const key = getThemeKey(themeId);
+      const t = prev[key];
+      const earnedStars = correctCount > 0 ? Math.max(5, correctCount * 2) : 0;
+      const prevBest = t.soundHuntBestScore ?? null;
+      const bestScore = prevBest === null ? score : Math.max(prevBest, score);
+      return {
+        ...prev,
+        stars: prev.stars + earnedStars,
+        [key]: {
+          ...t,
+          soundHuntBestScore: bestScore,
+        },
+      };
+    });
+  };
+
+  const handleCompleteCarRoad = (themeId: ThemeId, score: number, gatesCleared: number) => {
+    applyProfileUpdate((prev) => {
+      const key = getThemeKey(themeId);
+      const t = prev[key];
+      const earnedStars = gatesCleared > 0 ? Math.max(5, gatesCleared * 2) : 0;
+      const prevBest = t.carRoadBestScore ?? null;
+      const bestScore = prevBest === null ? score : Math.max(prevBest, score);
+      return {
+        ...prev,
+        stars: prev.stars + earnedStars,
+        [key]: {
+          ...t,
+          carRoadBestScore: bestScore,
+        },
+      };
+    });
+  };
+
+  const handleCompleteAnimalFeast = (themeId: ThemeId, score: number, fedCount: number) => {
+    applyProfileUpdate((prev) => {
+      const key = getThemeKey(themeId);
+      const t = prev[key];
+      const earnedStars = fedCount > 0 ? Math.max(5, fedCount * 2) : 0;
+      const prevBest = t.animalFeastBestScore ?? null;
+      const bestScore = prevBest === null ? score : Math.max(prevBest, score);
+      return {
+        ...prev,
+        stars: prev.stars + earnedStars,
+        [key]: {
+          ...t,
+          animalFeastBestScore: bestScore,
+        },
+      };
+    });
+  };
+
+  const handleCompleteFrogHop = (themeId: ThemeId, score: number, hopsCount: number) => {
+    applyProfileUpdate((prev) => {
+      const key = getThemeKey(themeId);
+      const t = prev[key];
+      const earnedStars = hopsCount > 0 ? Math.max(5, hopsCount * 2) : 0;
+      const prevBest = t.frogHopBestScore ?? null;
+      const bestScore = prevBest === null ? score : Math.max(prevBest, score);
+      return {
+        ...prev,
+        stars: prev.stars + earnedStars,
+        [key]: {
+          ...t,
+          frogHopBestScore: bestScore,
+        },
+      };
+    });
+  };
+
+  const handleCompleteWordSearch = (themeId: ThemeId, score: number, foundCount: number) => {
+    applyProfileUpdate((prev) => {
+      const key = getThemeKey(themeId);
+      const t = prev[key];
+      const earnedStars = foundCount > 0 ? Math.max(5, foundCount * 3) : 0;
+      const prevBest = t.wordSearchBestScore ?? null;
+      const bestScore = prevBest === null ? score : Math.max(prevBest, score);
+      return {
+        ...prev,
+        stars: prev.stars + earnedStars,
+        [key]: {
+          ...t,
+          wordSearchBestScore: bestScore,
+        },
+      };
+    });
+  };
+
+  const handleCompleteWhackMole = (themeId: ThemeId, score: number, hitsCount: number) => {
+    applyProfileUpdate((prev) => {
+      const key = getThemeKey(themeId);
+      const t = prev[key];
+      const earnedStars = hitsCount > 0 ? Math.max(5, hitsCount * 2) : 0;
+      const prevBest = t.whackMoleBestScore ?? null;
+      const bestScore = prevBest === null ? score : Math.max(prevBest, score);
+      return {
+        ...prev,
+        stars: prev.stars + earnedStars,
+        [key]: {
+          ...t,
+          whackMoleBestScore: bestScore,
+        },
+      };
+    });
+  };
+
+  const handleCompletePirateTreasure = (
+    themeId: ThemeId,
+    score: number,
+    unlockedCount: number
+  ) => {
+    applyProfileUpdate((prev) => {
+      const key = getThemeKey(themeId);
+      const t = prev[key];
+      const earnedStars = unlockedCount > 0 ? Math.max(5, unlockedCount * 3) : 0;
+      const prevBest = t.pirateTreasureBestScore ?? null;
+      const bestScore = prevBest === null ? score : Math.max(prevBest, score);
+      return {
+        ...prev,
+        stars: prev.stars + earnedStars,
+        [key]: {
+          ...t,
+          pirateTreasureBestScore: bestScore,
+        },
+      };
+    });
+  };
+
   const handleCompleteSentence = (themeId: ThemeId, id: string) => {
     applyProfileUpdate((prev) => {
       const key = getThemeKey(themeId);
@@ -367,6 +498,7 @@ export default function App() {
             nameInputRef={nameInputRef}
             profileSectionRef={profileSectionRef}
             initialExpandedTheme={lastExpandedTheme}
+            subMenuReturnTick={subMenuReturnTick}
           />
         )}
 
@@ -403,7 +535,8 @@ export default function App() {
                     ? 5
                     : 6
                 );
-                handleNavigate('home');
+                setSubMenuReturnTick((tick) => tick + 1);
+                setRoute('home');
               }}
             onRecordWordListened={handleRecordWordListened}
             onToggleMastered={handleToggleMastered}
@@ -412,6 +545,13 @@ export default function App() {
             onCompleteMatching={handleCompleteMatching}
             onCompleteRace={handleCompleteRace}
             onCompleteBalloon={handleCompleteBalloon}
+            onCompleteSoundHunt={handleCompleteSoundHunt}
+            onCompleteCarRoad={handleCompleteCarRoad}
+            onCompleteAnimalFeast={handleCompleteAnimalFeast}
+            onCompleteFrogHop={handleCompleteFrogHop}
+            onCompleteWordSearch={handleCompleteWordSearch}
+            onCompleteWhackMole={handleCompleteWhackMole}
+            onCompletePirateTreasure={handleCompletePirateTreasure}
             onCompleteSentence={handleCompleteSentence}
             onCompleteFill={handleCompleteFill}
             onFinishQuiz={handleFinishQuiz}

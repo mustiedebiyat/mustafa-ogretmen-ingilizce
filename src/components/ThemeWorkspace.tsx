@@ -48,6 +48,13 @@ interface ThemeWorkspaceProps {
   onCompleteMatching: (themeId: ThemeId) => void;
   onCompleteRace: (themeId: ThemeId) => void;
   onCompleteBalloon: (themeId: ThemeId, score: number, poppedCount: number) => void;
+  onCompleteSoundHunt: (themeId: ThemeId, score: number, correctCount: number) => void;
+  onCompleteCarRoad: (themeId: ThemeId, score: number, gatesCleared: number) => void;
+  onCompleteAnimalFeast: (themeId: ThemeId, score: number, fedCount: number) => void;
+  onCompleteFrogHop: (themeId: ThemeId, score: number, hopsCount: number) => void;
+  onCompleteWordSearch: (themeId: ThemeId, score: number, foundCount: number) => void;
+  onCompleteWhackMole: (themeId: ThemeId, score: number, hitsCount: number) => void;
+  onCompletePirateTreasure: (themeId: ThemeId, score: number, unlockedCount: number) => void;
   onCompleteSentence: (themeId: ThemeId, id: string) => void;
   onCompleteFill: (themeId: ThemeId, id: string) => void;
   onFinishQuiz: (themeId: ThemeId, score: number, correctCount: number) => void;
@@ -58,7 +65,7 @@ const STUDY_TABS: { id: StudyTabId; label: string; icon: React.FC<{ className?: 
   { id: 'grammar', label: 'Tema Konu Anlatımı', icon: GraduationCap },
   { id: 'pictures', label: 'Tema Kelimelerinin Resimleri', icon: ImageIcon },
   { id: 'flashcards', label: 'Sesli Kelime Kartları', icon: Layers },
-  { id: 'games', label: 'Eşleştirme ve Hafıza Oyunları', icon: Gamepad2 },
+  { id: 'games', label: 'Oyunlar - Oynayarak Öğren', icon: Gamepad2 },
   { id: 'sentences', label: 'Cümle Kurma ve Boşluk Doldurma', icon: Puzzle },
   { id: 'quiz', label: 'Mini Sınav & Puanlama', icon: ListChecks },
 ];
@@ -75,6 +82,13 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
   onCompleteMatching,
   onCompleteRace,
   onCompleteBalloon,
+  onCompleteSoundHunt,
+  onCompleteCarRoad,
+  onCompleteAnimalFeast,
+  onCompleteFrogHop,
+  onCompleteWordSearch,
+  onCompleteWhackMole,
+  onCompletePirateTreasure,
   onCompleteSentence,
   onCompleteFill,
   onFinishQuiz,
@@ -125,9 +139,9 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
     speakEnglish('Hello! Let us learn English together!', { rate: speechRate });
   };
 
-  const handleSpeakText = (text: string, key: string) => {
+  const handleSpeakText = (text: string, key: string, overrideRate?: number) => {
     speakEnglish(text, {
-      rate: speechRate,
+      rate: overrideRate ?? speechRate,
       onStart: () => setSpeakingKey(key),
       onEnd: () => setSpeakingKey((curr) => (curr === key ? null : curr)),
     });
@@ -364,11 +378,39 @@ export const ThemeWorkspace: React.FC<ThemeWorkspaceProps> = ({
             matchingCompletedCount={progress.matchingCompletedCount}
             raceCompletedCount={progress.raceCompletedCount}
             balloonBestScore={progress.balloonBestScore}
+            soundHuntBestScore={progress.soundHuntBestScore ?? null}
+            carRoadBestScore={progress.carRoadBestScore ?? null}
+            animalFeastBestScore={progress.animalFeastBestScore ?? null}
+            frogHopBestScore={progress.frogHopBestScore ?? null}
+            wordSearchBestScore={progress.wordSearchBestScore ?? null}
+            whackMoleBestScore={progress.whackMoleBestScore ?? null}
+            pirateTreasureBestScore={progress.pirateTreasureBestScore ?? null}
             onCompleteMemory={(moves) => onCompleteMemory(themeId, moves)}
             onCompleteMatching={() => onCompleteMatching(themeId)}
             onCompleteRace={() => onCompleteRace(themeId)}
             onCompleteBalloon={(score, poppedCount) =>
               onCompleteBalloon(themeId, score, poppedCount)
+            }
+            onCompleteSoundHunt={(score, correctCount) =>
+              onCompleteSoundHunt(themeId, score, correctCount)
+            }
+            onCompleteCarRoad={(score, gatesCleared) =>
+              onCompleteCarRoad(themeId, score, gatesCleared)
+            }
+            onCompleteAnimalFeast={(score, fedCount) =>
+              onCompleteAnimalFeast(themeId, score, fedCount)
+            }
+            onCompleteFrogHop={(score, hopsCount) =>
+              onCompleteFrogHop(themeId, score, hopsCount)
+            }
+            onCompleteWordSearch={(score, foundCount) =>
+              onCompleteWordSearch(themeId, score, foundCount)
+            }
+            onCompleteWhackMole={(score, hitsCount) =>
+              onCompleteWhackMole(themeId, score, hitsCount)
+            }
+            onCompletePirateTreasure={(score, unlockedCount) =>
+              onCompletePirateTreasure(themeId, score, unlockedCount)
             }
             onSpeakText={handleSpeakText}
           />

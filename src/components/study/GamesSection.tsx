@@ -7,22 +7,47 @@ import {
   playRewardSound,
   playSuccessSound,
 } from '../../utils/soundFx';
+import { SoundHuntGame } from './SoundHuntGame';
+import { CarRoadGame } from './CarRoadGame';
+import { AnimalFeastGame } from './AnimalFeastGame';
+import { FrogHopGame } from './FrogHopGame';
+import { WordSearchGame } from './WordSearchGame';
+import { WhackMoleGame } from './WhackMoleGame';
+import { PirateTreasureGame } from './PirateTreasureGame';
 import {
   ArrowLeft,
   ArrowRight,
+  Car,
   CheckCircle2,
   Clock,
+  Compass,
   Flag,
+  Hammer,
+  Headphones,
   Image as ImageIcon,
+  Leaf,
+  PawPrint,
   Play,
   Puzzle,
   RotateCcw,
+  Search,
   Sparkles,
   Trophy,
   Volume2,
 } from 'lucide-react';
 
-export type GameModeId = 'memory' | 'matching' | 'race' | 'balloon';
+export type GameModeId =
+  | 'memory'
+  | 'matching'
+  | 'race'
+  | 'balloon'
+  | 'carRoad'
+  | 'soundHunt'
+  | 'animalFeast'
+  | 'frogHop'
+  | 'wordSearch'
+  | 'whackMole'
+  | 'pirateTreasure';
 
 interface GamesSectionProps {
   themeId: ThemeId;
@@ -31,11 +56,25 @@ interface GamesSectionProps {
   matchingCompletedCount: number;
   raceCompletedCount: number;
   balloonBestScore: number | null;
+  soundHuntBestScore: number | null;
+  carRoadBestScore: number | null;
+  animalFeastBestScore: number | null;
+  frogHopBestScore: number | null;
+  wordSearchBestScore: number | null;
+  whackMoleBestScore: number | null;
+  pirateTreasureBestScore: number | null;
   onCompleteMemory: (moves: number) => void;
   onCompleteMatching: () => void;
   onCompleteRace: () => void;
   onCompleteBalloon: (score: number, poppedCount: number) => void;
-  onSpeakText: (text: string, key: string) => void;
+  onCompleteSoundHunt: (score: number, correctCount: number) => void;
+  onCompleteCarRoad: (score: number, gatesCleared: number) => void;
+  onCompleteAnimalFeast: (score: number, fedCount: number) => void;
+  onCompleteFrogHop: (score: number, hopsCount: number) => void;
+  onCompleteWordSearch: (score: number, foundCount: number) => void;
+  onCompleteWhackMole: (score: number, hitsCount: number) => void;
+  onCompletePirateTreasure: (score: number, unlockedCount: number) => void;
+  onSpeakText: (text: string, key: string, overrideRate?: number) => void;
 }
 
 interface MemoryCard {
@@ -78,10 +117,24 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
   matchingCompletedCount,
   raceCompletedCount,
   balloonBestScore,
+  soundHuntBestScore,
+  carRoadBestScore,
+  animalFeastBestScore,
+  frogHopBestScore,
+  wordSearchBestScore,
+  whackMoleBestScore,
+  pirateTreasureBestScore,
   onCompleteMemory,
   onCompleteMatching,
   onCompleteRace,
   onCompleteBalloon,
+  onCompleteSoundHunt,
+  onCompleteCarRoad,
+  onCompleteAnimalFeast,
+  onCompleteFrogHop,
+  onCompleteWordSearch,
+  onCompleteWhackMole,
+  onCompletePirateTreasure,
   onSpeakText,
 }) => {
   const [mode, setMode] = useState<GameModeId | null>(null);
@@ -403,6 +456,90 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
       icon: Clock,
       symbol: '🎈',
     },
+    {
+      id: 'carRoad',
+      title: '5. Sesli Araba Yolu (Sağ mı Sol mu?)',
+      shortLabel: 'Sesli Araba Yolu',
+      desc: 'Arabanla ilerle, sesin okuduğu kelimenin şeridine geçerek engeli kaldır; yanlış tarafa gidersen çarparsın!',
+      stat:
+        carRoadBestScore !== null
+          ? `Rekor: ${carRoadBestScore} puan`
+          : 'Sağ/Sol direksiyon',
+      icon: Car,
+      symbol: '🚗',
+    },
+    {
+      id: 'soundHunt',
+      title: '6. Sesli Resim Avı (Dinle ve Bul)',
+      shortLabel: 'Sesli Resim Avı',
+      desc: 'Kadın sesinin okuduğu kelimeyi dinle, 4 resim arasından doğru görseli bularak kombo yap!',
+      stat:
+        soundHuntBestScore !== null
+          ? `Rekor: ${soundHuntBestScore} puan`
+          : '10 turluk sesli macera',
+      icon: Headphones,
+      symbol: '🎧',
+    },
+    {
+      id: 'animalFeast',
+      title: '7. Acıkmış Hayvanları Besle (Büyüme Yarışı)',
+      shortLabel: 'Büyüme Yarışı',
+      desc: 'Doğru bildikçe hayvan büyür, yanlışta küçülür! 3 yanlışta oyun biter; finalde boy sırasına dizilir ve en büyük hayvan yıldızı kazanır!',
+      stat:
+        animalFeastBestScore !== null
+          ? `Rekor: ${animalFeastBestScore} puan`
+          : 'Büyüyen hayvanlar · Yıldızlı final',
+      icon: PawPrint,
+      symbol: '🐾',
+    },
+    {
+      id: 'frogHop',
+      title: '8. Kurbağa Zıplatma (Göl Geçişi)',
+      shortLabel: 'Kurbağa Zıplatma',
+      desc: 'Gölün başındaki kurbağayı doğru kelimenin yazdığı yaprağa zıplat, karşı kıyıdaki yiyeceğe ulaşıp afiyetle yesin!',
+      stat:
+        frogHopBestScore !== null
+          ? `Rekor: ${frogHopBestScore} puan`
+          : '7 yapraklı göl geçişi',
+      icon: Leaf,
+      symbol: '🐸',
+    },
+    {
+      id: 'wordSearch',
+      title: '9. Kelime Bulmaca (Harf Avı)',
+      shortLabel: 'Kelime Bulmaca',
+      desc: 'Öğrendiğin 6 kelimeyi 9×9 harf karmaşası içinde yatay, dikey veya çapraz bul; renkli vurgularla puan ve yıldız topla!',
+      stat:
+        wordSearchBestScore !== null
+          ? `Rekor: ${wordSearchBestScore} puan`
+          : '9×9 harf tablosu',
+      icon: Search,
+      symbol: '🔍',
+    },
+    {
+      id: 'whackMole',
+      title: '10. Köstebek Yakala (Hızlı Dokun!)',
+      shortLabel: 'Köstebek Yakala',
+      desc: 'Deliklerden fırlayan köstebeklerin elindeki kelimelere ve resimlere bak; sesin okuduğu doğru köstebeğe dokunarak kombo yap!',
+      stat:
+        whackMoleBestScore !== null
+          ? `Rekor: ${whackMoleBestScore} puan`
+          : '45 saniyelik bahçe macerası',
+      icon: Hammer,
+      symbol: '🐹',
+    },
+    {
+      id: 'pirateTreasure',
+      title: '11. Korsan Hazinesi (Harf Şifresi)',
+      shortLabel: 'Korsan Hazinesi',
+      desc: 'Resmini görüp sesini dinlediğin kelimenin harflerini doğru sırayla seç, 8 hazine sandığının kilidini açıp altınları topla!',
+      stat:
+        pirateTreasureBestScore !== null
+          ? `Rekor: ${pirateTreasureBestScore} altın`
+          : '8 sandıklı yazım avı',
+      icon: Compass,
+      symbol: '🏴‍☠️',
+    },
   ];
 
   const currentRaceQ = raceQuestions[raceStep];
@@ -425,7 +562,7 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-            Eşleştirme ve Hafıza Oyunları
+            Oyunlar - Oynayarak Öğren
           </h2>
           <p className="text-sm text-slate-600 mt-1">
             {mode === null
@@ -446,17 +583,20 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
         )}
       </div>
 
-      {/* 4 GAME BOXES HUB (shown before selecting a game) */}
+      {/* 7 GAME BOXES HUB (shown before selecting a game) */}
       {mode === null && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {gameCards.map((card) => {
+          {gameCards.map((card, index) => {
             const Icon = card.icon;
+            const spanFull = gameCards.length % 2 === 1 && index === gameCards.length - 1;
             return (
               <button
                 key={card.id}
                 type="button"
                 onClick={() => setMode(card.id)}
-                className={`group bg-white border-2 border-slate-200 ${cardHoverBorder} rounded-2xl p-5 sm:p-6 text-left transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md cursor-pointer flex flex-col justify-between gap-5`}
+                className={`group bg-white border-2 border-slate-200 ${cardHoverBorder} rounded-2xl p-5 sm:p-6 text-left transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md cursor-pointer flex flex-col justify-between gap-5 ${
+                  spanFull ? 'sm:col-span-2' : ''
+                }`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3.5">
@@ -512,7 +652,7 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
 
       {/* Compact switcher bar when inside a game */}
       {mode !== null && (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 p-1.5 bg-slate-100 rounded-2xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-slate-100 rounded-2xl">
           {gameCards.map((tab) => {
             const Icon = tab.icon;
             const active = mode === tab.id;
@@ -1090,6 +1230,103 @@ export const GamesSection: React.FC<GamesSectionProps> = ({
               </button>
             </div>
           )}
+        </div>
+      )}
+
+      {/* GAME 5: SESLİ ARABA YOLU */}
+      {mode === 'carRoad' && (
+        <CarRoadGame
+          themeId={themeId}
+          vocab={vocab}
+          bestScore={carRoadBestScore}
+          accentBtn={accentBtn}
+          onComplete={onCompleteCarRoad}
+          onSpeakText={onSpeakText}
+        />
+      )}
+
+      {/* GAME 6: SESLİ RESİM AVI */}
+      {mode === 'soundHunt' && (
+        <SoundHuntGame
+          themeId={themeId}
+          vocab={vocab}
+          bestScore={soundHuntBestScore}
+          accentBtn={accentBtn}
+          onComplete={onCompleteSoundHunt}
+          onSpeakText={onSpeakText}
+        />
+      )}
+
+      {/* GAME 7: ACIKMIŞ HAYVANLARI BESLE */}
+      {mode === 'animalFeast' && (
+        <AnimalFeastGame
+          themeId={themeId}
+          vocab={vocab}
+          bestScore={animalFeastBestScore}
+          accentBtn={accentBtn}
+          onComplete={onCompleteAnimalFeast}
+          onSpeakText={onSpeakText}
+        />
+      )}
+
+      {/* GAME 8: KURBAĞA ZIPLATMA */}
+      {mode === 'frogHop' && (
+        <FrogHopGame
+          themeId={themeId}
+          vocab={vocab}
+          bestScore={frogHopBestScore}
+          accentBtn={accentBtn}
+          onComplete={onCompleteFrogHop}
+          onSpeakText={onSpeakText}
+        />
+      )}
+
+      {/* GAME 9: KELİME BULMACA */}
+      {mode === 'wordSearch' && (
+        <WordSearchGame
+          themeId={themeId}
+          vocab={vocab}
+          bestScore={wordSearchBestScore}
+          accentBtn={accentBtn}
+          onComplete={onCompleteWordSearch}
+          onSpeakText={onSpeakText}
+        />
+      )}
+
+      {/* GAME 10: KÖSTEBEK YAKALA */}
+      {mode === 'whackMole' && (
+        <WhackMoleGame
+          themeId={themeId}
+          vocab={vocab}
+          bestScore={whackMoleBestScore}
+          accentBtn={accentBtn}
+          onComplete={onCompleteWhackMole}
+          onSpeakText={onSpeakText}
+        />
+      )}
+
+      {/* GAME 11: KORSAN HAZİNESİ */}
+      {mode === 'pirateTreasure' && (
+        <PirateTreasureGame
+          themeId={themeId}
+          vocab={vocab}
+          bestScore={pirateTreasureBestScore}
+          accentBtn={accentBtn}
+          onComplete={onCompletePirateTreasure}
+          onSpeakText={onSpeakText}
+        />
+      )}
+
+      {mode !== null && (
+        <div className="pt-1">
+          <button
+            type="button"
+            onClick={() => setMode(null)}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-extrabold shadow-sm transition-colors whitespace-nowrap cursor-pointer min-h-[44px]"
+          >
+            <ArrowLeft className="w-4 h-4 shrink-0" />
+            <span>Geri Dön · Oyun Kutuları</span>
+          </button>
         </div>
       )}
     </div>

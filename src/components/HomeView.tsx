@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BADGES, THEMES, THEME_IMAGES } from '../data/curriculum';
 import { StudentProfile, StudyTabId, ThemeId } from '../types/curriculum';
 import { getThemeCompletionPercent } from '../utils/storage';
@@ -37,6 +37,7 @@ interface HomeViewProps {
   nameInputRef: React.RefObject<HTMLInputElement | null>;
   profileSectionRef: React.RefObject<HTMLElement | null>;
   initialExpandedTheme?: ThemeId | null;
+  subMenuReturnTick?: number;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
@@ -47,11 +48,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
   nameInputRef,
   profileSectionRef,
   initialExpandedTheme = null,
+  subMenuReturnTick = 0,
 }) => {
   const [nameInput, setNameInput] = useState('');
   const [nameError, setNameError] = useState('');
   const [expandedThemeId, setExpandedThemeId] = useState<ThemeId | null>(initialExpandedTheme);
   const subMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (subMenuReturnTick > 0 && initialExpandedTheme !== null) {
+      setExpandedThemeId(initialExpandedTheme);
+      const timer = window.setTimeout(() => {
+        subMenuRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+      return () => window.clearTimeout(timer);
+    }
+  }, [subMenuReturnTick, initialExpandedTheme]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -323,7 +335,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   Okul Hayatı
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-teal-100/90 leading-relaxed line-clamp-2">
-                  {THEMES[1].subtitleTr}. {THEMES[1].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                  {THEMES[1].subtitleTr}. {THEMES[1].vocab.length} sesli kelime, 4 konu ve 11 oyun.
                 </p>
                 <p className="sm:hidden text-[11px] font-medium text-teal-100/90 tabular-nums">
                   {THEMES[1].vocab.length} sesli kelime
@@ -393,7 +405,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   Sınıf Yaşamı
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-orange-100/90 leading-relaxed line-clamp-2">
-                  {THEMES[2].subtitleTr}. {THEMES[2].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                  {THEMES[2].subtitleTr}. {THEMES[2].vocab.length} sesli kelime, 4 konu ve 11 oyun.
                 </p>
                 <p className="sm:hidden text-[11px] font-medium text-orange-100/90 tabular-nums">
                   {THEMES[2].vocab.length} sesli kelime
@@ -463,7 +475,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   Kişisel Hayat
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-purple-100/90 leading-relaxed line-clamp-2">
-                  {THEMES[3].subtitleTr}. {THEMES[3].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                  {THEMES[3].subtitleTr}. {THEMES[3].vocab.length} sesli kelime, 4 konu ve 11 oyun.
                 </p>
                 <p className="sm:hidden text-[11px] font-medium text-purple-100/90 tabular-nums">
                   {THEMES[3].vocab.length} sesli kelime
@@ -533,7 +545,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   Aile Hayatı
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-rose-100/90 leading-relaxed line-clamp-2">
-                  {THEMES[4].subtitleTr}. {THEMES[4].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                  {THEMES[4].subtitleTr}. {THEMES[4].vocab.length} sesli kelime, 4 konu ve 11 oyun.
                 </p>
                 <p className="sm:hidden text-[11px] font-medium text-rose-100/90 tabular-nums">
                   {THEMES[4].vocab.length} sesli kelime
@@ -603,7 +615,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   Evler, Çiftlik ve Çevremiz
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-emerald-100/90 leading-relaxed line-clamp-2">
-                  {THEMES[5].subtitleTr}. {THEMES[5].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                  {THEMES[5].subtitleTr}. {THEMES[5].vocab.length} sesli kelime, 4 konu ve 11 oyun.
                 </p>
                 <p className="sm:hidden text-[11px] font-medium text-emerald-100/90 tabular-nums">
                   {THEMES[5].vocab.length} sesli kelime
@@ -673,7 +685,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   Şehirde Yaşam ve Yiyecekler
                 </p>
                 <p className="hidden sm:block text-xs sm:text-sm text-blue-100/90 leading-relaxed line-clamp-2">
-                  {THEMES[6].subtitleTr}. {THEMES[6].vocab.length} sesli kelime, 4 konu ve 4 oyun.
+                  {THEMES[6].subtitleTr}. {THEMES[6].vocab.length} sesli kelime, 4 konu ve 11 oyun.
                 </p>
                 <p className="sm:hidden text-[11px] font-medium text-blue-100/90 tabular-nums">
                   {THEMES[6].vocab.length} sesli kelime
@@ -712,7 +724,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {expandedThemeId !== null && (
           <div
             ref={subMenuRef}
-            className={`rounded-2xl border-2 p-5 sm:p-7 space-y-5 shadow-sm transition-all ${
+            className={`scroll-mt-20 rounded-2xl border-2 p-5 sm:p-7 space-y-5 shadow-sm transition-all ${
               expandedThemeId === 1
                 ? 'bg-teal-50/70 border-teal-300'
                 : expandedThemeId === 2
@@ -835,9 +847,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 },
                 {
                   tab: 'games',
-                  title: 'Eşleştirme ve Hafıza Oyunları',
-                  desc: 'Hafıza, eşleştirme, yarış ve balon oyunu',
-                  stat: '4 farklı oyun',
+                  title: 'Oyunlar - Oynayarak Öğren',
+                  desc: 'Hafıza, yarış, balon, araba, hayvan besleme, kurbağa, bulmaca, köstebek ve korsan hazinesi',
+                  stat: '11 farklı oyun',
                   icon: Gamepad2,
                 },
                 {

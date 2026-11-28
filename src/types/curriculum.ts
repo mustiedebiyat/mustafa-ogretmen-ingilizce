@@ -102,6 +102,13 @@ export interface ThemeProgress {
   matchingCompletedCount: number;
   raceCompletedCount: number;
   balloonBestScore: number | null;
+  soundHuntBestScore?: number | null;
+  carRoadBestScore?: number | null;
+  animalFeastBestScore?: number | null;
+  frogHopBestScore?: number | null;
+  wordSearchBestScore?: number | null;
+  whackMoleBestScore?: number | null;
+  pirateTreasureBestScore?: number | null;
   sentenceBuildCompletedIds: string[];
   fillBlankCompletedIds: string[];
   quizBestScore: number | null;

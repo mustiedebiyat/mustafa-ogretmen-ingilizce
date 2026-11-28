@@ -36,6 +36,13 @@ export function createEmptyThemeProgress(): ThemeProgress {
     matchingCompletedCount: 0,
     raceCompletedCount: 0,
     balloonBestScore: null,
+    soundHuntBestScore: null,
+    carRoadBestScore: null,
+    animalFeastBestScore: null,
+    frogHopBestScore: null,
+    wordSearchBestScore: null,
+    whackMoleBestScore: null,
+    pirateTreasureBestScore: null,
     sentenceBuildCompletedIds: [],
     fillBlankCompletedIds: [],
     quizBestScore: null,
@@ -271,7 +278,42 @@ export function getThemeCompletionPercent(profile: StudentProfile | null, themeI
     (progress.memoryBestMoves !== null ? 0.25 : 0) +
       (progress.matchingCompletedCount > 0 ? 0.25 : 0) +
       (progress.raceCompletedCount > 0 ? 0.25 : 0) +
-      (progress.balloonBestScore !== null && progress.balloonBestScore > 0 ? 0.25 : 0)
+      (progress.balloonBestScore !== null && progress.balloonBestScore > 0 ? 0.25 : 0) +
+      (progress.soundHuntBestScore !== null &&
+      progress.soundHuntBestScore !== undefined &&
+      progress.soundHuntBestScore > 0
+        ? 0.25
+        : 0) +
+      (progress.carRoadBestScore !== null &&
+      progress.carRoadBestScore !== undefined &&
+      progress.carRoadBestScore > 0
+        ? 0.25
+        : 0) +
+      (progress.animalFeastBestScore !== null &&
+      progress.animalFeastBestScore !== undefined &&
+      progress.animalFeastBestScore > 0
+        ? 0.25
+        : 0) +
+      (progress.frogHopBestScore !== null &&
+      progress.frogHopBestScore !== undefined &&
+      progress.frogHopBestScore > 0
+        ? 0.25
+        : 0) +
+      (progress.wordSearchBestScore !== null &&
+      progress.wordSearchBestScore !== undefined &&
+      progress.wordSearchBestScore > 0
+        ? 0.25
+        : 0) +
+      (progress.whackMoleBestScore !== null &&
+      progress.whackMoleBestScore !== undefined &&
+      progress.whackMoleBestScore > 0
+        ? 0.25
+        : 0) +
+      (progress.pirateTreasureBestScore !== null &&
+      progress.pirateTreasureBestScore !== undefined &&
+      progress.pirateTreasureBestScore > 0
+        ? 0.25
+        : 0)
   );
   const sentenceScore = Math.min(
     1,
@@ -360,7 +402,49 @@ export function evaluateEarnedBadges(profile: StudentProfile): {
         profile.theme3.raceCompletedCount >= 1 ||
         profile.theme4.raceCompletedCount >= 1 ||
         profile.theme5.raceCompletedCount >= 1 ||
-        profile.theme6.raceCompletedCount >= 1,
+        profile.theme6.raceCompletedCount >= 1 ||
+        (profile.theme1.soundHuntBestScore ?? 0) > 0 ||
+        (profile.theme2.soundHuntBestScore ?? 0) > 0 ||
+        (profile.theme3.soundHuntBestScore ?? 0) > 0 ||
+        (profile.theme4.soundHuntBestScore ?? 0) > 0 ||
+        (profile.theme5.soundHuntBestScore ?? 0) > 0 ||
+        (profile.theme6.soundHuntBestScore ?? 0) > 0 ||
+        (profile.theme1.carRoadBestScore ?? 0) > 0 ||
+        (profile.theme2.carRoadBestScore ?? 0) > 0 ||
+        (profile.theme3.carRoadBestScore ?? 0) > 0 ||
+        (profile.theme4.carRoadBestScore ?? 0) > 0 ||
+        (profile.theme5.carRoadBestScore ?? 0) > 0 ||
+        (profile.theme6.carRoadBestScore ?? 0) > 0 ||
+        (profile.theme1.animalFeastBestScore ?? 0) > 0 ||
+        (profile.theme2.animalFeastBestScore ?? 0) > 0 ||
+        (profile.theme3.animalFeastBestScore ?? 0) > 0 ||
+        (profile.theme4.animalFeastBestScore ?? 0) > 0 ||
+        (profile.theme5.animalFeastBestScore ?? 0) > 0 ||
+        (profile.theme6.animalFeastBestScore ?? 0) > 0 ||
+        (profile.theme1.frogHopBestScore ?? 0) > 0 ||
+        (profile.theme2.frogHopBestScore ?? 0) > 0 ||
+        (profile.theme3.frogHopBestScore ?? 0) > 0 ||
+        (profile.theme4.frogHopBestScore ?? 0) > 0 ||
+        (profile.theme5.frogHopBestScore ?? 0) > 0 ||
+        (profile.theme6.frogHopBestScore ?? 0) > 0 ||
+        (profile.theme1.wordSearchBestScore ?? 0) > 0 ||
+        (profile.theme2.wordSearchBestScore ?? 0) > 0 ||
+        (profile.theme3.wordSearchBestScore ?? 0) > 0 ||
+        (profile.theme4.wordSearchBestScore ?? 0) > 0 ||
+        (profile.theme5.wordSearchBestScore ?? 0) > 0 ||
+        (profile.theme6.wordSearchBestScore ?? 0) > 0 ||
+        (profile.theme1.whackMoleBestScore ?? 0) > 0 ||
+        (profile.theme2.whackMoleBestScore ?? 0) > 0 ||
+        (profile.theme3.whackMoleBestScore ?? 0) > 0 ||
+        (profile.theme4.whackMoleBestScore ?? 0) > 0 ||
+        (profile.theme5.whackMoleBestScore ?? 0) > 0 ||
+        (profile.theme6.whackMoleBestScore ?? 0) > 0 ||
+        (profile.theme1.pirateTreasureBestScore ?? 0) > 0 ||
+        (profile.theme2.pirateTreasureBestScore ?? 0) > 0 ||
+        (profile.theme3.pirateTreasureBestScore ?? 0) > 0 ||
+        (profile.theme4.pirateTreasureBestScore ?? 0) > 0 ||
+        (profile.theme5.pirateTreasureBestScore ?? 0) > 0 ||
+        (profile.theme6.pirateTreasureBestScore ?? 0) > 0,
     ],
     ['sentence_builder', totalSentences >= 6],
     ['theme1_hero', (profile.theme1.quizBestScore ?? 0) >= 80 && t1Percent >= 60],
